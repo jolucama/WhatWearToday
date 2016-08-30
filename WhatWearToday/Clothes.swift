@@ -15,6 +15,14 @@ class Clothes: NSObject {
     var color : String!
     var season : String!
     var pieceDescription : String!
-    var previewPhoto : UIImageView!
+    var previewPhoto : UIImage!
     
+    init(title: String, type: String, color: String, season: String, pieceDescription: String, previewPhoto: UIImage) {
+        self.title = title
+        self.type = type
+        self.color = color
+        self.season = season
+        self.pieceDescription = pieceDescription
+        self.previewPhoto = previewPhoto
+    }
 }

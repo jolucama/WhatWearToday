@@ -8,7 +8,7 @@
         <!--What wear today (change dinamically) ?-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cxw-Jw-AIv"/>
                         <viewControllerLayoutGuide type="bottom" id="7vb-m6-eI3"/>
@@ -222,10 +222,14 @@
                     <navigationItem key="navigationItem" title="Add a piece of clothing" id="gDw-G1-f5w">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AW2-Si-1WP">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="DUI-HM-5Eh"/>
+                                <segue destination="wrc-vD-YUx" kind="presentation" identifier="goToMainView" id="kCS-f0-yrh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="u82-Mp-blV"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="u82-Mp-blV">
+                            <connections>
+                                <action selector="saveObject:" destination="j4K-sv-ukx" id="C8o-xb-yWb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="color" destination="Jkv-YE-Su0" id="OTY-6B-59n"/>
@@ -238,7 +242,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bJ-CY-0hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="1028"/>
+            <point key="canvasLocation" x="1962" y="1028"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UEi-lx-trU">
@@ -277,7 +281,4 @@
             <point key="canvasLocation" x="1166" y="1028"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="DUI-HM-5Eh"/>
-    </inferredMetricsTieBreakers>
 </document>
