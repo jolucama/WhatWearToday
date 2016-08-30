@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="Clothes" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pieceDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewPhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="season" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Clothes" positionX="-477" positionY="-252" width="128" height="135"/>
+    </elements>
 </model>
