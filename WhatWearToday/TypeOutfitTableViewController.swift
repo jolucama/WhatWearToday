@@ -57,11 +57,10 @@ class TypeOutfitTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "backToAddOutfitSegue" {
-            let addClothesNavigationController = segue.destination as? UINavigationController
-            let addClothesTableViewController = addClothesNavigationController?.topViewController as? AddClothesTableViewController
-            let indexPath = self.tableView.indexPathForSelectedRow
-            addClothesTableViewController?.toPass = typesOutfit[(indexPath?.row)!]
+        if segue.identifier == "backToAddOutfitSegue",
+            let addClothesTableViewController = segue.destination as? AddClothesTableViewController ,
+            let indexPath = self.tableView.indexPathForSelectedRow {
+            addClothesTableViewController.toPass = typesOutfit[indexPath.row]
         }
     }
 

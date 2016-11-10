@@ -1,5 +1,5 @@
 //
-//  FromLeftToRightUiStoryboardSegue.swift
+//  FromRightToLeftUIStoryboardSegue.swift
 //  WhatWearToday
 //
 //  Created by jlcardosa on 10/11/2016.
@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import QuartzCore
 
-class FromLeftToRightUIStoryboardSegue: UIStoryboardSegue {
+class FromRightToLeftUIStoryboardSegue: UIStoryboardSegue {
     
     override func perform() {
         let src: UIViewController = self.source
@@ -19,7 +18,7 @@ class FromLeftToRightUIStoryboardSegue: UIStoryboardSegue {
         transition.duration = 0.35
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
+        transition.subtype = kCATransitionFromRight
         src.navigationController!.view.layer.add(transition, forKey: kCATransition)
         src.navigationController!.pushViewController(dst, animated: false)
     }

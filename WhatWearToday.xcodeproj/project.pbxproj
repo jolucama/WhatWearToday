@@ -19,6 +19,7 @@
 		6487D4771D74C19200C22EA1 /* WhatWearTodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */; };
 		64FF7EDC1DD3EEC90037871D /* TypeOutfitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EDB1DD3EEC90037871D /* TypeOutfitTableViewController.swift */; };
 		64FF7EDF1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */; };
+		64FF7EE11DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EE01DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		6487D4781D74C19200C22EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64FF7EDB1DD3EEC90037871D /* TypeOutfitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOutfitTableViewController.swift; sourceTree = "<group>"; };
 		64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromLeftToRightUiStoryboardSegue.swift; sourceTree = "<group>"; };
+		64FF7EE01DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromRightToLeftUIStoryboardSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */,
+				64FF7EE01DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift */,
 			);
 			name = Segues;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64FF7EDF1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift in Sources */,
+				64FF7EE11DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift in Sources */,
 				64467ED51D75272400EDF83A /* AddClothesTableViewController.swift in Sources */,
 				6487D4561D74C19100C22EA1 /* MainViewController.swift in Sources */,
 				6487D4541D74C19100C22EA1 /* AppDelegate.swift in Sources */,
