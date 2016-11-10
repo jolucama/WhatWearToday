@@ -21,12 +21,20 @@ class AddClothesTableViewController: UITableViewController,
     @IBOutlet weak var pieceDescripiton: UITextView!
     @IBOutlet weak var previewImage: UIImageView!
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        previewImage.image = image
-        self.dismissViewControllerAnimated(true, completion: nil);
+    var toPass : String!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        self.type.text = self.toPass;
     }
     
-    @IBAction func addPhoto(sender: UIButton, forEvent event: UIEvent) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
+        previewImage.image = image
+        self.dismiss(animated: true, completion: nil);
+    }
+    
+    @IBAction func addPhoto(_ sender: UIButton, forEvent event: UIEvent) {
         
         /*
          OPEN THE CAMERA (JUST WITH REAL DEVICES)
@@ -39,16 +47,16 @@ class AddClothesTableViewController: UITableViewController,
         }
         */
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
             imagePicker.allowsEditing = true
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    @IBAction func saveObject(sender: AnyObject) {
+    @IBAction func saveObject(_ sender: AnyObject) {
         
         let imageData = UIImageJPEGRepresentation(previewImage.image!, 0.6)
         let compressedJPGImage = UIImage(data: imageData!)
@@ -58,16 +66,16 @@ class AddClothesTableViewController: UITableViewController,
             title: self.pieceTitle.text!,
             type: self.type.text!,
             color: self.color.text!,
-            season: self.season.titleForSegmentAtIndex(self.season.selectedSegmentIndex)!,
+            season: self.season.titleForSegment(at: self.season.selectedSegmentIndex)!,
             pieceDescription: self.pieceDescripiton.text!,
             previewPhoto: self.previewImage.image!
         )
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
-        let entity =  NSEntityDescription.entityForName("Clothes", inManagedObjectContext:managedContext)
+        let entity =  NSEntityDescription.entity(forEntityName: "Clothes", in:managedContext)
         
-        let outfitDAO = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        let outfitDAO = NSManagedObject(entity: entity!, insertInto: managedContext)
         outfitDAO.setValue(outfit.title, forKey: "title");
         outfitDAO.setValue(outfit.type, forKey: "type");
         outfitDAO.setValue(outfit.color, forKey: "color");
@@ -77,7 +85,7 @@ class AddClothesTableViewController: UITableViewController,
         do {
             try managedContext.save()
             
-            performSegueWithIdentifier("goToMainView", sender: nil)
+            performSegue(withIdentifier: "goToMainView", sender: nil)
             
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
