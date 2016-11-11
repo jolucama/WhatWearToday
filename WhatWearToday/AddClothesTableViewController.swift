@@ -21,12 +21,19 @@ class AddClothesTableViewController: UITableViewController,
     @IBOutlet weak var pieceDescripiton: UITextView!
     @IBOutlet weak var previewImage: UIImageView!
     
-    var toPass : String!
+    var typeSelected : String? = ""
+    var colorSelected : String? = ""
     
+    let typesOutfit = ["Dress", "Hat", "Trousers", "Necklace", "Sunglasses", "Shoes"]
+    let colorOutfit = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse"]
+    
+    var outfitList = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        self.type.text = self.toPass;
+        
+        self.type.text = "";
+        self.color.text = "";
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
@@ -57,38 +64,54 @@ class AddClothesTableViewController: UITableViewController,
     }
     
     @IBAction func saveObject(_ sender: AnyObject) {
-        
+        /*
         let imageData = UIImageJPEGRepresentation(previewImage.image!, 0.6)
         let compressedJPGImage = UIImage(data: imageData!)
         UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
-        
-        let outfit = Clothes(
+        */
+        let outfit = Outfit(
             title: self.pieceTitle.text!,
             type: self.type.text!,
             color: self.color.text!,
             season: self.season.titleForSegment(at: self.season.selectedSegmentIndex)!,
             pieceDescription: self.pieceDescripiton.text!,
-            previewPhoto: self.previewImage.image!
+            previewPhoto: nil
         )
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let entity =  NSEntityDescription.entity(forEntityName: "Clothes", in:managedContext)
-        
-        let outfitDAO = NSManagedObject(entity: entity!, insertInto: managedContext)
-        outfitDAO.setValue(outfit.title, forKey: "title");
-        outfitDAO.setValue(outfit.type, forKey: "type");
-        outfitDAO.setValue(outfit.color, forKey: "color");
-        outfitDAO.setValue(outfit.season, forKey: "season");
-        outfitDAO.setValue(outfit.pieceDescription, forKey: "pieceDescription");
+        let managedContext = CoreDataManager.getManagedObjectContext()
+        let entity =  NSEntityDescription.entity(forEntityName: OutfitManagedObject.entityName, in:managedContext)
+        let outfitManagedObject = OutfitManagedObject(entity: entity!, insertInto: managedContext)
+        outfitManagedObject.persist(object: outfit)
         
         do {
             try managedContext.save()
-            
-            performSegue(withIdentifier: "goToMainView", sender: nil)
-            
+            //performSegue(withIdentifier: "goToMainView", sender: nil)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
     }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToTypeOutfitSegue",
+            let typeOutfitTableViewController = segue.destination as? TypeOutfitTableViewController {
+            typeOutfitTableViewController.titleInNavigation = "Type"
+            typeOutfitTableViewController.typeList = "type"
+            typeOutfitTableViewController.values = self.typesOutfit
+        }
+        if segue.identifier == "goToColorOutfitSegue",
+            let typeOutfitTableViewController = segue.destination as? TypeOutfitTableViewController {
+            typeOutfitTableViewController.titleInNavigation = "Color"
+            typeOutfitTableViewController.typeList = "color"
+            typeOutfitTableViewController.values = self.colorOutfit
+        }
+    }
+    
+    @IBAction func backFromDetailsType(segue:UIStoryboardSegue) {
+        self.type.text = self.typeSelected;
+        self.color.text = self.colorSelected;
+    }
+    
 }

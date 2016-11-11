@@ -10,12 +10,14 @@ import UIKit
 
 class TypeOutfitTableViewController: UITableViewController {
 
-    let typesOutfit = ["Dress", "Hat", "Trousers", "Necklace", "Sunglasses", "Shoes"]
-    var selectedRow: Int!
+    var titleInNavigation: String?
+    var values: [String] = []
+    var typeList: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.title = self.titleInNavigation;
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,20 +39,16 @@ class TypeOutfitTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return typesOutfit.count
+        return self.values.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "typeCell", for: indexPath) 
 
-        cell.textLabel?.text = typesOutfit[indexPath.item]
+        cell.textLabel?.text = self.values[indexPath.item]
         // Configure the cell...
 
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedRow = indexPath.item
     }
 
     // MARK: - Navigation
@@ -60,7 +58,12 @@ class TypeOutfitTableViewController: UITableViewController {
         if segue.identifier == "backToAddOutfitSegue",
             let addClothesTableViewController = segue.destination as? AddClothesTableViewController ,
             let indexPath = self.tableView.indexPathForSelectedRow {
-            addClothesTableViewController.toPass = typesOutfit[indexPath.row]
+            let selectedValue = self.values[indexPath.row]
+            if self.typeList == "type" {
+                addClothesTableViewController.typeSelected = selectedValue;
+            } else if self.typeList == "color" {
+                addClothesTableViewController.colorSelected = selectedValue;
+            }
         }
     }
 
