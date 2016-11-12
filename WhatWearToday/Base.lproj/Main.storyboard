@@ -271,7 +271,7 @@
                     <navigationItem key="navigationItem" title="Add a outfit" id="gDw-G1-f5w">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AW2-Si-1WP">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="JIG-xj-faz"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="backToMainScreen" id="JIG-xj-faz"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="u82-Mp-blV">
@@ -346,34 +346,63 @@
         <scene sceneID="BUF-7R-Sn2">
             <objects>
                 <tableViewController id="ERH-HU-Rys" customClass="OutfitListTableViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wZg-DX-TaY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" id="wZg-DX-TaY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" red="1" green="0.029831843470767838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="separatorInset" minX="85" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="outfitCell" textLabel="OyQ-bI-6eT" detailTextLabel="Uxo-xv-fEb" style="IBUITableViewCellStyleSubtitle" id="bn8-pc-Y36">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bn8-pc-Y36" id="zEr-AD-yzH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitUITableViewCell" editingAccessoryType="disclosureIndicator" rowHeight="85" id="vOd-PY-5Kr" customClass="OutfitUITableViewCell" customModule="WhatWearToday" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOd-PY-5Kr" id="Z3C-9m-Nfo">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OyQ-bI-6eT">
-                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trousers.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="h2r-KS-yho">
+                                            <rect key="frame" x="8" y="8" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="Pc9-77-SkC"/>
+                                                <constraint firstAttribute="width" secondItem="h2r-KS-yho" secondAttribute="height" multiplier="1:1" id="yVi-eK-3EX"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One outfit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ole-zX-b0p">
+                                            <rect key="frame" x="86" y="8" width="226" height="46"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="46" id="rNr-AN-rwN"/>
+                                                <constraint firstAttribute="width" constant="226" id="s13-zd-6Rp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uxo-xv-fEb">
-                                            <rect key="frame" x="15" y="25" width="33" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Autumn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GK8-Zp-POT">
+                                            <rect key="frame" x="86" y="57" width="226" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="226" id="1aW-fJ-8j0"/>
+                                                <constraint firstAttribute="height" constant="21" id="4bI-Ks-7gY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="GK8-Zp-POT" firstAttribute="leading" secondItem="h2r-KS-yho" secondAttribute="trailing" constant="8" id="BUV-8a-6EL"/>
+                                        <constraint firstAttribute="topMargin" secondItem="h2r-KS-yho" secondAttribute="top" id="JED-NA-d5Z"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="h2r-KS-yho" secondAttribute="leading" id="Kpb-Up-71g"/>
+                                        <constraint firstItem="Ole-zX-b0p" firstAttribute="leading" secondItem="h2r-KS-yho" secondAttribute="trailing" constant="8" id="N8X-7t-df2"/>
+                                        <constraint firstAttribute="topMargin" secondItem="Ole-zX-b0p" secondAttribute="top" id="gKA-dz-Wvz"/>
+                                        <constraint firstItem="GK8-Zp-POT" firstAttribute="top" secondItem="Ole-zX-b0p" secondAttribute="bottom" constant="3" id="nGo-em-O8U"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="outfitPhoto" destination="h2r-KS-yho" id="kqb-iE-zgg"/>
+                                    <outlet property="outfitSeason" destination="GK8-Zp-POT" id="7ea-o6-UAk"/>
+                                    <outlet property="outfitTitle" destination="Ole-zX-b0p" id="PrX-pd-Pkz"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -462,6 +491,9 @@
             <point key="canvasLocation" x="-788" y="251.42428785607197"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="trousers.jpg" width="273" height="364"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yso-sa-3s6"/>
         <segue reference="JIG-xj-faz"/>

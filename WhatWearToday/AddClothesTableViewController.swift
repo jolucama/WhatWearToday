@@ -53,7 +53,6 @@ class AddClothesTableViewController: UITableViewController,
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
         */
-        
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -87,7 +86,12 @@ class AddClothesTableViewController: UITableViewController,
             try managedContext.save()
             //performSegue(withIdentifier: "goToMainView", sender: nil)
         } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
+            let alert = UIAlertController(title: "Error", message: "An error occured saving your object", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                //execute some code when this option is selected
+                NSLog("%@", error);
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

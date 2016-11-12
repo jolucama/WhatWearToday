@@ -12,19 +12,19 @@ import CoreData
 class OutfitManagedObject: NSManagedObject {
 
     static let entityName = "Outfit"
-    let titleAttrKey = "title"
-    let typeAttrKey = "type"
-    let colorAttrKey = "color"
-    let seasonAttrKey = "season"
-    let descriptionAttrKey = "pieceDescription"
+    static let titleAttrKey = "title"
+    static let typeAttrKey = "type"
+    static let colorAttrKey = "color"
+    static let seasonAttrKey = "season"
+    static let descriptionAttrKey = "pieceDescription"
     
     var outfit: Outfit!
     
     func persist(object: Outfit!) {
-        self.setValue(outfit.title, forKey: self.titleAttrKey);
-        self.setValue(outfit.type, forKey: self.typeAttrKey);
-        self.setValue(outfit.color, forKey: self.colorAttrKey);
-        self.setValue(outfit.season, forKey: self.seasonAttrKey);
-        self.setValue(outfit.pieceDescription, forKey: self.descriptionAttrKey);
+        self.setValue(outfit.title, forKey: OutfitManagedObject.titleAttrKey);
+        self.setValue(outfit.type, forKey: OutfitManagedObject.typeAttrKey);
+        self.setValue(outfit.color, forKey: OutfitManagedObject.colorAttrKey);
+        self.setValue(outfit.season, forKey: OutfitManagedObject.seasonAttrKey);
+        self.setValue(outfit.pieceDescription, forKey: OutfitManagedObject.descriptionAttrKey);
     }
 }

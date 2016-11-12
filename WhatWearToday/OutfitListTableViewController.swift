@@ -15,7 +15,8 @@ class OutfitListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.tableFooterView = UIView();
+        
         let managedContext = CoreDataManager.getManagedObjectContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: OutfitManagedObject.entityName)
         do {
@@ -25,8 +26,6 @@ class OutfitListTableViewController: UITableViewController {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-        
-        NSLog("My list of outfit is: %@", outfitList)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -51,16 +50,13 @@ class OutfitListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "outfitCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitUITableViewCell", for: indexPath) as? OutfitUITableViewCell
 
-        // Configure the cell...
-        
         let outfit = self.outfitList[indexPath.row]
-        cell.textLabel!.text =
-            outfit.value(forKey: "title") as? String
-        cell.detailTextLabel!.text = "Subtitle";
+        cell?.outfitTitle!.text = outfit.value(forKey: OutfitManagedObject.titleAttrKey) as? String
+        cell?.outfitSeason.text = outfit.value(forKey: OutfitManagedObject.seasonAttrKey) as? String;
 
-        return cell
+        return cell!
     }
 
     /*
