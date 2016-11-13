@@ -63,32 +63,26 @@ class AddClothesTableViewController: UITableViewController,
     }
     
     @IBAction func saveObject(_ sender: AnyObject) {
-        /*
-        let imageData = UIImageJPEGRepresentation(previewImage.image!, 0.6)
-        let compressedJPGImage = UIImage(data: imageData!)
-        UIImageWriteToSavedPhotosAlbum(compressedJPGImage!, nil, nil, nil)
-        */
-        let outfit = Outfit(
-            title: self.pieceTitle.text!,
-            type: self.type.text!,
-            color: self.color.text!,
-            season: self.season.titleForSegment(at: self.season.selectedSegmentIndex)!,
-            pieceDescription: self.pieceDescripiton.text!,
-            previewPhoto: nil
-        )
         
-        let managedContext = CoreDataManager.getManagedObjectContext()
-        let entity =  NSEntityDescription.entity(forEntityName: OutfitManagedObject.entityName, in:managedContext)
-        let outfitManagedObject = OutfitManagedObject(entity: entity!, insertInto: managedContext)
-        outfitManagedObject.persist(object: outfit)
+        var managedObjectContext = CoreDataManager.getManagedObjectContext()
+        // Create Entity
+        let entity = NSEntityDescription.entity(forEntityName: Outfit.entityName, in: managedObjectContext)
+        
+        // Initialize Record
+        let record = Outfit(entity: entity!, insertInto: managedObjectContext)
+        record.title = self.pieceTitle.text!
+        record.type =  self.type.text!
+        record.color = self.color.text!
+        record.season = self.season.titleForSegment(at: self.season.selectedSegmentIndex)!
+        record.pieceDescription = self.pieceDescripiton.text!
+        record.photo = NSData(data: UIImageJPEGRepresentation(self.previewImage.image!, 1.0)!)
         
         do {
-            try managedContext.save()
-            //performSegue(withIdentifier: "goToMainView", sender: nil)
+            try managedObjectContext.save()
+            performSegue(withIdentifier: "backToListOutfit", sender: self)
         } catch let error as NSError  {
             let alert = UIAlertController(title: "Error", message: "An error occured saving your object", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
-                //execute some code when this option is selected
                 NSLog("%@", error);
             }))
             self.present(alert, animated: true, completion: nil)

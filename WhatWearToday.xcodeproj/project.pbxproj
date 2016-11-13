@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		64467ED51D75272400EDF83A /* AddClothesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64467ED41D75272400EDF83A /* AddClothesTableViewController.swift */; };
-		64467ED71D75313E00EDF83A /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64467ED61D75313E00EDF83A /* Outfit.swift */; };
-		6453A58E1DD53EF0003CD73F /* OutfitManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453A58D1DD53EF0003CD73F /* OutfitManagedObject.swift */; };
-		6453A5911DD54615003CD73F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453A5901DD54615003CD73F /* CoreDataManager.swift */; };
 		6453A5931DD54B81003CD73F /* OutfitListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453A5921DD54B81003CD73F /* OutfitListTableViewController.swift */; };
 		6487D4541D74C19100C22EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4531D74C19100C22EA1 /* AppDelegate.swift */; };
 		6487D4561D74C19100C22EA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4551D74C19100C22EA1 /* MainViewController.swift */; };
@@ -22,6 +19,9 @@
 		6487D4771D74C19200C22EA1 /* WhatWearTodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */; };
 		64E916171DD73E6900EA4812 /* OutfitUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E916151DD73E6900EA4812 /* OutfitUITableViewCell.swift */; };
 		64E9161B1DD742C400EA4812 /* trousers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64E9161A1DD742C400EA4812 /* trousers.jpg */; };
+		64E9162D1DD9080E00EA4812 /* Outfit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */; };
+		64E9162E1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9162C1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift */; };
+		64FADDA51DD912810031F525 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FADDA41DD912810031F525 /* CoreDataManager.swift */; };
 		64FF7EDC1DD3EEC90037871D /* TypeOutfitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EDB1DD3EEC90037871D /* TypeOutfitTableViewController.swift */; };
 		64FF7EDF1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */; };
 		64FF7EE11DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EE01DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift */; };
@@ -46,9 +46,6 @@
 
 /* Begin PBXFileReference section */
 		64467ED41D75272400EDF83A /* AddClothesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClothesTableViewController.swift; sourceTree = "<group>"; };
-		64467ED61D75313E00EDF83A /* Outfit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
-		6453A58D1DD53EF0003CD73F /* OutfitManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitManagedObject.swift; sourceTree = "<group>"; };
-		6453A5901DD54615003CD73F /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6453A5921DD54B81003CD73F /* OutfitListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitListTableViewController.swift; sourceTree = "<group>"; };
 		6487D4501D74C19100C22EA1 /* WhatWearToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatWearToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6487D4531D74C19100C22EA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +63,9 @@
 		6487D4781D74C19200C22EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E916151DD73E6900EA4812 /* OutfitUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitUITableViewCell.swift; sourceTree = "<group>"; };
 		64E9161A1DD742C400EA4812 /* trousers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trousers.jpg; sourceTree = "<group>"; };
+		64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Outfit+CoreDataClass.swift"; sourceTree = "<group>"; };
+		64E9162C1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Outfit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		64FADDA41DD912810031F525 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		64FF7EDB1DD3EEC90037871D /* TypeOutfitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOutfitTableViewController.swift; sourceTree = "<group>"; };
 		64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromLeftToRightUiStoryboardSegue.swift; sourceTree = "<group>"; };
 		64FF7EE01DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromRightToLeftUIStoryboardSegue.swift; sourceTree = "<group>"; };
@@ -99,24 +99,16 @@
 		64467ED81D75314A00EDF83A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				64467ED61D75313E00EDF83A /* Outfit.swift */,
+				64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */,
+				64E9162C1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		6453A58C1DD53EBE003CD73F /* ManagedObject */ = {
-			isa = PBXGroup;
-			children = (
-				6453A58D1DD53EF0003CD73F /* OutfitManagedObject.swift */,
-			);
-			name = ManagedObject;
 			sourceTree = "<group>";
 		};
 		6453A58F1DD545E7003CD73F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6453A58C1DD53EBE003CD73F /* ManagedObject */,
-				6453A5901DD54615003CD73F /* CoreDataManager.swift */,
+				64FADDA41DD912810031F525 /* CoreDataManager.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -357,17 +349,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E9162E1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift in Sources */,
 				64FF7EDF1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift in Sources */,
 				64FF7EE11DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift in Sources */,
 				64E916171DD73E6900EA4812 /* OutfitUITableViewCell.swift in Sources */,
-				6453A58E1DD53EF0003CD73F /* OutfitManagedObject.swift in Sources */,
 				64467ED51D75272400EDF83A /* AddClothesTableViewController.swift in Sources */,
 				6487D4561D74C19100C22EA1 /* MainViewController.swift in Sources */,
+				64FADDA51DD912810031F525 /* CoreDataManager.swift in Sources */,
+				64E9162D1DD9080E00EA4812 /* Outfit+CoreDataClass.swift in Sources */,
 				6453A5931DD54B81003CD73F /* OutfitListTableViewController.swift in Sources */,
 				6487D4541D74C19100C22EA1 /* AppDelegate.swift in Sources */,
-				64467ED71D75313E00EDF83A /* Outfit.swift in Sources */,
 				64FF7EDC1DD3EEC90037871D /* TypeOutfitTableViewController.swift in Sources */,
-				6453A5911DD54615003CD73F /* CoreDataManager.swift in Sources */,
 				6487D45C1D74C19100C22EA1 /* WhatWearToday.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,11 +504,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WhatWearToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cardosa.WhatWearToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -525,6 +519,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WhatWearToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -271,7 +271,7 @@
                     <navigationItem key="navigationItem" title="Add a outfit" id="gDw-G1-f5w">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AW2-Si-1WP">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="backToMainScreen" id="JIG-xj-faz"/>
+                                <segue destination="mhP-Xu-yay" kind="show" identifier="backToListOutfit" id="o6D-34-Gva"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="u82-Mp-blV">
@@ -291,7 +291,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bJ-CY-0hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1333.5999999999999" y="1062.8185907046477"/>
+            <point key="canvasLocation" x="151" y="1063"/>
         </scene>
         <!--Type-->
         <scene sceneID="WVO-hW-Acj">
@@ -340,7 +340,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqQ-SV-yz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="IpI-3n-GMi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4392.8000000000002" y="787.55622188905556"/>
+            <point key="canvasLocation" x="2034" y="1063"/>
         </scene>
         <!--Outfit List-->
         <scene sceneID="BUF-7R-Sn2">
@@ -411,7 +411,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Outfit List" id="mYN-54-4co">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MkF-Ag-SHj"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MkF-Ag-SHj">
+                            <connections>
+                                <segue destination="F9K-Zw-61Q" kind="presentation" id="C5V-8Q-qqt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hRY-Vi-wSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -452,7 +456,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVJ-en-Sgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="1063"/>
+            <point key="canvasLocation" x="-788" y="1063"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3fH-Gr-zIX">
@@ -470,7 +474,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="al4-FZ-Ui0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3559.1999999999998" y="788.45577211394311"/>
+            <point key="canvasLocation" x="1242" y="1063"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dG3-vp-M9l">
@@ -495,7 +499,8 @@
         <image name="trousers.jpg" width="273" height="364"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yso-sa-3s6"/>
-        <segue reference="JIG-xj-faz"/>
+        <segue reference="WZ8-Cw-fid"/>
+        <segue reference="o6D-34-Gva"/>
+        <segue reference="C5V-8Q-qqt"/>
     </inferredMetricsTieBreakers>
 </document>

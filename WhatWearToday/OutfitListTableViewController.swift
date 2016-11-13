@@ -18,7 +18,7 @@ class OutfitListTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView();
         
         let managedContext = CoreDataManager.getManagedObjectContext()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: OutfitManagedObject.entityName)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Outfit.entityName)
         do {
             let results =
                 try managedContext.fetch(fetchRequest)
@@ -52,9 +52,9 @@ class OutfitListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitUITableViewCell", for: indexPath) as? OutfitUITableViewCell
 
-        let outfit = self.outfitList[indexPath.row]
-        cell?.outfitTitle!.text = outfit.value(forKey: OutfitManagedObject.titleAttrKey) as? String
-        cell?.outfitSeason.text = outfit.value(forKey: OutfitManagedObject.seasonAttrKey) as? String;
+        let outfit = self.outfitList[indexPath.row] as! Outfit
+        cell?.outfitTitle!.text = outfit.title
+        cell?.outfitSeason.text = outfit.season
 
         return cell!
     }
