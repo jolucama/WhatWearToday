@@ -2,7 +2,7 @@
 //  Outfit+CoreDataProperties.swift
 //  WhatWearToday
 //
-//  Created by jlcardosa on 13/11/2016.
+//  Created by jlcardosa on 14/11/2016.
 //  Copyright © 2016 Cardosa. All rights reserved.
 //
 
@@ -17,10 +17,10 @@ extension Outfit {
     }
 
     @NSManaged public var color: String?
+    @NSManaged public var photo: NSData?
     @NSManaged public var pieceDescription: String?
-    @NSManaged public var season: String?
+    @NSManaged public var season: Int16
     @NSManaged public var title: String?
     @NSManaged public var type: String?
-    @NSManaged public var photo: NSData?
 
 }

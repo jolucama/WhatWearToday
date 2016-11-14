@@ -172,9 +172,8 @@
                                                         <constraint firstAttribute="width" constant="225" id="8E2-bD-4OR"/>
                                                     </constraints>
                                                     <segments>
-                                                        <segment title="Spring"/>
+                                                        <segment title="Spring/Autumn" width="100"/>
                                                         <segment title="Summer"/>
-                                                        <segment title="Autumn"/>
                                                         <segment title="Winter"/>
                                                     </segments>
                                                 </segmentedControl>
@@ -357,7 +356,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOd-PY-5Kr" id="Z3C-9m-Nfo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trousers.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="h2r-KS-yho">
@@ -402,6 +401,7 @@
                                     <outlet property="outfitPhoto" destination="h2r-KS-yho" id="kqb-iE-zgg"/>
                                     <outlet property="outfitSeason" destination="GK8-Zp-POT" id="7ea-o6-UAk"/>
                                     <outlet property="outfitTitle" destination="Ole-zX-b0p" id="PrX-pd-Pkz"/>
+                                    <segue destination="j4K-sv-ukx" kind="show" identifier="editOutfitSegue" id="lui-AW-Bdo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -413,7 +413,7 @@
                     <navigationItem key="navigationItem" title="Outfit List" id="mYN-54-4co">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MkF-Ag-SHj">
                             <connections>
-                                <segue destination="F9K-Zw-61Q" kind="presentation" id="C5V-8Q-qqt"/>
+                                <segue destination="F9K-Zw-61Q" kind="presentation" identifier="addNewOutfitSegue" id="C5V-8Q-qqt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -499,8 +499,9 @@
         <image name="trousers.jpg" width="273" height="364"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WZ8-Cw-fid"/>
+        <segue reference="lui-AW-Bdo"/>
         <segue reference="o6D-34-Gva"/>
         <segue reference="C5V-8Q-qqt"/>
+        <segue reference="yso-sa-3s6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,16 +12,18 @@ import CoreData
 class OutfitListTableViewController: UITableViewController {
 
     var outfitList = [NSManagedObject]()
+    var managedContext : NSManagedObjectContext?
+    var selectedRow : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView();
         
-        let managedContext = CoreDataManager.getManagedObjectContext()
+        self.managedContext = CoreDataManager.getManagedObjectContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Outfit.entityName)
         do {
             let results =
-                try managedContext.fetch(fetchRequest)
+                try managedContext?.fetch(fetchRequest)
             self.outfitList = results as! [NSManagedObject]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
@@ -54,30 +56,44 @@ class OutfitListTableViewController: UITableViewController {
 
         let outfit = self.outfitList[indexPath.row] as! Outfit
         cell?.outfitTitle!.text = outfit.title
-        cell?.outfitSeason.text = outfit.season
+        switch Outfit.Season(rawValue: Int(outfit.season))! {
+            case Outfit.Season.SpringAutumn:
+                cell?.outfitSeason.text = "Sprint/Autum"
+            case Outfit.Season.Summer:
+                cell?.outfitSeason.text = "Summer"
+            case Outfit.Season.Winter:
+                cell?.outfitSeason.text = "Winter"
+        }
+        cell?.outfitPhoto.image = UIImage(data: outfit.photo as! Data)
 
         return cell!
     }
+    
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        self.selectedRow = indexPath.row
+        
+        return indexPath
+    }
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            self.managedContext?.delete(outfitList[indexPath.row])
+            outfitList.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -94,14 +110,17 @@ class OutfitListTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "editOutfitSegue",
+            self.isEditing == true,
+            self.selectedRow != nil,
+            let addTableViewController = segue.destination as? AddClothesTableViewController {
+                let selectedOutfit = outfitList[self.selectedRow!] as! Outfit
+                addTableViewController.updateOutfit = selectedOutfit
+        }
     }
-    */
 
 }

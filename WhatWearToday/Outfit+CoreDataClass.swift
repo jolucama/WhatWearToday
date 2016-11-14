@@ -14,4 +14,12 @@ public class Outfit: NSManagedObject {
     
     static let entityName = "Outfit"
 
+    enum Season : Int {
+    
+        case SpringAutumn = 0
+        
+        case Summer = 1
+        
+        case Winter = 2
+    }
 }

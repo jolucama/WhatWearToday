@@ -26,14 +26,24 @@ class AddClothesTableViewController: UITableViewController,
     
     let typesOutfit = ["Dress", "Hat", "Trousers", "Necklace", "Sunglasses", "Shoes"]
     let colorOutfit = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse"]
-    
-    var outfitList = [NSManagedObject]()
+
+    var updateOutfit : Outfit? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad();
         
         self.type.text = "";
         self.color.text = "";
+        
+        if updateOutfit != nil {
+            self.title = "Update " + (updateOutfit?.title)!
+            self.pieceTitle.text = updateOutfit?.title
+            self.type.text = updateOutfit?.type
+            self.color.text = updateOutfit?.color
+            self.season.selectedSegmentIndex = Int((updateOutfit?.season)!)
+            self.pieceDescripiton.text = updateOutfit?.pieceDescription
+            self.previewImage.image = UIImage(data: updateOutfit?.photo as! Data)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
@@ -64,18 +74,27 @@ class AddClothesTableViewController: UITableViewController,
     
     @IBAction func saveObject(_ sender: AnyObject) {
         
-        var managedObjectContext = CoreDataManager.getManagedObjectContext()
-        // Create Entity
-        let entity = NSEntityDescription.entity(forEntityName: Outfit.entityName, in: managedObjectContext)
+        let managedObjectContext = CoreDataManager.getManagedObjectContext()
         
-        // Initialize Record
-        let record = Outfit(entity: entity!, insertInto: managedObjectContext)
+        var record : Outfit
+        if self.updateOutfit != nil {
+            record = managedObjectContext.object(with: (self.updateOutfit?.objectID)!) as! Outfit
+        } else {
+            // Create Entity
+            let entity = NSEntityDescription.entity(forEntityName: Outfit.entityName, in: managedObjectContext)
+            
+            // Initialize Record
+            record = Outfit(entity: entity!, insertInto: managedObjectContext)
+        }
+        
+        
         record.title = self.pieceTitle.text!
         record.type =  self.type.text!
         record.color = self.color.text!
-        record.season = self.season.titleForSegment(at: self.season.selectedSegmentIndex)!
+        record.season = Int16(self.season.selectedSegmentIndex)
         record.pieceDescription = self.pieceDescripiton.text!
         record.photo = NSData(data: UIImageJPEGRepresentation(self.previewImage.image!, 1.0)!)
+        // TODO: Add default photo if none is selected :D
         
         do {
             try managedObjectContext.save()
