@@ -13,18 +13,19 @@ class RequestOpenWeatherMap {
     
     let baseURLString = "http://api.openweathermap.org/data/"
     let apiVersion = "2.5/"
-    var type : String
+    var type : OpenWeatherMapType!
     let method = "GET"
     var parameters : [String: String]
     
-    init(withType type : String, andParameters parameters:[String: String]) {
+    
+    init(withType type : OpenWeatherMapType, andParameters parameters:[String: String]) {
         self.type = type
         self.parameters = parameters
     }
     
     func request(onCompletion : @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
         let paramString = self.stringFromHttpParameters()
-        let url = URL(string: baseURLString + apiVersion + type + "?" + paramString)!
+        let url = URL(string: baseURLString + apiVersion + type.rawValue + "?" + paramString)!
         let session = URLSession.shared
         
         var request = URLRequest(url: url)

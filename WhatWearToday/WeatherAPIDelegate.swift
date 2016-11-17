@@ -9,10 +9,8 @@
 import Foundation
 
 
-protocol WeatherAPIProtocol {
+public protocol WeatherAPIDelegate : class {
     
-    //public func currentWeather(_ : Any) -> FormatReturn!
-    
-    //public func forecastWeather(_ : Any) -> FormatReturn!
+    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol)
 
 }

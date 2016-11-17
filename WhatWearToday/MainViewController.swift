@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, WeatherAPIDelegate {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var weatherPhoto: UIImageView!
@@ -17,7 +17,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var calculation: UIButton!
     
-    let apiKey = "fbf896f8640c38fd302227bb61f3addc"
+    var apiKey : String!
+    var weatherAPI : OpenWeatherMapAPI!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +27,21 @@ class MainViewController: UIViewController {
         let now = Date()
         self.datePicker.setDate(now, animated: true)
         self.datePicker.minimumDate = now
-        self.datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 14, to: now)
+        self.datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: now)
+        self.apiKey = PlistManager.getValue(forKey: "APIWeatherKey") as! String
         
-        let weatherAPI = OpenWeatherMapAPI(apiKey: apiKey)
+        weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey, type : OpenWeatherMapType.Forecast)
+        weatherAPI.delegate = self
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
-        weatherAPI.setFormat(format: Format.Json)
-        weatherAPI.currentWeather(byCityName: "London", onCompletion: { (data : Data?, response, error) in
-            let string1 = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print(string1)
-        })
+        weatherAPI.currentWeather(byCityName: "London")
+    }
+    
+    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol) {
+        
+        print(response)
+        print(type)
+        
+        //Update the UI
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,25 +8,41 @@
 
 import UIKit
 
-public class OpenWeatherMapAPI : WeatherAPIProtocol {
-    
-    enum OpenWeatherMapType : String {
-        
-        case Current = "weather"
-        
-        case Forecast = "forecast"
-    }
+public class OpenWeatherMapAPI {
     
     var parameters = [String:String]()
-
-    init (apiKey : String!) {
+    var type : OpenWeatherMapType
+    var formatType : Format = Format.Json
+    weak var delegate : WeatherAPIDelegate?
+    
+    
+    /// Creates a new instance with the API key and the type
+    ///
+    /// - Parameter apiKey: The API key that is given here: https://home.openweathermap.org/api_keys
+    /// - Parameter type  : The type of the call, by default will be the Current weather, see OpenWeatherMapType
+    ///                     for more information about the possibles options
+    init (apiKey : String!, type : OpenWeatherMapType = OpenWeatherMapType.Current) {
         self.parameters[RequestParametersKey.apiKey.rawValue] = apiKey
+        self.type = type
     }
     
-    public func currentWeather(byCityName cityName : String, onCompletion : @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
+    public func currentWeather(byCityName cityName : String) {
         self.parameters[RequestParametersKey.cityName.rawValue] = cityName
-        let request = RequestOpenWeatherMap(withType: OpenWeatherMapType.Current.rawValue, andParameters: self.parameters)
-        request.request(onCompletion: onCompletion)
+        let request = RequestOpenWeatherMap(withType: self.type, andParameters: self.parameters)
+        request.request(onCompletion: { (data : Data?, response, error) in
+            
+            if error == nil {
+                var responseOWM : ResponseOpenWeatherMapProtocol
+                switch self.type {
+                    case OpenWeatherMapType.Current:
+                        let responseOWM = CurrentResponseOpenWeatherMap(data: data!, type: self.formatType)
+                    case OpenWeatherMapType.Forecast:
+                        let responseOWM = ForecastResponseOpenWeatherMap(data: data!, type: self.formatType, date : Date())
+                }
+            }
+            
+            self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Current, response: responseOWM)
+        })
     }
     
     /*
@@ -43,6 +59,7 @@ public class OpenWeatherMapAPI : WeatherAPIProtocol {
     */
     
     public func setFormat(format : Format) {
+        self.formatType = format
         self.parameters[RequestParametersKey.format.rawValue] = format.rawValue
     }
     

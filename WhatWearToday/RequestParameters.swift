@@ -8,6 +8,14 @@
 
 import Foundation
 
+
+public enum OpenWeatherMapType : String {
+    
+    case Current = "weather"
+    
+    case Forecast = "forecast"
+}
+
 enum RequestParametersKey : String {
  
     case apiKey = "appid",
