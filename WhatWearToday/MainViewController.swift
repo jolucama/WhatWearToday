@@ -30,16 +30,15 @@ class MainViewController: UIViewController, WeatherAPIDelegate {
         self.datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: now)
         self.apiKey = PlistManager.getValue(forKey: "APIWeatherKey") as! String
         
-        weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey, type : OpenWeatherMapType.Forecast)
+        weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey)
         weatherAPI.delegate = self
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
         weatherAPI.currentWeather(byCityName: "London")
     }
     
-    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol) {
+    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol?) {
         
-        print(response)
-        print(type)
+        self.degrees.text = String(Int((response?.getTemperature()!)!)) + "˚"
         
         //Update the UI
     }
@@ -52,6 +51,8 @@ class MainViewController: UIViewController, WeatherAPIDelegate {
     @IBAction func datePickerAction(_ sender: Any) {
         // TODO, Call the API, change the weather here !!
         print(self.datePicker.date);
+        
+        weatherAPI.forecastWeather(byCityName: "London", andDate: self.datePicker.date)
     }
 
 }

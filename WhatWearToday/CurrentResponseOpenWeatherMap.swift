@@ -12,28 +12,28 @@ import Foundation
 public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpenWeatherMapProtocol {
     
     public func getTemperature() -> Float? {
-        
-        return self.rawData["main"]?["temp"] as? Float
+        let main = self.rawData["main"] as? Dictionary<String, Float>
+        return main?["temp"]
     }
     
     public func getPressure() -> Float? {
-        
-        return self.rawData["main"]?["pressure"] as? Float
+        let main = self.rawData["main"] as? Dictionary<String, Any>
+        return main?["pressure"] as? Float
     }
     
     public func getHumidity() -> Float? {
-        
-        return self.rawData["main"]?["humidity"] as? Float
+        let main = self.rawData["main"] as? Dictionary<String, Any>
+        return main?["humidity"] as? Float
     }
     
     public func getTempMax() -> Float? {
-        
-        return self.rawData["main"]?["temp_max"] as? Float
+        let main = self.rawData["main"] as? Dictionary<String, Any>
+        return main?["temp_max"] as? Float
     }
     
     public func getTempMin() -> Float? {
-        
-        return self.rawData["main"]?["temp_min"] as? Float
+        let main = self.rawData["main"] as? Dictionary<String, Any>
+        return main?["temp_min"] as? Float
     }
     
     public func getCityName() -> String? {
@@ -42,12 +42,12 @@ public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpe
     }
     
     public func getDescription() -> String? {
-        
-        return self.rawData["weather"]?["description"] as? String
+        let weather = self.rawData["weather"] as? Dictionary<String, Any>
+        return weather?["description"] as? String
     }
     
     public func getWindSpeed() -> String? {
-        
-        return self.rawData["wind"]?["speed"] as? String
+        let wind = self.rawData["wind"] as? Dictionary<String, Any>
+        return wind?["speed"] as? String
     }
 }

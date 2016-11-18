@@ -11,6 +11,6 @@ import Foundation
 
 public protocol WeatherAPIDelegate : class {
     
-    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol)
+    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol?)
 
 }

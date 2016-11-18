@@ -11,18 +11,32 @@ import Foundation
 
 public class ResponseOpenWeatherMap {
     
-    var rawData : Dictionary<String, AnyObject>!
+    enum FormatError: Error {
+        case XmlNotSupported
+        case HtmlNotSupported
+    }
+    
+    var rawData : Dictionary<String, Any>!
     
     init(data : Data, type : Format) {
         
         do {
-            try self.rawData = JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableLeaves) as! Dictionary<String, AnyObject>
-            
-            print(self.rawData)
-        } catch {
-            
+            switch type {
+            case Format.Json:
+                try self.rawData = JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableLeaves) as! Dictionary<String, AnyObject>
+                break
+            case Format.Xml:
+                //let xmlParser = XMLParser(data: data)
+                //XMLParser.dictionaryWithValues(<#T##NSObject#>)
+                //self.rawData = XMLParser(data: data)
+                // "Format XML not supported yet by the API Client"
+                throw FormatError.XmlNotSupported
+            default:
+                break
+                
+            }
+        } catch let error as NSError {
+            NSLog("%@", error)
         }
     }
-    
 }
-

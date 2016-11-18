@@ -49,7 +49,9 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
     
     public func getCityName() -> String? {
         
-        return self.rawData["city"]?["name"] as? String
+        let city = self.rawData["city"] as? Dictionary<String, Any>
+        
+        return city?["name"] as? String
     }
     
     public func getDescription() -> String? {
