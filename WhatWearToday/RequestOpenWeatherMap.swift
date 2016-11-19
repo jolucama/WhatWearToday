@@ -34,6 +34,7 @@ class RequestOpenWeatherMap {
         
         let task = session.dataTask(with: request, completionHandler: onCompletion)
         task.resume()
+        NSLog("Request to : %@", url.absoluteString)
         
     }
     

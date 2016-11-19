@@ -22,7 +22,7 @@ enum RequestParametersKey : String {
     cityName = "q",
     cityID = "id",
     latitude = "lat",
-    longitude = "long",
+    longitude = "lon",
     zipCode = "zip",
     cluster = "cluster",
     format = "mode",

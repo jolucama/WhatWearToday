@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainViewController: UIViewController, WeatherAPIDelegate {
+class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var weatherPhoto: UIImageView!
@@ -20,6 +21,8 @@ class MainViewController: UIViewController, WeatherAPIDelegate {
     var apiKey : String!
     var weatherAPI : OpenWeatherMapAPI!
     
+    var locationManager: CLLocationManager = CLLocationManager()
+    var locationObject: CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +33,34 @@ class MainViewController: UIViewController, WeatherAPIDelegate {
         self.datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: now)
         self.apiKey = PlistManager.getValue(forKey: "APIWeatherKey") as! String
         
+        //Location Services
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        
         weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey)
         weatherAPI.delegate = self
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
-        weatherAPI.currentWeather(byCityName: "London")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        self.locationObject = locations[locations.count - 1]
+        let currentLatitude: CLLocationDistance = self.locationObject.coordinate.latitude
+        let currentLongitude: CLLocationDistance = self.locationObject.coordinate.longitude
+        weatherAPI.currentWeather(byLatitude: currentLatitude, andLongitude: currentLongitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        NSLog("Impossible to get the location of the device")
     }
     
     func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol?) {
-        
         self.degrees.text = String(Int((response?.getTemperature()!)!)) + "˚"
-        
-        //Update the UI
+        self.weatherLabel.text = response?.getDescription()
+        self.location.text = response?.getCityName()
     }
 
     override func didReceiveMemoryWarning() {

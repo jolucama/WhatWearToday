@@ -44,7 +44,7 @@ public class OpenWeatherMapAPI {
         self.performCurrentWeatherRequest()
     }
     
-    public func currentWeather(byLatitud latitude : Int, andLongitude longitude : Int) {
+    public func currentWeather(byLatitude latitude : Double, andLongitude longitude : Double) {
         self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
         self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
         self.performCurrentWeatherRequest()
@@ -87,7 +87,7 @@ public class OpenWeatherMapAPI {
         self.performCurrentWeatherRequest()
     }
     
-    public func forecastWeather(byLatitud latitude : Int, andLongitude longitude : Int, andDate date : Date) {
+    public func forecastWeather(byLatitude latitude : Double, andLongitude longitude : Double, andDate date : Date) {
         self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
         self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
         self.forecastDate = date

@@ -37,13 +37,13 @@ public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpe
     }
     
     public func getCityName() -> String? {
-        
         return self.rawData["name"] as? String
     }
     
     public func getDescription() -> String? {
-        let weather = self.rawData["weather"] as? Dictionary<String, Any>
-        return weather?["description"] as? String
+        let weather = self.rawData["weather"] as? Array<Dictionary<String, Any>>
+        let firstElement = weather?.first
+        return firstElement?["description"] as? String
     }
     
     public func getWindSpeed() -> String? {
