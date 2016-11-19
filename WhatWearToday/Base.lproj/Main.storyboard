@@ -65,6 +65,10 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="calculate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CTW-xZ-bwx"/>
+                                    <segue destination="4ix-QI-njs" kind="show" identifier="goToResultCalculation" id="Xpc-gm-Fww"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="summer-rain.png" translatesAutoresizingMaskIntoConstraints="NO" id="IIs-sQ-11z">
                                 <rect key="frame" x="57" y="294" width="261" height="138"/>
@@ -74,16 +78,13 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="What wear ... ?" id="hoZ-Kq-Bf5">
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="gt3-nq-49n">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="sLd-wO-ppR"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="gt3-nq-49n">
                             <connections>
                                 <segue destination="mhP-Xu-yay" kind="show" id="8c3-SO-WiV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sfN-hg-xxz">
-                            <connections>
-                                <segue destination="F9K-Zw-61Q" kind="presentation" id="D6g-sl-Qg2"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="sfN-hg-xxz"/>
                     </navigationItem>
                     <connections>
                         <outlet property="calculation" destination="OwW-fM-4lP" id="hql-Cr-xbe"/>
@@ -97,6 +98,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2034.4000000000001" y="248.72563718140933"/>
+        </scene>
+        <!--Calculation Result-->
+        <scene sceneID="rLl-x4-nqM">
+            <objects>
+                <viewController id="4ix-QI-njs" customClass="ResultViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mmP-7A-5PZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="A6W-9l-ZRW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z8K-Ka-Lja">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="womenHat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Jlm-aR-tJs">
+                                <rect key="frame" x="63" y="94" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="m9r-5N-NhJ"/>
+                                    <constraint firstAttribute="width" constant="120" id="wER-wC-24w"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hoodie.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="798-Ci-VGj">
+                                <rect key="frame" x="191" y="94" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="2md-qB-ceA"/>
+                                    <constraint firstAttribute="width" constant="120" id="tRU-9I-Hk1"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-yR-19b">
+                                <rect key="frame" x="128" y="538" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="GS1-QB-tpW"/>
+                                    <constraint firstAttribute="width" constant="120" id="lFz-Xx-OMj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PcG-wg-26Z">
+                                <rect key="frame" x="191" y="222" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="JIA-fH-4iB"/>
+                                    <constraint firstAttribute="width" constant="150" id="kOe-kT-Ow8"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trousers.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="UiV-tY-oxo">
+                                <rect key="frame" x="33" y="222" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="QfC-4V-eq7"/>
+                                    <constraint firstAttribute="width" constant="150" id="tNd-W9-Dg2"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GCa-WN-i7y">
+                                <rect key="frame" x="112" y="380" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Kas-Ov-qHV"/>
+                                    <constraint firstAttribute="height" constant="150" id="b6X-ZT-Kbe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="798-Ci-VGj" firstAttribute="leading" secondItem="z8K-Ka-Lja" secondAttribute="leadingMargin" constant="175" id="0vT-xv-jAn"/>
+                            <constraint firstItem="UiV-tY-oxo" firstAttribute="top" secondItem="mmP-7A-5PZ" secondAttribute="bottom" constant="158" id="1Pb-Xs-Vss"/>
+                            <constraint firstItem="PcG-wg-26Z" firstAttribute="leading" secondItem="z8K-Ka-Lja" secondAttribute="leadingMargin" constant="175" id="1nP-pW-4Lq"/>
+                            <constraint firstItem="Jlm-aR-tJs" firstAttribute="leading" secondItem="z8K-Ka-Lja" secondAttribute="leadingMargin" constant="47" id="3BL-bG-061"/>
+                            <constraint firstItem="l2R-yR-19b" firstAttribute="centerX" secondItem="z8K-Ka-Lja" secondAttribute="centerX" id="3vj-QV-ksv"/>
+                            <constraint firstItem="798-Ci-VGj" firstAttribute="top" secondItem="mmP-7A-5PZ" secondAttribute="bottom" constant="30" id="Nk0-Nd-5k5"/>
+                            <constraint firstItem="Jlm-aR-tJs" firstAttribute="top" secondItem="mmP-7A-5PZ" secondAttribute="bottom" constant="30" id="OrR-97-0ib"/>
+                            <constraint firstItem="GCa-WN-i7y" firstAttribute="top" secondItem="mmP-7A-5PZ" secondAttribute="bottom" constant="316" id="Ujj-CX-jgc"/>
+                            <constraint firstItem="UiV-tY-oxo" firstAttribute="leading" secondItem="z8K-Ka-Lja" secondAttribute="leadingMargin" constant="17" id="X2V-C7-Chb"/>
+                            <constraint firstItem="l2R-yR-19b" firstAttribute="top" secondItem="mmP-7A-5PZ" secondAttribute="bottom" constant="474" id="YIH-QM-fnF"/>
+                            <constraint firstItem="GCa-WN-i7y" firstAttribute="centerX" secondItem="z8K-Ka-Lja" secondAttribute="centerX" id="ZJo-pj-TTH"/>
+                            <constraint firstItem="PcG-wg-26Z" firstAttribute="top" secondItem="mmP-7A-5PZ" secondAttribute="bottom" constant="158" id="bPk-rq-TGi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Calculation Result" id="LKe-C0-fB0">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Wgr-BJ-z02"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Txi-Ix-XFr"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="footwear" destination="l2R-yR-19b" id="pNr-dX-Xyf"/>
+                        <outlet property="headwear1" destination="Jlm-aR-tJs" id="Drb-yI-v9W"/>
+                        <outlet property="headwear2" destination="798-Ci-VGj" id="8U8-cD-q8x"/>
+                        <outlet property="legs" destination="GCa-WN-i7y" id="zE2-wj-E4B"/>
+                        <outlet property="upperBody1" destination="UiV-tY-oxo" id="FNt-oQ-Jsv"/>
+                        <outlet property="upperBody2" destination="PcG-wg-26Z" id="ub2-LQ-mEe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QEi-qY-uuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3794" y="556"/>
         </scene>
         <!--Add a outfit-->
         <scene sceneID="9d3-KC-ZYT">
@@ -539,15 +628,35 @@
             </objects>
             <point key="canvasLocation" x="-788" y="251.42428785607197"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MKO-iH-9fM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tF8-ld-Rzw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QXF-Xm-Ycs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4ix-QI-njs" kind="relationship" relationship="rootViewController" id="bMf-66-cFi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tJP-hn-hJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2946" y="554"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="hoodie.jpg" width="750" height="750"/>
         <image name="summer-rain.png" width="256" height="256"/>
         <image name="trousers.jpg" width="273" height="364"/>
+        <image name="womenHat.jpg" width="597" height="783"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lui-AW-Bdo"/>
+        <segue reference="Xpc-gm-Fww"/>
         <segue reference="8c3-SO-WiV"/>
-        <segue reference="D6g-sl-Qg2"/>
-        <segue reference="yso-sa-3s6"/>
+        <segue reference="lui-AW-Bdo"/>
+        <segue reference="SQY-nf-7rf"/>
     </inferredMetricsTieBreakers>
 </document>

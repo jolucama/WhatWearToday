@@ -16,10 +16,11 @@ public class ResponseOpenWeatherMap {
         case HtmlNotSupported
     }
     
+    var rawDataString : String
     var rawData : Dictionary<String, Any>!
     
     init(data : Data, type : Format) {
-        
+        self.rawDataString = String(data: data, encoding: String.Encoding.utf8)!
         do {
             switch type {
             case Format.Json:
@@ -38,5 +39,9 @@ public class ResponseOpenWeatherMap {
         } catch let error as NSError {
             NSLog("%@", error)
         }
+    }
+    
+    public func getDataRawString() -> String? {
+        return self.rawDataString
     }
 }

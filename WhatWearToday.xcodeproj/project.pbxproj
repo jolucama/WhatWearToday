@@ -33,6 +33,10 @@
 		64E9161B1DD742C400EA4812 /* trousers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64E9161A1DD742C400EA4812 /* trousers.jpg */; };
 		64E9162D1DD9080E00EA4812 /* Outfit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */; };
 		64E9162E1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9162C1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift */; };
+		64EC87AE1DE0CD770051FA76 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EC87AD1DE0CD770051FA76 /* ResultViewController.swift */; };
+		64EC87B01DE0CFFD0051FA76 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EC87AF1DE0CFFD0051FA76 /* ViewModifier.swift */; };
+		64EC87B31DE0D4B50051FA76 /* hoodie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64EC87B11DE0D4B40051FA76 /* hoodie.jpg */; };
+		64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64EC87B21DE0D4B40051FA76 /* womenHat.jpg */; };
 		64FADDA51DD912810031F525 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FADDA41DD912810031F525 /* CoreDataManager.swift */; };
 		64FF7EDC1DD3EEC90037871D /* TypeOutfitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EDB1DD3EEC90037871D /* TypeOutfitTableViewController.swift */; };
 		64FF7EDF1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */; };
@@ -89,6 +93,10 @@
 		64E9161A1DD742C400EA4812 /* trousers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trousers.jpg; sourceTree = "<group>"; };
 		64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Outfit+CoreDataClass.swift"; sourceTree = "<group>"; };
 		64E9162C1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Outfit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		64EC87AD1DE0CD770051FA76 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		64EC87AF1DE0CFFD0051FA76 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
+		64EC87B11DE0D4B40051FA76 /* hoodie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hoodie.jpg; sourceTree = "<group>"; };
+		64EC87B21DE0D4B40051FA76 /* womenHat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = womenHat.jpg; sourceTree = "<group>"; };
 		64FADDA41DD912810031F525 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		64FF7EDB1DD3EEC90037871D /* TypeOutfitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOutfitTableViewController.swift; sourceTree = "<group>"; };
 		64FF7EDE1DD405020037871D /* FromLeftToRightUiStoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromLeftToRightUiStoryboardSegue.swift; sourceTree = "<group>"; };
@@ -153,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				640033CC1DDE480C00095F37 /* PlistManager.swift */,
+				64EC87AF1DE0CFFD0051FA76 /* ViewModifier.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -250,6 +259,7 @@
 				6487D4551D74C19100C22EA1 /* MainViewController.swift */,
 				64467ED41D75272400EDF83A /* AddClothesTableViewController.swift */,
 				6453A5921DD54B81003CD73F /* OutfitListTableViewController.swift */,
+				64EC87AD1DE0CD770051FA76 /* ResultViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -275,6 +285,8 @@
 		64E916191DD742A700EA4812 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				64EC87B11DE0D4B40051FA76 /* hoodie.jpg */,
+				64EC87B21DE0D4B40051FA76 /* womenHat.jpg */,
 				640033B81DDA4DFC00095F37 /* summer-rain.png */,
 				64E9161A1DD742C400EA4812 /* trousers.jpg */,
 			);
@@ -398,10 +410,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				640033B91DDA4DFC00095F37 /* summer-rain.png in Resources */,
+				64EC87B31DE0D4B50051FA76 /* hoodie.jpg in Resources */,
 				6487D4611D74C19100C22EA1 /* LaunchScreen.storyboard in Resources */,
 				6487D45E1D74C19100C22EA1 /* Assets.xcassets in Resources */,
 				6487D4591D74C19100C22EA1 /* Main.storyboard in Resources */,
 				640033C81DDE443C00095F37 /* Config.plist in Resources */,
+				64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */,
 				64E9161B1DD742C400EA4812 /* trousers.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,8 +448,10 @@
 				640033D21DDE56C600095F37 /* ResponseOpenWeatherMap.swift in Sources */,
 				640033BE1DDA6EE000095F37 /* WeatherAPIDelegate.swift in Sources */,
 				640033C11DDA6FA900095F37 /* FormatReturn.swift in Sources */,
+				64EC87B01DE0CFFD0051FA76 /* ViewModifier.swift in Sources */,
 				64FF7EE11DD418F10037871D /* FromRightToLeftUIStoryboardSegue.swift in Sources */,
 				64E916171DD73E6900EA4812 /* OutfitUITableViewCell.swift in Sources */,
+				64EC87AE1DE0CD770051FA76 /* ResultViewController.swift in Sources */,
 				64467ED51D75272400EDF83A /* AddClothesTableViewController.swift in Sources */,
 				640033D61DDE660B00095F37 /* ResponseOpenWeatherMapProtocol.swift in Sources */,
 				6487D4561D74C19100C22EA1 /* MainViewController.swift in Sources */,

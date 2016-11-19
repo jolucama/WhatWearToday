@@ -62,8 +62,11 @@ public class OpenWeatherMapAPI {
             if error == nil {
                 responseOWM = CurrentResponseOpenWeatherMap(data: data!, type: self.formatType)
             }
+            NSLog("Response to CurrentResponseOpenWeatherMap")
             
-            self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Current, response: responseOWM)
+            DispatchQueue.main.async { [unowned self] in
+                self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Current, response: responseOWM)
+            }
         })
     }
     
@@ -72,32 +75,32 @@ public class OpenWeatherMapAPI {
     public func forecastWeather(byCityName cityName : String, andDate date : Date) {
         self.parameters[RequestParametersKey.cityName.rawValue] = cityName
         self.forecastDate = date
-        self.performCurrentWeatherRequest()
+        self.performForecastWeatherRequest()
     }
     
     public func forecastWeather(byCityName cityName : String, andCountryCode countryCode: String, andDate date : Date) {
         self.parameters[RequestParametersKey.cityName.rawValue] = cityName + "," + countryCode
         self.forecastDate = date
-        self.performCurrentWeatherRequest()
+        self.performForecastWeatherRequest()
     }
     
     public func forecastWeather(byCityId cityId : Int, andDate date : Date) {
         self.parameters[RequestParametersKey.cityID.rawValue] = String(cityId)
         self.forecastDate = date
-        self.performCurrentWeatherRequest()
+        self.performForecastWeatherRequest()
     }
     
     public func forecastWeather(byLatitude latitude : Double, andLongitude longitude : Double, andDate date : Date) {
         self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
         self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
         self.forecastDate = date
-        self.performCurrentWeatherRequest()
+        self.performForecastWeatherRequest()
     }
     
     public func forecastWeather(byZipCode zipcode : String, andCountryCode countryCode : String, andDate date : Date) {
         self.parameters[RequestParametersKey.zipCode.rawValue] = zipcode + "," + countryCode
         self.forecastDate = date
-        self.performCurrentWeatherRequest()
+        self.performForecastWeatherRequest()
     }
     
     private func performForecastWeatherRequest() {
@@ -107,9 +110,18 @@ public class OpenWeatherMapAPI {
             if error == nil {
                 responseOWM = ForecastResponseOpenWeatherMap(data: data!, type: self.formatType, date: self.forecastDate!)
             }
-            
-            self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Forecast, response: responseOWM)
+            NSLog("Response to ForecastResponseOpenWeatherMap")
+            DispatchQueue.main.async { [unowned self] in
+                self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Forecast, response: responseOWM)
+            }
         })
+    }
+    
+    private func cleanInputParameters() {
+        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
+        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
+        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
+        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
     }
     
     // Several options

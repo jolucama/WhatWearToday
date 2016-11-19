@@ -48,15 +48,16 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
     }
     
     public func getCityName() -> String? {
-        
         let city = self.rawData["city"] as? Dictionary<String, Any>
         
         return city?["name"] as? String
     }
     
     public func getDescription() -> String? {
+        let weather = self.currentListElement?["weather"] as? Array<Dictionary<String, Any>>
+        let firstElement = weather?.first
         
-        return self.currentListElement?["weather"]?["description"] as? String
+        return firstElement?["description"] as? String
     }
     
     public func getWindSpeed() -> String? {
@@ -69,7 +70,7 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
         self.currentListElement = self.forecastList.first
         for elementList in self.forecastList {
             let elementListDate = elementList["dt"] as! Int
-            if (unixDate > elementListDate) {
+            if (unixDate < elementListDate) {
                 self.currentListElement = elementList
                 break
             }

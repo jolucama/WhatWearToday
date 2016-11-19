@@ -19,9 +19,7 @@ class OutfitUITableViewCell: UITableViewCell {
         // Initialization code
         
         // Make the image view as a circle
-        self.outfitPhoto.layer.cornerRadius = self.outfitPhoto.frame.size.height/2
-        self.outfitPhoto.layer.masksToBounds = true
-        self.outfitPhoto.layer.borderWidth = 0
+        ViewModifier.round(withUIImageView: self.outfitPhoto)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

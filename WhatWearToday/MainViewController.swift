@@ -22,7 +22,7 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
     var weatherAPI : OpenWeatherMapAPI!
     
     var locationManager: CLLocationManager = CLLocationManager()
-    var locationObject: CLLocation!
+    var locationObject: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +46,12 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        self.locationObject = locations[locations.count - 1]
-        let currentLatitude: CLLocationDistance = self.locationObject.coordinate.latitude
-        let currentLongitude: CLLocationDistance = self.locationObject.coordinate.longitude
-        weatherAPI.currentWeather(byLatitude: currentLatitude, andLongitude: currentLongitude)
+        if self.locationObject == nil {
+            self.locationObject = locations[locations.count - 1]
+            let currentLatitude: CLLocationDistance = self.locationObject!.coordinate.latitude
+            let currentLongitude: CLLocationDistance = self.locationObject!.coordinate.longitude
+            //weatherAPI.currentWeather(byLatitude: currentLatitude, andLongitude: currentLongitude)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -72,7 +74,16 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
         // TODO, Call the API, change the weather here !!
         print(self.datePicker.date);
         
-        weatherAPI.forecastWeather(byCityName: "London", andDate: self.datePicker.date)
+        if self.locationObject != nil {
+            weatherAPI.forecastWeather(byLatitude:   self.locationObject!.coordinate.latitude,
+                                       andLongitude: self.locationObject!.coordinate.longitude,
+                                       andDate:      self.datePicker.date)
+        }
+    }
+    
+    @IBAction func calculate(_ sender: UIButton) {
+        // let outfitCalculator = OutfitCalculator(ResponseOpenWeatherMapProtocol)
+        // let results : [String, Outfit] = outfitCalculator.calculate()
     }
 
 }
