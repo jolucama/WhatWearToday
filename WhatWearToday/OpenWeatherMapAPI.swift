@@ -61,6 +61,8 @@ public class OpenWeatherMapAPI {
             var responseOWM : ResponseOpenWeatherMapProtocol!
             if error == nil {
                 responseOWM = CurrentResponseOpenWeatherMap(data: data!, type: self.formatType)
+            } else {
+                responseOWM = CurrentResponseOpenWeatherMap(withError: error!);
             }
             NSLog("Response to CurrentResponseOpenWeatherMap")
             

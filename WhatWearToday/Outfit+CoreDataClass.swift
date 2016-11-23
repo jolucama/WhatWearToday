@@ -22,4 +22,9 @@ public class Outfit: NSManagedObject {
         
         case Winter = 2
     }
+    
+    func fetchRequest(bySeason season : Season) -> NSFetchRequest<Outfit> {
+        let fetchRequest = NSFetchRequest<Outfit>(entityName: Outfit.entityName)
+        fetchRequest.predicate = NSPredicate(format: "season == %d", season.rawValue)
+    }
 }

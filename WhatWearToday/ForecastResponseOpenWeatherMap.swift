@@ -65,6 +65,14 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
         return self.currentListElement?["wind"]?["speed"] as? String
     }
     
+    public func getDateTime() -> Date? {
+        return Date(timeIntervalSince1970: self.currentListElement?["dt"] as! TimeInterval)
+    }
+    
+    public func getError() -> Error? {
+        return self.error;
+    }
+    
     private func getCurrentListElementDependingOnTheDate() {
         let unixDate = Int(self.pickedDate.timeIntervalSince1970)
         self.currentListElement = self.forecastList.first

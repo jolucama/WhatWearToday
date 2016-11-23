@@ -50,4 +50,12 @@ public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpe
         let wind = self.rawData["wind"] as? Dictionary<String, Any>
         return wind?["speed"] as? String
     }
+    
+    public func getDateTime() -> Date? {
+        return Date(timeIntervalSince1970: self.rawData["dt"] as! TimeInterval)
+    }
+    
+    public func getError() -> Error? {
+        return self.error;
+    }
 }

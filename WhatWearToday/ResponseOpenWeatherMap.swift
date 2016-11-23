@@ -18,6 +18,7 @@ public class ResponseOpenWeatherMap {
     
     var rawDataString : String
     var rawData : Dictionary<String, Any>!
+    var error : Error?
     
     init(data : Data, type : Format) {
         self.rawDataString = String(data: data, encoding: String.Encoding.utf8)!
@@ -39,6 +40,12 @@ public class ResponseOpenWeatherMap {
         } catch let error as NSError {
             NSLog("%@", error)
         }
+    }
+    
+    init(withError error: Error) {
+        self.error = error
+        self.rawDataString = ""
+        self.rawData = ["":""]
     }
     
     public func getDataRawString() -> String? {

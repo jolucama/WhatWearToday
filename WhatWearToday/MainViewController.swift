@@ -50,7 +50,7 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
             self.locationObject = locations[locations.count - 1]
             let currentLatitude: CLLocationDistance = self.locationObject!.coordinate.latitude
             let currentLongitude: CLLocationDistance = self.locationObject!.coordinate.longitude
-            //weatherAPI.currentWeather(byLatitude: currentLatitude, andLongitude: currentLongitude)
+            weatherAPI.currentWeather(byLatitude: currentLatitude, andLongitude: currentLongitude)
         }
     }
     
@@ -60,9 +60,21 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
     }
     
     func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol?) {
-        self.degrees.text = String(Int((response?.getTemperature()!)!)) + "˚"
-        self.weatherLabel.text = response?.getDescription()
-        self.location.text = response?.getCityName()
+        if ((response?.getError()) == nil) {
+            self.degrees.text = String(Int((response?.getTemperature()!)!)) + "˚"
+            self.weatherLabel.text = response?.getDescription()
+            self.location.text = response?.getCityName()
+        } else {
+            let alert = UIAlertController(title: "Error", message: (response?.getError()?.localizedDescription)! + ". Add outfits in the meantime ;)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+                print(response?.getError()! as Any)
+            }))
+            // To Test
+            alert.addAction(UIAlertAction(title: "Add outfit", style: .cancel, handler: { (action) in
+                self.performSegue(withIdentifier: "editOutfitSegue", sender: self)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
