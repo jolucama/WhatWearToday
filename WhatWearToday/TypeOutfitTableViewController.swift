@@ -46,6 +46,7 @@ class TypeOutfitTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "typeCell", for: indexPath) 
 
         cell.textLabel?.text = self.values[indexPath.item]
+		
         // Configure the cell...
 
         return cell

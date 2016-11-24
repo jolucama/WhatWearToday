@@ -22,10 +22,11 @@ class AddClothesTableViewController: UITableViewController,
     @IBOutlet weak var previewImage: UIImageView!
     
     var typeSelected : String? = ""
+	var typeSelectedEnum : Outfit.Types?
     var colorSelected : String? = ""
     
-    let typesOutfit = ["Dress", "Hat", "Trousers", "Necklace", "Sunglasses", "Shoes"]
-    let colorOutfit = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse"]
+    let typesOutfit = Outfit.Types.allValuesRaw
+    let colorOutfit = ["Black", "White", "Red", "Lime", "Blue", "Yellow", "Cyan", "Aqua", "Magenta", "Fuchsia", "Silver", "Gray", "Maroon", "Olive", "Green", "Purple", "Teal", "Navy"]
 
     var updateOutfit : Outfit? = nil
     
@@ -86,15 +87,15 @@ class AddClothesTableViewController: UITableViewController,
             // Initialize Record
             record = Outfit(entity: entity!, insertInto: managedObjectContext)
         }
-        
-        
+		
         record.title = self.pieceTitle.text!
         record.type =  self.type.text!
+		record.typePart = Int16((self.typeSelectedEnum?.getTypePart().rawValue)!)
         record.color = self.color.text!
         record.season = Int16(self.season.selectedSegmentIndex)
         record.pieceDescription = self.pieceDescripiton.text!
         record.photo = NSData(data: UIImageJPEGRepresentation(self.previewImage.image!, 1.0)!)
-        // TODO: Add default photo if none is selected :D
+        // TODO: Add default photo if none is selected :D, or maybe not and leave it empty, think about it
         
         do {
             try managedObjectContext.save()
@@ -128,6 +129,7 @@ class AddClothesTableViewController: UITableViewController,
     
     @IBAction func backFromDetailsType(segue:UIStoryboardSegue) {
         self.type.text = self.typeSelected;
+		self.typeSelectedEnum = Outfit.Types(rawValue: self.typeSelected!)
         self.color.text = self.colorSelected;
     }
     
