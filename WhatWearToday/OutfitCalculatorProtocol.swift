@@ -10,6 +10,6 @@ import Foundation
 
 protocol OutfitCalculatorProtocol {
     
-    func calculate(response : ResponseOpenWeatherMapProtocol) -> [Outfit]
+    func calculate(response : ResponseOpenWeatherMapProtocol) throws -> ResultCalculator
     
 }

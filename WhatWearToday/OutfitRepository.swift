@@ -11,18 +11,30 @@ import CoreData
 
 class OutfitRepository {
 
-    let managedContext = CoreDataManager.getManagedObjectContext()
-    
-    func fetch(bySeason season: Outfit.Season) -> [Outfit] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Outfit.entityName)
-        fetchRequest.predicate = NSPredicate(format: "season == %d", season.rawValue)
-        do {
-            let results =
-                try self.managedContext.fetch(fetchRequest)
-            return results as! [Outfit]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-            return [Outfit]()
-        }
+	let managedContext : NSManagedObjectContext!
+	let fetchRequest : NSFetchRequest<NSFetchRequestResult>
+	
+	init() {
+		self.managedContext = CoreDataManager.getManagedObjectContext()
+		self.fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Outfit.entityName)
+	}
+	
+	func fetchAll() throws -> [Outfit] {
+		return try self.returnValuesFromFetchRequest()
+	}
+	
+    func fetch(bySeason season: Outfit.Season) throws -> [Outfit] {
+        self.fetchRequest.predicate = NSPredicate(format: "season == %d", season.rawValue)
+		return try self.returnValuesFromFetchRequest()
     }
+	
+	private func returnValuesFromFetchRequest() throws -> [Outfit] {
+		do {
+			let results =
+				try self.managedContext.fetch(fetchRequest)
+			return results as! [Outfit]
+		} catch let error as NSError {
+			throw error
+		}
+	}
 }
