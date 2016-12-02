@@ -94,8 +94,11 @@ class AddClothesTableViewController: UITableViewController,
         record.color = self.color.text!
         record.season = Int16(self.season.selectedSegmentIndex)
         record.pieceDescription = self.pieceDescripiton.text!
-        record.photo = NSData(data: UIImageJPEGRepresentation(self.previewImage.image!, 1.0)!)
-        // TODO: Add default photo if none is selected :D, or maybe not and leave it empty, think about it
+		if (self.previewImage.image != nil) {
+			record.photo = NSData(data: UIImageJPEGRepresentation(self.previewImage.image!, 1.0)!)
+		} else {
+			record.photo = nil
+		}
         
         do {
             try managedObjectContext.save()

@@ -436,7 +436,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="typeCell" editingAccessoryType="checkmark" textLabel="2NO-2k-9Yk" style="IBUITableViewCellStyleDefault" id="VI0-93-zRl">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VI0-93-zRl" id="ms2-ih-Gyo">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -493,8 +493,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trousers.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="h2r-KS-yho">
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-default.png" translatesAutoresizingMaskIntoConstraints="NO" id="h2r-KS-yho">
                                             <rect key="frame" x="8" y="8" width="70" height="70"/>
+                                            <color key="backgroundColor" white="0.96495535714285718" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="Pc9-77-SkC"/>
                                                 <constraint firstAttribute="width" secondItem="h2r-KS-yho" secondAttribute="height" multiplier="1:1" id="yVi-eK-3EX"/>
@@ -648,6 +649,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera-default.png" width="64" height="64"/>
         <image name="hoodie.jpg" width="750" height="750"/>
         <image name="summer-rain.png" width="256" height="256"/>
         <image name="trousers.jpg" width="273" height="364"/>

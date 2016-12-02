@@ -28,6 +28,10 @@ class OutfitRepository {
 		return try self.returnValuesFromFetchRequest()
     }
 	
+	func delete(outfit : Outfit) {
+		self.managedContext.delete(outfit)
+	}
+	
 	private func returnValuesFromFetchRequest() throws -> [Outfit] {
 		do {
 			let results =

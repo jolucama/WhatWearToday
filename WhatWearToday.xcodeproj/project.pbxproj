@@ -34,6 +34,7 @@
 		6487D4771D74C19200C22EA1 /* WhatWearTodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */; };
 		64BED2DB1DF0C3650091EEA5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DA1DF0C3650091EEA5 /* Array.swift */; };
 		64BED2DD1DF0CBA40091EEA5 /* ResultCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */; };
+		64BED2E21DF103D90091EEA5 /* camera-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BED2E11DF103D90091EEA5 /* camera-default.png */; };
 		64E916171DD73E6900EA4812 /* OutfitUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E916151DD73E6900EA4812 /* OutfitUITableViewCell.swift */; };
 		64E9161B1DD742C400EA4812 /* trousers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64E9161A1DD742C400EA4812 /* trousers.jpg */; };
 		64E9162D1DD9080E00EA4812 /* Outfit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */; };
@@ -99,6 +100,7 @@
 		6487D4781D74C19200C22EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64BED2DA1DF0C3650091EEA5 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCalculator.swift; sourceTree = "<group>"; };
+		64BED2E11DF103D90091EEA5 /* camera-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-default.png"; sourceTree = "<group>"; };
 		64E916151DD73E6900EA4812 /* OutfitUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitUITableViewCell.swift; sourceTree = "<group>"; };
 		64E9161A1DD742C400EA4812 /* trousers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trousers.jpg; sourceTree = "<group>"; };
 		64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Outfit+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				640033CC1DDE480C00095F37 /* PlistManager.swift */,
+				64FADDA41DD912810031F525 /* CoreDataManager.swift */,
 				64EC87AF1DE0CFFD0051FA76 /* ViewModifier.swift */,
 			);
 			name = Utils;
@@ -190,9 +193,7 @@
 		6409508D1DE50850006E94C2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6409508E1DE5097B006E94C2 /* RamdomOutfitCalculator.swift */,
-				640950901DE509DF006E94C2 /* OutfitCalculatorProtocol.swift */,
-				64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */,
+				64BED2DE1DF0F0E50091EEA5 /* OutfitCalculator */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -212,14 +213,6 @@
 				64E9162C1DD9080E00EA4812 /* Outfit+CoreDataProperties.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		6453A58F1DD545E7003CD73F /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				64FADDA41DD912810031F525 /* CoreDataManager.swift */,
-			);
-			name = CoreData;
 			sourceTree = "<group>";
 		};
 		6487D4471D74C19100C22EA1 = {
@@ -248,7 +241,6 @@
 			children = (
 				64BED2D91DF0C3530091EEA5 /* Extensions */,
 				640033C91DDE459500095F37 /* Utils */,
-				6453A58F1DD545E7003CD73F /* CoreData */,
 				64467ED81D75314A00EDF83A /* Model */,
 				640950921DE65F6C006E94C2 /* Repository */,
 				6487D4841D74D10100C22EA1 /* Controller */,
@@ -304,6 +296,16 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		64BED2DE1DF0F0E50091EEA5 /* OutfitCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				6409508E1DE5097B006E94C2 /* RamdomOutfitCalculator.swift */,
+				640950901DE509DF006E94C2 /* OutfitCalculatorProtocol.swift */,
+				64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */,
+			);
+			name = OutfitCalculator;
+			sourceTree = "<group>";
+		};
 		64E916131DD73E0100EA4812 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +329,7 @@
 			children = (
 				64EC87B11DE0D4B40051FA76 /* hoodie.jpg */,
 				64EC87B21DE0D4B40051FA76 /* womenHat.jpg */,
+				64BED2E11DF103D90091EEA5 /* camera-default.png */,
 				640033B81DDA4DFC00095F37 /* summer-rain.png */,
 				64E9161A1DD742C400EA4812 /* trousers.jpg */,
 			);
@@ -457,6 +460,7 @@
 				640033C81DDE443C00095F37 /* Config.plist in Resources */,
 				64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */,
 				64E9161B1DD742C400EA4812 /* trousers.jpg in Resources */,
+				64BED2E21DF103D90091EEA5 /* camera-default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

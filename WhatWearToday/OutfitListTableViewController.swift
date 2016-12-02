@@ -12,24 +12,21 @@ import CoreData
 class OutfitListTableViewController: UITableViewController {
 
     var outfitList = [NSManagedObject]()
-    var managedContext : NSManagedObjectContext?
+    var outfitRepository : OutfitRepository!
     var selectedRow : Int?
+	var noOutfitLabel : UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView();
 		
-		let outfitRepository = OutfitRepository()
+		self.outfitRepository = OutfitRepository()
 		do {
-			try self.outfitList = outfitRepository.fetchAll()
+			try self.outfitList = self.outfitRepository.fetchAll()
 		} catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+		self.showHideNoOutfitLabel()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
@@ -41,7 +38,7 @@ class OutfitListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+		return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +58,9 @@ class OutfitListTableViewController: UITableViewController {
             case Outfit.Season.Winter:
                 cell?.outfitSeason.text = "Winter"
         }
-        cell?.outfitPhoto.image = UIImage(data: outfit.photo as! Data)
+		if (outfit.photo != nil) {
+			cell?.outfitPhoto.image = UIImage(data: outfit.photo as! Data)
+		}
 
         return cell!
     }
@@ -82,14 +81,11 @@ class OutfitListTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            self.managedContext?.delete(outfitList[indexPath.row])
+			self.outfitRepository.delete(outfit: outfitList[indexPath.row] as! Outfit)
             outfitList.remove(at: indexPath.row)
-            
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+			self.showHideNoOutfitLabel()
+        }
     }
 
     // MARK: - Navigation
@@ -104,5 +100,19 @@ class OutfitListTableViewController: UITableViewController {
                 addTableViewController.updateOutfit = selectedOutfit
         }
     }
+	
+	private func showHideNoOutfitLabel() {
+		if self.outfitList.count != 0 {
+			self.tableView.backgroundView = nil
+		} else {
+			self.noOutfitLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+			self.noOutfitLabel?.text = "No Outfits"
+			self.noOutfitLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 30)
+			self.noOutfitLabel?.textColor = UIColor.darkGray
+			self.noOutfitLabel?.textAlignment = .center
+			tableView.backgroundView = self.noOutfitLabel
+			tableView.separatorStyle = .none
+		}
+	}
 
 }

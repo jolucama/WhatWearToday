@@ -19,7 +19,9 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		//self.headwear1.image = ViewModifier.textToImage(drawText:"Test de prueba", inImage : self.headwear1.image!)
+		
         self.headwear1.alpha = 0.0
         self.headwear2.alpha = 0.0
         self.upperBody1.alpha = 0.0

@@ -17,8 +17,8 @@ class ViewModifier {
         imageView.layer.borderWidth = borderWidth
     }
     
-    public func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.black
+    public static func textToImage(drawText text: NSString, inImage image: UIImage) -> UIImage {
+        let textColor = UIColor.darkGray
         let textFont = UIFont(name: "Helvetica Bold", size: 12)!
         
         let scale = UIScreen.main.scale
@@ -30,7 +30,7 @@ class ViewModifier {
             ] as [String : Any]
         image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
         
-        let rect = CGRect(origin: point, size: image.size)
+        let rect = CGRect(origin: image.accessibilityFrame.origin, size: image.size)
         text.draw(in: rect, withAttributes: textFontAttributes)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
