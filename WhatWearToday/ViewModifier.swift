@@ -17,25 +17,27 @@ class ViewModifier {
         imageView.layer.borderWidth = borderWidth
     }
     
-    public static func textToImage(drawText text: NSString, inImage image: UIImage) -> UIImage {
+    public static func textToImage(drawText text: NSString, inImage imageView: UIImageView) -> UIImage {
         let textColor = UIColor.darkGray
         let textFont = UIFont(name: "Helvetica Bold", size: 12)!
         
         let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
         
         let textFontAttributes = [
             NSFontAttributeName: textFont,
             NSForegroundColorAttributeName: textColor,
             ] as [String : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+
+		let image = UIImage()
+        image.draw(in: CGRect(origin: CGPoint.zero, size: imageView.bounds.size))
         
         let rect = CGRect(origin: image.accessibilityFrame.origin, size: image.size)
         text.draw(in: rect, withAttributes: textFontAttributes)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
-        return newImage!
+		
+		return newImage!
     }
 }

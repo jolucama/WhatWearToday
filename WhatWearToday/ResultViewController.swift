@@ -20,14 +20,14 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		//self.headwear1.image = ViewModifier.textToImage(drawText:"Test de prueba", inImage : self.headwear1.image!)
+		self.headwear1.image = ViewModifier.textToImage(drawText:"Test de prueba", inImage : self.headwear1)
 		
-        self.headwear1.alpha = 0.0
-        self.headwear2.alpha = 0.0
-        self.upperBody1.alpha = 0.0
-        self.upperBody2.alpha = 0.0
-        self.legs.alpha = 0.0
-        self.footwear.alpha = 0.0
+//        self.headwear1.alpha = 0.0
+//        self.headwear2.alpha = 0.0
+//        self.upperBody1.alpha = 0.0
+//        self.upperBody2.alpha = 0.0
+//        self.legs.alpha = 0.0
+//        self.footwear.alpha = 0.0
 
         // Do any additional setup after loading the view.
         self.customizeImages()
@@ -35,28 +35,29 @@ class ResultViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        UIView.animate(withDuration: 0.7, animations: {
-            self.headwear1.alpha = 1.0
-        }, completion: {
-            (finished: Bool) -> Void in
-            UIView.animate(withDuration: 0.6, animations: {
-                self.headwear2.alpha = 1.0
-            }, completion: {
-                (finished: Bool) -> Void in
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.upperBody1.alpha = 1.0
-                }, completion: {
-                    (finished: Bool) -> Void in
-                    // Carry on with the chain
-                })
-            })
-        })
-        
-        // TODO Move them to the chain
-        self.upperBody2.alpha = 1.0
-        self.legs.alpha = 1.0
-        self.footwear.alpha = 1.0
+		
+//        UIView.animate(withDuration: 0.7, animations: {
+//            self.headwear1.alpha = 1.0
+//        }, completion: {
+//            (finished: Bool) -> Void in
+//            UIView.animate(withDuration: 0.6, animations: {
+//                self.headwear2.alpha = 1.0
+//            }, completion: {
+//                (finished: Bool) -> Void in
+//                UIView.animate(withDuration: 0.5, animations: {
+//                    self.upperBody1.alpha = 1.0
+//                }, completion: {
+//                    (finished: Bool) -> Void in
+//                    // Carry on with the chain
+//                })
+//            })
+//        })
+//        
+//        // TODO Move them to the chain
+//        self.upperBody2.alpha = 1.0
+//        self.legs.alpha = 1.0
+//        self.footwear.alpha = 1.0
+		
     }
 
     override func didReceiveMemoryWarning() {
