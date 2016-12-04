@@ -43,7 +43,9 @@ class AddClothesTableViewController: UITableViewController,
             self.color.text = updateOutfit?.color
             self.season.selectedSegmentIndex = Int((updateOutfit?.season)!)
             self.pieceDescripiton.text = updateOutfit?.pieceDescription
-            self.previewImage.image = UIImage(data: updateOutfit?.photo as! Data)
+			if updateOutfit?.photo != nil {
+				self.previewImage.image = UIImage(data: updateOutfit?.photo as! Data)
+			}
         }
     }
     
@@ -90,7 +92,9 @@ class AddClothesTableViewController: UITableViewController,
 		
         record.title = self.pieceTitle.text!
         record.type =  self.type.text!
-		record.typePart = Int16((self.typeSelectedEnum?.getTypePart().rawValue)!)
+		if self.typeSelectedEnum != nil {
+			record.typePart = Int16((self.typeSelectedEnum?.getTypePart().rawValue)!)
+		}
         record.color = self.color.text!
         record.season = Int16(self.season.selectedSegmentIndex)
         record.pieceDescription = self.pieceDescripiton.text!

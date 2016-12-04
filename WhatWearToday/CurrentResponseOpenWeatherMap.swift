@@ -15,7 +15,7 @@ public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpe
         let main = self.rawData["main"] as? Dictionary<String, Float>
         return main?["temp"]
     }
-    
+	
     public func getPressure() -> Float? {
         let main = self.rawData["main"] as? Dictionary<String, Any>
         return main?["pressure"] as? Float
@@ -39,6 +39,12 @@ public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpe
     public func getCityName() -> String? {
         return self.rawData["name"] as? String
     }
+	
+	public func getIconList() -> String {
+		let weather = self.rawData["weather"] as? Array<Dictionary<String, Any>>
+		let firstElement = weather?.first
+		return firstElement?["icon"] as! String
+	}
     
     public func getDescription() -> String? {
         let weather = self.rawData["weather"] as? Array<Dictionary<String, Any>>

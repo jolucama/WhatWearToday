@@ -22,7 +22,9 @@ public protocol ResponseOpenWeatherMapProtocol {
     func getTempMin() -> Float?
     
     func getCityName() -> String?
-    
+	
+	func getIconList() -> String
+	
     func getDescription() -> String?
     
     func getWindSpeed() -> String?

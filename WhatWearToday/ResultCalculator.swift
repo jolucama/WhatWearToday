@@ -26,9 +26,9 @@ struct ResultCalculator {
 		case Outfit.TypeParts.UpperBody:
 			self.upperBodyOutfit.append(outfit!)
 		case Outfit.TypeParts.Legs:
-			self.headwearOutfit.append(outfit!)
+			self.legsOutfit.append(outfit!)
 		case Outfit.TypeParts.Footwear:
-			self.headwearOutfit.append(outfit!)
+			self.footwearOutfit.append(outfit!)
 		}
 	}
 	

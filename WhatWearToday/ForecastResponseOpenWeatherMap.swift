@@ -52,7 +52,14 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
         
         return city?["name"] as? String
     }
-    
+	
+	public func getIconList() -> String {
+		let weather = self.currentListElement?["weather"] as? Array<Dictionary<String, Any>>
+		let firstElement = weather?.first
+		
+		return firstElement?["icon"] as! String
+	}
+	
     public func getDescription() -> String? {
         let weather = self.currentListElement?["weather"] as? Array<Dictionary<String, Any>>
         let firstElement = weather?.first

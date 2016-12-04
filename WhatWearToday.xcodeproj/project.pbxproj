@@ -32,6 +32,8 @@
 		6487D4611D74C19100C22EA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6487D45F1D74C19100C22EA1 /* LaunchScreen.storyboard */; };
 		6487D46C1D74C19100C22EA1 /* WhatWearTodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D46B1D74C19100C22EA1 /* WhatWearTodayTests.swift */; };
 		6487D4771D74C19200C22EA1 /* WhatWearTodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */; };
+		64BE7FAA1DF47D310000A26F /* BackgroundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE7FA91DF47D310000A26F /* BackgroundList.swift */; };
+		64BE7FAC1DF483F80000A26F /* ClearSkyDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */; };
 		64BED2DB1DF0C3650091EEA5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DA1DF0C3650091EEA5 /* Array.swift */; };
 		64BED2DD1DF0CBA40091EEA5 /* ResultCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */; };
 		64BED2E21DF103D90091EEA5 /* camera-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BED2E11DF103D90091EEA5 /* camera-default.png */; };
@@ -98,6 +100,8 @@
 		6487D4721D74C19200C22EA1 /* WhatWearTodayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatWearTodayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatWearTodayUITests.swift; sourceTree = "<group>"; };
 		6487D4781D74C19200C22EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64BE7FA91DF47D310000A26F /* BackgroundList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundList.swift; sourceTree = "<group>"; };
+		64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ClearSkyDay.jpg; sourceTree = "<group>"; };
 		64BED2DA1DF0C3650091EEA5 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCalculator.swift; sourceTree = "<group>"; };
 		64BED2E11DF103D90091EEA5 /* camera-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-default.png"; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				640033C01DDA6FA900095F37 /* FormatReturn.swift */,
+				64BE7FA91DF47D310000A26F /* BackgroundList.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 			children = (
 				64EC87B11DE0D4B40051FA76 /* hoodie.jpg */,
 				64EC87B21DE0D4B40051FA76 /* womenHat.jpg */,
+				64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */,
 				64BED2E11DF103D90091EEA5 /* camera-default.png */,
 				640033B81DDA4DFC00095F37 /* summer-rain.png */,
 				64E9161A1DD742C400EA4812 /* trousers.jpg */,
@@ -456,6 +462,7 @@
 				64EC87B31DE0D4B50051FA76 /* hoodie.jpg in Resources */,
 				6487D4611D74C19100C22EA1 /* LaunchScreen.storyboard in Resources */,
 				6487D45E1D74C19100C22EA1 /* Assets.xcassets in Resources */,
+				64BE7FAC1DF483F80000A26F /* ClearSkyDay.jpg in Resources */,
 				6487D4591D74C19100C22EA1 /* Main.storyboard in Resources */,
 				640033C81DDE443C00095F37 /* Config.plist in Resources */,
 				64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */,
@@ -513,6 +520,7 @@
 				640033C61DDA7E7600095F37 /* RequestParameters.swift in Sources */,
 				640950911DE509DF006E94C2 /* OutfitCalculatorProtocol.swift in Sources */,
 				640033C41DDA76A400095F37 /* RequestOpenWeatherMap.swift in Sources */,
+				64BE7FAA1DF47D310000A26F /* BackgroundList.swift in Sources */,
 				64BED2DD1DF0CBA40091EEA5 /* ResultCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
