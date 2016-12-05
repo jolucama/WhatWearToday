@@ -27,7 +27,6 @@ class OutfitListTableViewController: UITableViewController {
             print("Could not fetch \(error), \(error.userInfo)")
         }
 		self.showHideNoOutfitLabel()
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +86,14 @@ class OutfitListTableViewController: UITableViewController {
 			self.showHideNoOutfitLabel()
         }
     }
+	
+	
+	override func didMove(toParentViewController parent: UIViewController?) {
+		super.didMove(toParentViewController: parent)
+		
+		parent?.navigationItem.leftBarButtonItem = self.editButtonItem
+		parent?.setEditing(true, animated: true)
+	}
 
     // MARK: - Navigation
 

@@ -34,6 +34,7 @@
 		6487D4771D74C19200C22EA1 /* WhatWearTodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */; };
 		64BE7FAA1DF47D310000A26F /* BackgroundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE7FA91DF47D310000A26F /* BackgroundList.swift */; };
 		64BE7FAC1DF483F80000A26F /* ClearSkyDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */; };
+		64BE7FB21DF4E3450000A26F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE7FB11DF4E3450000A26F /* ContainerViewController.swift */; };
 		64BED2DB1DF0C3650091EEA5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DA1DF0C3650091EEA5 /* Array.swift */; };
 		64BED2DD1DF0CBA40091EEA5 /* ResultCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */; };
 		64BED2E21DF103D90091EEA5 /* camera-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BED2E11DF103D90091EEA5 /* camera-default.png */; };
@@ -102,6 +103,7 @@
 		6487D4781D74C19200C22EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64BE7FA91DF47D310000A26F /* BackgroundList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundList.swift; sourceTree = "<group>"; };
 		64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ClearSkyDay.jpg; sourceTree = "<group>"; };
+		64BE7FB11DF4E3450000A26F /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		64BED2DA1DF0C3650091EEA5 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCalculator.swift; sourceTree = "<group>"; };
 		64BED2E11DF103D90091EEA5 /* camera-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-default.png"; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				64467ED41D75272400EDF83A /* AddClothesTableViewController.swift */,
 				6453A5921DD54B81003CD73F /* OutfitListTableViewController.swift */,
 				64EC87AD1DE0CD770051FA76 /* ResultViewController.swift */,
+				64BE7FB11DF4E3450000A26F /* ContainerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				64BED2DB1DF0C3650091EEA5 /* Array.swift in Sources */,
 				64E916171DD73E6900EA4812 /* OutfitUITableViewCell.swift in Sources */,
 				64EC87AE1DE0CD770051FA76 /* ResultViewController.swift in Sources */,
+				64BE7FB21DF4E3450000A26F /* ContainerViewController.swift in Sources */,
 				64467ED51D75272400EDF83A /* AddClothesTableViewController.swift in Sources */,
 				640033D61DDE660B00095F37 /* ResponseOpenWeatherMapProtocol.swift in Sources */,
 				6487D4561D74C19100C22EA1 /* MainViewController.swift in Sources */,
