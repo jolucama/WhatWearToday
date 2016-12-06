@@ -2,7 +2,7 @@
 //  Outfit+CoreDataProperties.swift
 //  WhatWearToday
 //
-//  Created by jlcardosa on 24/11/2016.
+//  Created by jlcardosa on 06/12/2016.
 //  Copyright © 2016 Cardosa. All rights reserved.
 //
 

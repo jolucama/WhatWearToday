@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ResultViewController: UIViewController {
 	
@@ -23,6 +24,8 @@ class ResultViewController: UIViewController {
 	var upperBody2Outfit: Outfit?
 	var legsOutfit: Outfit?
 	var footwearOutfit: Outfit?
+	
+	var record : OutfitCalculationHistory!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +81,38 @@ class ResultViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	private func checkAndAddOutfit (outfit : Outfit?) {
+		if (outfit != nil) {
+			self.record.addToOutfits(outfit!)
+		}
+	}
+	
+	@IBAction func outfitCalculationResult(_ sender: UIBarButtonItem) {
+		let managedObjectContext = CoreDataManager.getManagedObjectContext()
+		let entity = NSEntityDescription.entity(forEntityName: OutfitCalculationHistory.entityName, in: managedObjectContext)
+		self.record = OutfitCalculationHistory(entity: entity!, insertInto: managedObjectContext)
+		
+		self.record.date = NSDate()
+		self.checkAndAddOutfit(outfit: self.headwear1Outfit)
+		self.checkAndAddOutfit(outfit: self.headwear2Outfit)
+		self.checkAndAddOutfit(outfit: self.upperBody1Outfit)
+		self.checkAndAddOutfit(outfit: self.upperBody2Outfit)
+		self.checkAndAddOutfit(outfit: self.legsOutfit)
+		self.checkAndAddOutfit(outfit: self.footwearOutfit)
+		
+		do {
+			try managedObjectContext.save()
+			//performSegue(withIdentifier: "backToListOutfit", sender: self)
+		} catch let error as NSError  {
+			let alert = UIAlertController(title: "Error", message: "An error occured saving your object", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+				NSLog("%@", error);
+			}))
+			self.present(alert, animated: true, completion: nil)
+		}
+
+	}
 	
 	private func initOutfitsViews(outfitView: UIImageView, outfit: Outfit?)
 	{

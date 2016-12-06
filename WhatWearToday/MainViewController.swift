@@ -48,13 +48,13 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
 		
 		let backgroundView = UIImageView(frame: self.view.frame)
-		backgroundView.image = UIImage(named: "ClearSkyDay.jpg")
+		backgroundView.image = UIImage(named: "ThunderstormNight.jpg")
 		backgroundView.contentMode = UIViewContentMode.scaleAspectFill
 		
 		let filter = UIView()
 		filter.frame = self.view.frame
 		filter.backgroundColor = UIColor.black
-		filter.alpha = 0.05
+		filter.alpha = 0.5
 		backgroundView.addSubview(filter)
 		
 		self.view.insertSubview(backgroundView, at: 0)

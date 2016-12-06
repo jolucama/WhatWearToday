@@ -9,7 +9,12 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typePart" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="OutfitCalculationHistory" representedClassName="OutfitCalculationHistory" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="outfits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Outfit" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Outfit" positionX="-5679" positionY="-2097" width="128" height="150"/>
+        <element name="OutfitCalculationHistory" positionX="-5679" positionY="-2043" width="128" height="75"/>
     </elements>
 </model>
