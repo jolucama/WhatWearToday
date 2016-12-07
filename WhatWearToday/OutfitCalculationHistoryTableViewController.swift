@@ -15,6 +15,8 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		self.tableView.tableFooterView = UIView();
+		
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,7 +29,7 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
 		do {
 			self.outfitCalculationHistory = try outfitCalculationHistoryRepository.fetch()
 		} catch let error as Error {
-			
+			//TODO Complete with error handling
 		}
     }
 
@@ -46,15 +48,22 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
         return self.outfitCalculationHistory.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellOutfitCalculationHistory", for: indexPath)
+		
+		let outfitCalculationHistory = self.outfitCalculationHistory[indexPath.row]
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = DateFormatter.Style.long
+		cell.detailTextLabel?.text = dateFormatter.string(from: outfitCalculationHistory.date as! Date)
+		
+		var title = "| "
+		for outfit in outfitCalculationHistory.outfits! {
+			title += (outfit as! Outfit).title! + " | "
+		}
+		cell.textLabel?.text = title
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

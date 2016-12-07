@@ -55,26 +55,25 @@ class AddClothesTableViewController: UITableViewController,
     }
     
     @IBAction func addPhoto(_ sender: UIButton, forEvent event: UIEvent) {
-        
-        /*
-         OPEN THE CAMERA (JUST WITH REAL DEVICES)
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
             imagePicker.allowsEditing = false
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-        }
-        */
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
-            imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
-    
+	
+	@IBAction func openLibrary(_ sender: UIButton) {
+		if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+			let imagePicker = UIImagePickerController()
+			imagePicker.delegate = self
+			imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+			imagePicker.allowsEditing = true
+			self.present(imagePicker, animated: true, completion: nil)
+		}
+    }
+	
     @IBAction func saveObject(_ sender: AnyObject) {
         
         let managedObjectContext = CoreDataManager.getManagedObjectContext()

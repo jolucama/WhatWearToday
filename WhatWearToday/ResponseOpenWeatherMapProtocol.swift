@@ -23,7 +23,7 @@ public protocol ResponseOpenWeatherMapProtocol {
     
     func getCityName() -> String?
 	
-	func getIconList() -> String
+	func getIconList() -> IconList
 	
     func getDescription() -> String?
     

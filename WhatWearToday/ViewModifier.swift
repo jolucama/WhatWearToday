@@ -40,4 +40,13 @@ class ViewModifier {
 		
 		return newImage!
     }
+	
+	public static func createBlackFilter(frame: CGRect, opacity: CGFloat) -> UIView {
+		let filter = UIView()
+		filter.frame = frame
+		filter.backgroundColor = UIColor.black
+		filter.alpha = opacity
+		
+		return filter
+	}
 }

@@ -95,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.50667818213288895" green="0.74189027453468137" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="OwW-fM-4lP" secondAttribute="trailing" constant="78" id="07M-ck-TGS"/>
                             <constraint firstItem="uBk-Ot-Gfc" firstAttribute="top" secondItem="XSs-J3-abJ" secondAttribute="bottom" constant="-108" id="30f-G0-45n"/>
@@ -120,10 +120,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="sLd-wO-ppR"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="compose" id="gt3-nq-49n">
                             <connections>
-                                <segue destination="mhP-Xu-yay" kind="show" id="8c3-SO-WiV"/>
+                                <segue destination="8JA-6i-Rcd" kind="show" identifier="fromMainViewToOutfitList" id="xxd-yu-DcQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="sfN-hg-xxz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="sfN-hg-xxz">
+                            <connections>
+                                <segue destination="luW-UB-o7P" kind="show" id="qvH-uQ-s9y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calculation" destination="OwW-fM-4lP" id="hql-Cr-xbe"/>
@@ -222,6 +226,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Txi-Ix-XFr">
                             <connections>
                                 <action selector="outfitCalculationResult:" destination="4ix-QI-njs" id="Pqj-U4-nVS"/>
+                                <segue destination="OoB-iG-pzn" kind="show" id="yiJ-zk-qR4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -238,16 +243,16 @@
             </objects>
             <point key="canvasLocation" x="4730.3999999999996" y="554.57271364317842"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Outfit Calculation History Table View Controller-->
         <scene sceneID="OlI-g4-A8a">
             <objects>
-                <tableViewController id="luW-UB-o7P" sceneMemberID="viewController">
+                <tableViewController id="luW-UB-o7P" customClass="OutfitCalculationHistoryTableViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" id="nsJ-p0-kSU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5lq-gv-Kjt" detailTextLabel="mYj-D4-vgn" rowHeight="85" style="IBUITableViewCellStyleSubtitle" id="3lu-gv-mRv">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cellOutfitCalculationHistory" textLabel="5lq-gv-Kjt" detailTextLabel="mYj-D4-vgn" rowHeight="85" style="IBUITableViewCellStyleSubtitle" id="3lu-gv-mRv">
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lu-gv-mRv" id="Vek-Mw-BQI">
@@ -277,10 +282,17 @@
                             <outlet property="delegate" destination="luW-UB-o7P" id="2By-cj-SGR"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="kiY-lf-JZF">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back to calculate" id="TXG-mL-9w5">
+                            <connections>
+                                <segue destination="wrc-vD-YUx" kind="presentation" modalTransitionStyle="flipHorizontal" id="fLR-hT-fJX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Sq-ae-aXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6248.8000000000002" y="554.57271364317842"/>
+            <point key="canvasLocation" x="6546" y="554"/>
         </scene>
         <!--Add a outfit-->
         <scene sceneID="9d3-KC-ZYT">
@@ -460,30 +472,44 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SMc-5Y-Am1">
-                                                    <rect key="frame" x="73.5" y="17" width="228" height="128"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SMc-5Y-Am1">
+                                                    <rect key="frame" x="39" y="17" width="228" height="128"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="SMc-5Y-Am1" secondAttribute="height" multiplier="16:9" id="zCK-Zy-p3T"/>
+                                                        <constraint firstAttribute="width" secondItem="SMc-5Y-Am1" secondAttribute="height" multiplier="57:32" id="myk-Pp-lMe"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0i-8w-YGB">
-                                                    <rect key="frame" x="132.5" y="66" width="110" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0i-8w-YGB">
+                                                    <rect key="frame" x="275" y="17" width="60" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="110" id="nh4-nY-BKp"/>
+                                                        <constraint firstAttribute="width" secondItem="m0i-8w-YGB" secondAttribute="height" multiplier="1:1" id="EZY-aA-QeR"/>
+                                                        <constraint firstAttribute="width" constant="60" id="fFm-cQ-iNl"/>
                                                     </constraints>
-                                                    <state key="normal" title="Change Photo"/>
+                                                    <state key="normal" title="Cam" backgroundImage="camera-default.png"/>
                                                     <connections>
                                                         <action selector="addPhoto:forEvent:" destination="j4K-sv-ukx" eventType="touchUpInside" id="x7r-gT-8K3"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcd-EK-H7r">
+                                                    <rect key="frame" x="275" y="85" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="9dK-rx-7UR"/>
+                                                        <constraint firstAttribute="width" secondItem="xcd-EK-H7r" secondAttribute="height" multiplier="1:1" id="aZX-tf-lAS"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Lib" backgroundImage="camera-default.png"/>
+                                                    <connections>
+                                                        <action selector="openLibrary:" destination="j4K-sv-ukx" eventType="touchUpInside" id="SVp-4u-f0k"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="m0i-8w-YGB" firstAttribute="centerX" secondItem="eiM-xl-CAe" secondAttribute="centerX" id="46i-Aa-cUj"/>
-                                                <constraint firstItem="SMc-5Y-Am1" firstAttribute="centerY" secondItem="eiM-xl-CAe" secondAttribute="centerY" id="7j0-Ku-alu"/>
-                                                <constraint firstItem="m0i-8w-YGB" firstAttribute="centerY" secondItem="eiM-xl-CAe" secondAttribute="centerY" id="FJ6-bR-6aa"/>
-                                                <constraint firstItem="SMc-5Y-Am1" firstAttribute="top" secondItem="eiM-xl-CAe" secondAttribute="topMargin" constant="9" id="Mvk-mn-4dq"/>
-                                                <constraint firstItem="SMc-5Y-Am1" firstAttribute="centerX" secondItem="eiM-xl-CAe" secondAttribute="centerX" id="Sar-t3-NbO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xcd-EK-H7r" secondAttribute="bottom" constant="9" id="4yJ-xd-2TT"/>
+                                                <constraint firstItem="m0i-8w-YGB" firstAttribute="top" secondItem="eiM-xl-CAe" secondAttribute="topMargin" constant="9" id="AbA-fS-uyb"/>
+                                                <constraint firstItem="SMc-5Y-Am1" firstAttribute="leading" secondItem="eiM-xl-CAe" secondAttribute="leadingMargin" constant="31" id="EUl-FG-wm6"/>
+                                                <constraint firstItem="m0i-8w-YGB" firstAttribute="leading" secondItem="SMc-5Y-Am1" secondAttribute="trailing" constant="8" id="Qob-35-PoC"/>
+                                                <constraint firstItem="SMc-5Y-Am1" firstAttribute="centerY" secondItem="eiM-xl-CAe" secondAttribute="centerY" id="bGB-zf-QCQ"/>
+                                                <constraint firstItem="SMc-5Y-Am1" firstAttribute="top" secondItem="eiM-xl-CAe" secondAttribute="topMargin" constant="9" id="m1r-m2-b5L"/>
+                                                <constraint firstItem="xcd-EK-H7r" firstAttribute="leading" secondItem="SMc-5Y-Am1" secondAttribute="trailing" constant="8" id="x2r-E1-Mke"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -519,7 +545,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bJ-CY-0hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="151" y="1063"/>
+            <point key="canvasLocation" x="149.59999999999999" y="1062.8185907046477"/>
         </scene>
         <!--Type-->
         <scene sceneID="WVO-hW-Acj">
@@ -726,7 +752,7 @@
             </objects>
             <point key="canvasLocation" x="-788" y="251.42428785607197"/>
         </scene>
-        <!--Container View Controller-->
+        <!--Outfit-->
         <scene sceneID="KN3-ti-2pc">
             <objects>
                 <viewController id="8JA-6i-Rcd" customClass="ContainerViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
@@ -755,6 +781,7 @@
                                 </state>
                                 <connections>
                                     <action selector="backToMainViewController:" destination="8JA-6i-Rcd" eventType="touchUpInside" id="gjy-tu-Xbk"/>
+                                    <segue destination="wrc-vD-YUx" kind="show" id="oMP-UQ-PWL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -771,7 +798,7 @@
                             <constraint firstItem="NTv-ec-5po" firstAttribute="top" secondItem="i25-oG-Uya" secondAttribute="bottom" constant="-64" id="rv2-mz-13c"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="T1x-Cp-sqn">
+                    <navigationItem key="navigationItem" title="Outfit" id="T1x-Cp-sqn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eJk-Ve-KhK">
                             <connections>
                                 <segue destination="F9K-Zw-61Q" kind="presentation" id="jVW-Do-8WL"/>
@@ -805,16 +832,36 @@
             </objects>
             <point key="canvasLocation" x="3884" y="553.67316341829087"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dgn-bp-gyZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OoB-iG-pzn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O26-Id-sck">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="luW-UB-o7P" kind="relationship" relationship="rootViewController" id="EVH-dF-hrk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E4x-WH-JZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5820" y="555"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BrokenCloudsDay.jpg" width="1024" height="768"/>
         <image name="camera-default.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SQY-nf-7rf"/>
+        <segue reference="qvH-uQ-s9y"/>
+        <segue reference="oMP-UQ-PWL"/>
+        <segue reference="xxd-yu-DcQ"/>
+        <segue reference="jVW-Do-8WL"/>
         <segue reference="lui-AW-Bdo"/>
-        <segue reference="8c3-SO-WiV"/>
+        <segue reference="yso-sa-3s6"/>
         <segue reference="Xpc-gm-Fww"/>
-        <segue reference="C5V-8Q-qqt"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,7 +44,7 @@ class ResultViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 		
-        UIView.animate(withDuration: 0.7, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             self.headwear1.alpha = 1.0
         }, completion: {
             (finished: Bool) -> Void in
@@ -52,19 +52,19 @@ class ResultViewController: UIViewController {
                 self.headwear2.alpha = 1.0
             }, completion: {
                 (finished: Bool) -> Void in
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.6, animations: {
                     self.upperBody1.alpha = 1.0
                 }, completion: {
                     (finished: Bool) -> Void in
-					UIView.animate(withDuration: 0.4, animations: {
+					UIView.animate(withDuration: 0.6, animations: {
 						self.upperBody2.alpha = 1.0
 					}, completion: {
 						(finished: Bool) -> Void in
-						UIView.animate(withDuration: 0.3, animations: {
+						UIView.animate(withDuration: 0.6, animations: {
 							self.legs.alpha = 1.0
 						}, completion: {
 							(finished: Bool) -> Void in
-							UIView.animate(withDuration: 0.2, animations: {
+							UIView.animate(withDuration: 0.6, animations: {
 								self.footwear.alpha = 1.0
 							}, completion: {
 								(finished: Bool) -> Void in

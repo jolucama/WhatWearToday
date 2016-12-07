@@ -32,7 +32,7 @@
 		6487D4611D74C19100C22EA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6487D45F1D74C19100C22EA1 /* LaunchScreen.storyboard */; };
 		6487D46C1D74C19100C22EA1 /* WhatWearTodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D46B1D74C19100C22EA1 /* WhatWearTodayTests.swift */; };
 		6487D4771D74C19200C22EA1 /* WhatWearTodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */; };
-		64BE7FAA1DF47D310000A26F /* BackgroundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE7FA91DF47D310000A26F /* BackgroundList.swift */; };
+		64BE7FAA1DF47D310000A26F /* IconList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE7FA91DF47D310000A26F /* IconList.swift */; };
 		64BE7FAC1DF483F80000A26F /* ClearSkyDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */; };
 		64BE7FB21DF4E3450000A26F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE7FB11DF4E3450000A26F /* ContainerViewController.swift */; };
 		64BED2DB1DF0C3650091EEA5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DA1DF0C3650091EEA5 /* Array.swift */; };
@@ -48,7 +48,7 @@
 		64D221D11DF74FF400EE8606 /* RainDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221BF1DF74FF400EE8606 /* RainDay.jpg */; };
 		64D221D21DF74FF400EE8606 /* RainNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C01DF74FF400EE8606 /* RainNight.jpg */; };
 		64D221D31DF74FF400EE8606 /* ScatteredCloudsDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C11DF74FF400EE8606 /* ScatteredCloudsDay.jpg */; };
-		64D221D41DF74FF400EE8606 /* ScatteredCloudsNight-BrokenCloudsNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C21DF74FF400EE8606 /* ScatteredCloudsNight-BrokenCloudsNight.jpg */; };
+		64D221D41DF74FF400EE8606 /* ScatteredCloudsNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C21DF74FF400EE8606 /* ScatteredCloudsNight.jpg */; };
 		64D221D51DF74FF400EE8606 /* ShowerRainDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C31DF74FF400EE8606 /* ShowerRainDay.jpg */; };
 		64D221D61DF74FF400EE8606 /* ShowerRainNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C41DF74FF400EE8606 /* ShowerRainNight.jpg */; };
 		64D221D71DF74FF400EE8606 /* SnowDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221C51DF74FF400EE8606 /* SnowDay.jpg */; };
@@ -59,6 +59,7 @@
 		64D221E21DF75D6200EE8606 /* OutfitCalculationHistory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D221E01DF75D6200EE8606 /* OutfitCalculationHistory+CoreDataProperties.swift */; };
 		64D221E41DF765EB00EE8606 /* OutfitCalculationHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D221E31DF765EB00EE8606 /* OutfitCalculationHistoryTableViewController.swift */; };
 		64D221E61DF766EC00EE8606 /* OutfitCalculationHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D221E51DF766EC00EE8606 /* OutfitCalculationHistoryRepository.swift */; };
+		64D221EA1DF7AB9E00EE8606 /* BrokenCloudsNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221E91DF7AB9E00EE8606 /* BrokenCloudsNight.jpg */; };
 		64E916171DD73E6900EA4812 /* OutfitUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E916151DD73E6900EA4812 /* OutfitUITableViewCell.swift */; };
 		64E9161B1DD742C400EA4812 /* trousers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64E9161A1DD742C400EA4812 /* trousers.jpg */; };
 		64E9162D1DD9080E00EA4812 /* Outfit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */; };
@@ -122,7 +123,7 @@
 		6487D4721D74C19200C22EA1 /* WhatWearTodayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatWearTodayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6487D4761D74C19200C22EA1 /* WhatWearTodayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatWearTodayUITests.swift; sourceTree = "<group>"; };
 		6487D4781D74C19200C22EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64BE7FA91DF47D310000A26F /* BackgroundList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundList.swift; sourceTree = "<group>"; };
+		64BE7FA91DF47D310000A26F /* IconList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconList.swift; sourceTree = "<group>"; };
 		64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ClearSkyDay.jpg; sourceTree = "<group>"; };
 		64BE7FB11DF4E3450000A26F /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		64BED2DA1DF0C3650091EEA5 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -138,7 +139,7 @@
 		64D221BF1DF74FF400EE8606 /* RainDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RainDay.jpg; sourceTree = "<group>"; };
 		64D221C01DF74FF400EE8606 /* RainNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RainNight.jpg; sourceTree = "<group>"; };
 		64D221C11DF74FF400EE8606 /* ScatteredCloudsDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ScatteredCloudsDay.jpg; sourceTree = "<group>"; };
-		64D221C21DF74FF400EE8606 /* ScatteredCloudsNight-BrokenCloudsNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ScatteredCloudsNight-BrokenCloudsNight.jpg"; sourceTree = "<group>"; };
+		64D221C21DF74FF400EE8606 /* ScatteredCloudsNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ScatteredCloudsNight.jpg; sourceTree = "<group>"; };
 		64D221C31DF74FF400EE8606 /* ShowerRainDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ShowerRainDay.jpg; sourceTree = "<group>"; };
 		64D221C41DF74FF400EE8606 /* ShowerRainNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ShowerRainNight.jpg; sourceTree = "<group>"; };
 		64D221C51DF74FF400EE8606 /* SnowDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SnowDay.jpg; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		64D221E01DF75D6200EE8606 /* OutfitCalculationHistory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OutfitCalculationHistory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		64D221E31DF765EB00EE8606 /* OutfitCalculationHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCalculationHistoryTableViewController.swift; sourceTree = "<group>"; };
 		64D221E51DF766EC00EE8606 /* OutfitCalculationHistoryRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCalculationHistoryRepository.swift; sourceTree = "<group>"; };
+		64D221E91DF7AB9E00EE8606 /* BrokenCloudsNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BrokenCloudsNight.jpg; sourceTree = "<group>"; };
 		64E916151DD73E6900EA4812 /* OutfitUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitUITableViewCell.swift; sourceTree = "<group>"; };
 		64E9161A1DD742C400EA4812 /* trousers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trousers.jpg; sourceTree = "<group>"; };
 		64E9162B1DD9080E00EA4812 /* Outfit+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Outfit+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -204,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				640033C01DDA6FA900095F37 /* FormatReturn.swift */,
-				64BE7FA91DF47D310000A26F /* BackgroundList.swift */,
+				64BE7FA91DF47D310000A26F /* IconList.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				64D221B71DF74FF400EE8606 /* AnotherRainNight.jpg */,
+				64D221E91DF7AB9E00EE8606 /* BrokenCloudsNight.jpg */,
 				64D221B81DF74FF400EE8606 /* BrokenCloudsDay.jpg */,
 				64BE7FAB1DF483F80000A26F /* ClearSkyDay.jpg */,
 				64D221BA1DF74FF400EE8606 /* ClearSkyNight.jpg */,
@@ -374,7 +377,7 @@
 				64D221BF1DF74FF400EE8606 /* RainDay.jpg */,
 				64D221C01DF74FF400EE8606 /* RainNight.jpg */,
 				64D221C11DF74FF400EE8606 /* ScatteredCloudsDay.jpg */,
-				64D221C21DF74FF400EE8606 /* ScatteredCloudsNight-BrokenCloudsNight.jpg */,
+				64D221C21DF74FF400EE8606 /* ScatteredCloudsNight.jpg */,
 				64D221C31DF74FF400EE8606 /* ShowerRainDay.jpg */,
 				64D221C41DF74FF400EE8606 /* ShowerRainNight.jpg */,
 				64D221C51DF74FF400EE8606 /* SnowDay.jpg */,
@@ -493,15 +496,18 @@
 				TargetAttributes = {
 					6487D44F1D74C19100C22EA1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9LC8BHZNLR;
 						LastSwiftMigration = 0810;
 					};
 					6487D4661D74C19100C22EA1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9LC8BHZNLR;
 						LastSwiftMigration = 0810;
 						TestTargetID = 6487D44F1D74C19100C22EA1;
 					};
 					6487D4711D74C19200C22EA1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9LC8BHZNLR;
 						LastSwiftMigration = 0810;
 						TestTargetID = 6487D44F1D74C19100C22EA1;
 					};
@@ -542,7 +548,7 @@
 				64D221D51DF74FF400EE8606 /* ShowerRainDay.jpg in Resources */,
 				64D221D61DF74FF400EE8606 /* ShowerRainNight.jpg in Resources */,
 				6487D4611D74C19100C22EA1 /* LaunchScreen.storyboard in Resources */,
-				64D221D41DF74FF400EE8606 /* ScatteredCloudsNight-BrokenCloudsNight.jpg in Resources */,
+				64D221D41DF74FF400EE8606 /* ScatteredCloudsNight.jpg in Resources */,
 				64D221D11DF74FF400EE8606 /* RainDay.jpg in Resources */,
 				6487D45E1D74C19100C22EA1 /* Assets.xcassets in Resources */,
 				64D221CD1DF74FF400EE8606 /* FewCloudsDay.jpg in Resources */,
@@ -553,6 +559,7 @@
 				6487D4591D74C19100C22EA1 /* Main.storyboard in Resources */,
 				64D221D01DF74FF400EE8606 /* MistNight.jpg in Resources */,
 				64D221CA1DF74FF400EE8606 /* BrokenCloudsDay.jpg in Resources */,
+				64D221EA1DF7AB9E00EE8606 /* BrokenCloudsNight.jpg in Resources */,
 				640033C81DDE443C00095F37 /* Config.plist in Resources */,
 				64D221D21DF74FF400EE8606 /* RainNight.jpg in Resources */,
 				64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */,
@@ -616,7 +623,7 @@
 				640033C61DDA7E7600095F37 /* RequestParameters.swift in Sources */,
 				640950911DE509DF006E94C2 /* OutfitCalculatorProtocol.swift in Sources */,
 				640033C41DDA76A400095F37 /* RequestOpenWeatherMap.swift in Sources */,
-				64BE7FAA1DF47D310000A26F /* BackgroundList.swift in Sources */,
+				64BE7FAA1DF47D310000A26F /* IconList.swift in Sources */,
 				64BED2DD1DF0CBA40091EEA5 /* ResultCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -695,6 +702,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9LC8BHZNLR;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -743,6 +751,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9LC8BHZNLR;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

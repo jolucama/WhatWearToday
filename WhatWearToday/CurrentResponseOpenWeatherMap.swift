@@ -40,10 +40,11 @@ public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpe
         return self.rawData["name"] as? String
     }
 	
-	public func getIconList() -> String {
+	public func getIconList() -> IconList {
 		let weather = self.rawData["weather"] as? Array<Dictionary<String, Any>>
 		let firstElement = weather?.first
-		return firstElement?["icon"] as! String
+		let icon = firstElement?["icon"] as! String
+		return IconList(rawValue: icon)!
 	}
     
     public func getDescription() -> String? {
