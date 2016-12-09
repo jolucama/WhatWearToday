@@ -38,6 +38,11 @@
 		64BED2DB1DF0C3650091EEA5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DA1DF0C3650091EEA5 /* Array.swift */; };
 		64BED2DD1DF0CBA40091EEA5 /* ResultCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */; };
 		64BED2E21DF103D90091EEA5 /* camera-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BED2E11DF103D90091EEA5 /* camera-default.png */; };
+		64CA06411DFA1B3200E165A0 /* nurse-uniform.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CA06401DFA1B3200E165A0 /* nurse-uniform.png */; };
+		64CA06441DFA266C00E165A0 /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CA06421DFA266C00E165A0 /* Camera.png */; };
+		64CA06451DFA266C00E165A0 /* libraryIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64CA06431DFA266C00E165A0 /* libraryIcon.jpg */; };
+		64CA06481DFA29CB00E165A0 /* OutfitHistory.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CA06461DFA29CB00E165A0 /* OutfitHistory.png */; };
+		64CA06491DFA29CB00E165A0 /* OutfitList.png in Resources */ = {isa = PBXBuildFile; fileRef = 64CA06471DFA29CB00E165A0 /* OutfitList.png */; };
 		64D221C91DF74FF400EE8606 /* AnotherRainNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221B71DF74FF400EE8606 /* AnotherRainNight.jpg */; };
 		64D221CA1DF74FF400EE8606 /* BrokenCloudsDay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221B81DF74FF400EE8606 /* BrokenCloudsDay.jpg */; };
 		64D221CC1DF74FF400EE8606 /* ClearSkyNight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64D221BA1DF74FF400EE8606 /* ClearSkyNight.jpg */; };
@@ -129,6 +134,11 @@
 		64BED2DA1DF0C3650091EEA5 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		64BED2DC1DF0CBA40091EEA5 /* ResultCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCalculator.swift; sourceTree = "<group>"; };
 		64BED2E11DF103D90091EEA5 /* camera-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-default.png"; sourceTree = "<group>"; };
+		64CA06401DFA1B3200E165A0 /* nurse-uniform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nurse-uniform.png"; sourceTree = "<group>"; };
+		64CA06421DFA266C00E165A0 /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
+		64CA06431DFA266C00E165A0 /* libraryIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = libraryIcon.jpg; sourceTree = "<group>"; };
+		64CA06461DFA29CB00E165A0 /* OutfitHistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OutfitHistory.png; sourceTree = "<group>"; };
+		64CA06471DFA29CB00E165A0 /* OutfitList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OutfitList.png; sourceTree = "<group>"; };
 		64D221B71DF74FF400EE8606 /* AnotherRainNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AnotherRainNight.jpg; sourceTree = "<group>"; };
 		64D221B81DF74FF400EE8606 /* BrokenCloudsDay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BrokenCloudsDay.jpg; sourceTree = "<group>"; };
 		64D221BA1DF74FF400EE8606 /* ClearSkyNight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ClearSkyNight.jpg; sourceTree = "<group>"; };
@@ -411,6 +421,11 @@
 			children = (
 				64D221B61DF74FE200EE8606 /* weatherBackgrounds */,
 				64EC87B11DE0D4B40051FA76 /* hoodie.jpg */,
+				64CA06421DFA266C00E165A0 /* Camera.png */,
+				64CA06431DFA266C00E165A0 /* libraryIcon.jpg */,
+				64CA06461DFA29CB00E165A0 /* OutfitHistory.png */,
+				64CA06471DFA29CB00E165A0 /* OutfitList.png */,
+				64CA06401DFA1B3200E165A0 /* nurse-uniform.png */,
 				64EC87B21DE0D4B40051FA76 /* womenHat.jpg */,
 				64BED2E11DF103D90091EEA5 /* camera-default.png */,
 				640033B81DDA4DFC00095F37 /* summer-rain.png */,
@@ -544,6 +559,7 @@
 				64D221C91DF74FF400EE8606 /* AnotherRainNight.jpg in Resources */,
 				640033B91DDA4DFC00095F37 /* summer-rain.png in Resources */,
 				64D221CC1DF74FF400EE8606 /* ClearSkyNight.jpg in Resources */,
+				64CA06451DFA266C00E165A0 /* libraryIcon.jpg in Resources */,
 				64EC87B31DE0D4B50051FA76 /* hoodie.jpg in Resources */,
 				64D221D51DF74FF400EE8606 /* ShowerRainDay.jpg in Resources */,
 				64D221D61DF74FF400EE8606 /* ShowerRainNight.jpg in Resources */,
@@ -554,13 +570,17 @@
 				64D221CD1DF74FF400EE8606 /* FewCloudsDay.jpg in Resources */,
 				64D221CE1DF74FF400EE8606 /* FewCloudsNight.jpg in Resources */,
 				64BE7FAC1DF483F80000A26F /* ClearSkyDay.jpg in Resources */,
+				64CA06481DFA29CB00E165A0 /* OutfitHistory.png in Resources */,
 				64D221D31DF74FF400EE8606 /* ScatteredCloudsDay.jpg in Resources */,
 				64D221DA1DF74FF400EE8606 /* ThunderstormNight.jpg in Resources */,
 				6487D4591D74C19100C22EA1 /* Main.storyboard in Resources */,
 				64D221D01DF74FF400EE8606 /* MistNight.jpg in Resources */,
 				64D221CA1DF74FF400EE8606 /* BrokenCloudsDay.jpg in Resources */,
+				64CA06491DFA29CB00E165A0 /* OutfitList.png in Resources */,
 				64D221EA1DF7AB9E00EE8606 /* BrokenCloudsNight.jpg in Resources */,
+				64CA06441DFA266C00E165A0 /* Camera.png in Resources */,
 				640033C81DDE443C00095F37 /* Config.plist in Resources */,
+				64CA06411DFA1B3200E165A0 /* nurse-uniform.png in Resources */,
 				64D221D21DF74FF400EE8606 /* RainNight.jpg in Resources */,
 				64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */,
 				64D221D81DF74FF400EE8606 /* SnowNight.jpg in Resources */,

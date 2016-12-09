@@ -53,7 +53,7 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
 		
 		let outfitCalculationHistory = self.outfitCalculationHistory[indexPath.row]
 		let dateFormatter = DateFormatter()
-		dateFormatter.dateStyle = DateFormatter.Style.long
+		dateFormatter.dateStyle = DateFormatter.Style.full
 		cell.detailTextLabel?.text = dateFormatter.string(from: outfitCalculationHistory.date as! Date)
 		
 		var title = "| "

@@ -82,12 +82,6 @@ class ResultViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 	
-	private func checkAndAddOutfit (outfit : Outfit?) {
-		if (outfit != nil) {
-			self.record.addToOutfits(outfit!)
-		}
-	}
-	
 	@IBAction func outfitCalculationResult(_ sender: UIBarButtonItem) {
 		let managedObjectContext = CoreDataManager.getManagedObjectContext()
 		let entity = NSEntityDescription.entity(forEntityName: OutfitCalculationHistory.entityName, in: managedObjectContext)
@@ -103,7 +97,7 @@ class ResultViewController: UIViewController {
 		
 		do {
 			try managedObjectContext.save()
-			//performSegue(withIdentifier: "backToListOutfit", sender: self)
+			performSegue(withIdentifier: "showOutfitHistory", sender: self)
 		} catch let error as NSError  {
 			let alert = UIAlertController(title: "Error", message: "An error occured saving your object", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
@@ -112,6 +106,12 @@ class ResultViewController: UIViewController {
 			self.present(alert, animated: true, completion: nil)
 		}
 
+	}
+	
+	private func checkAndAddOutfit (outfit : Outfit?) {
+		if (outfit != nil) {
+			self.record.addToOutfits(outfit!)
+		}
 	}
 	
 	private func initOutfitsViews(outfitView: UIImageView, outfit: Outfit?)

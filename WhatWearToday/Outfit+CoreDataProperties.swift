@@ -2,7 +2,7 @@
 //  Outfit+CoreDataProperties.swift
 //  WhatWearToday
 //
-//  Created by jlcardosa on 06/12/2016.
+//  Created by jlcardosa on 09/12/2016.
 //  Copyright © 2016 Cardosa. All rights reserved.
 //
 
@@ -23,5 +23,23 @@ extension Outfit {
     @NSManaged public var title: String?
     @NSManaged public var type: String?
     @NSManaged public var typePart: Int16
+    @NSManaged public var calculationHistories: NSSet?
+
+}
+
+// MARK: Generated accessors for calculationHistories
+extension Outfit {
+
+    @objc(addCalculationHistoriesObject:)
+    @NSManaged public func addToCalculationHistories(_ value: OutfitCalculationHistory)
+
+    @objc(removeCalculationHistoriesObject:)
+    @NSManaged public func removeFromCalculationHistories(_ value: OutfitCalculationHistory)
+
+    @objc(addCalculationHistories:)
+    @NSManaged public func addToCalculationHistories(_ values: NSSet)
+
+    @objc(removeCalculationHistories:)
+    @NSManaged public func removeFromCalculationHistories(_ values: NSSet)
 
 }

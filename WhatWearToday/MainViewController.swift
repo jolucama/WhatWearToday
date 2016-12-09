@@ -31,6 +31,7 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		UIApplication.shared.statusBarStyle = .lightContent
 		self.createBackgroundWithFilter()
 		
         let now = Date()
@@ -39,10 +40,10 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
         self.datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: now)
 		self.datePicker.setValue(UIColor.white, forKeyPath: "textColor")
         self.apiKey = PlistManager.getValue(forKey: "APIWeatherKey") as! String
-        
+		
         //Location Services
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
@@ -130,6 +131,7 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
 		do {
 			//Fail if click the button so fast
 			try self.calculationResults = outfitCalculator.calculate(response: self.responseWeatherApi)
+			//self.performSegue(withIdentifier: "goToResultCalculation", sender: self)
 		} catch let error as Error {
 			NSLog("Problem witht the calculation")
 			print(error)
@@ -138,8 +140,9 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
 	
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "goToResultCalculation",
-			let resultViewController = segue.destination as? ResultViewController {
+		if segue.identifier == "goToResultCalculation" {
+			let destinationNavigationController = segue.destination as! UINavigationController
+			let resultViewController = destinationNavigationController.topViewController as! ResultViewController
 			
 			let resultHW = self.calculationResults.headwearOutfit
 			let resultUB = self.calculationResults.upperBodyOutfit

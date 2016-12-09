@@ -16,7 +16,8 @@ class OutfitCalculationHistoryRepository {
 	
 	init() {
 		self.managedContext = CoreDataManager.getManagedObjectContext()
-		self.fetchRequest = OutfitCalculationHistory.fetchRequest()
+		self.fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: OutfitCalculationHistory.entityName)
+		//self.fetchRequest = OutfitCalculationHistory.fetchRequest()
 		self.fetchRequest.sortDescriptors = []
 	}
 	
