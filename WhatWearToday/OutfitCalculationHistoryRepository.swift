@@ -9,37 +9,11 @@
 import Foundation
 import CoreData
 
-class OutfitCalculationHistoryRepository {
-	
-	let managedContext : NSManagedObjectContext!
-	let fetchRequest : NSFetchRequest<NSFetchRequestResult>
+class OutfitCalculationHistoryRepository : BaseRepository {
 	
 	init() {
-		self.managedContext = CoreDataManager.getManagedObjectContext()
-		self.fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: OutfitCalculationHistory.entityName)
-		//self.fetchRequest = OutfitCalculationHistory.fetchRequest()
-		self.fetchRequest.sortDescriptors = []
+		super.init(entityName: OutfitCalculationHistory.entityName)
 	}
 	
-	func fetch() throws -> [OutfitCalculationHistory] {
-		do {
-			let results =
-				try self.managedContext.fetch(fetchRequest)
-			return results as! [OutfitCalculationHistory]
-		} catch let error as NSError {
-			throw error
-		}
-	}
 	
-	func setLimit(limit : Int) {
-		self.fetchRequest.fetchLimit = limit
-	}
-	
-	func orderBy(key: String, ascending: Bool) {
-		self.fetchRequest.sortDescriptors?.append(NSSortDescriptor(key: key, ascending: ascending))
-	}
-	
-	func delete(outfit : OutfitCalculationHistory) {
-		self.managedContext.delete(outfit)
-	}
 }

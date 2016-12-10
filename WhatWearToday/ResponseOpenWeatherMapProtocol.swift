@@ -29,8 +29,6 @@ public protocol ResponseOpenWeatherMapProtocol {
     
     func getWindSpeed() -> String?
     
-    func getDataRawString() -> String?
-    
     func getDateTime() -> Date?
     
     func getError() -> Error?

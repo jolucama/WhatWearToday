@@ -16,12 +16,10 @@ public class ResponseOpenWeatherMap {
         case HtmlNotSupported
     }
     
-    var rawDataString : String
     var rawData : Dictionary<String, Any>!
     var error : Error?
     
     init(data : Data, type : Format) {
-        self.rawDataString = String(data: data, encoding: String.Encoding.utf8)!
         do {
             switch type {
             case Format.Json:
@@ -32,10 +30,10 @@ public class ResponseOpenWeatherMap {
                 //XMLParser.dictionaryWithValues(<#T##NSObject#>)
                 //self.rawData = XMLParser(data: data)
                 // "Format XML not supported yet by the API Client"
-                throw FormatError.XmlNotSupported
-            default:
-                break
-                
+				throw FormatError.XmlNotSupported
+			case Format.Html:
+				// "Format HTML not supported yet by the API Client"
+				throw FormatError.HtmlNotSupported
             }
         } catch let error as NSError {
             NSLog("%@", error)
@@ -44,11 +42,6 @@ public class ResponseOpenWeatherMap {
     
     init(withError error: Error) {
         self.error = error
-        self.rawDataString = ""
         self.rawData = ["":""]
-    }
-    
-    public func getDataRawString() -> String? {
-        return self.rawDataString
     }
 }

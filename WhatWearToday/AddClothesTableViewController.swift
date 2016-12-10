@@ -102,6 +102,7 @@ class AddClothesTableViewController: UITableViewController,
 		} else {
 			record.photo = nil
 		}
+		record.createdAt = NSDate()
         
         do {
             try managedObjectContext.save()

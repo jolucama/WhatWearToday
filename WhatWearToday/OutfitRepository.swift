@@ -9,36 +9,19 @@
 import Foundation
 import CoreData
 
-class OutfitRepository {
-
-	let managedContext : NSManagedObjectContext!
-	let fetchRequest : NSFetchRequest<NSFetchRequestResult>
+class OutfitRepository : BaseRepository {
 	
 	init() {
-		self.managedContext = CoreDataManager.getManagedObjectContext()
-		self.fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Outfit.entityName)
+		super.init(entityName: Outfit.entityName)
 	}
 	
-	func fetchAll() throws -> [Outfit] {
-		return try self.returnValuesFromFetchRequest()
+	func fetchByDescendingDate() throws -> [Outfit] {
+		self.orderBy(key: "createdAt", ascending: false)
+		return try self.fetch() as! [Outfit]
 	}
 	
-    func fetch(bySeason season: Outfit.Season) throws -> [Outfit] {
-        self.fetchRequest.predicate = NSPredicate(format: "season == %d", season.rawValue)
-		return try self.returnValuesFromFetchRequest()
-    }
-	
-	func delete(outfit : Outfit) {
-		self.managedContext.delete(outfit)
-	}
-	
-	private func returnValuesFromFetchRequest() throws -> [Outfit] {
-		do {
-			let results =
-				try self.managedContext.fetch(fetchRequest)
-			return results as! [Outfit]
-		} catch let error as NSError {
-			throw error
-		}
+	func fetch(bySeason season: Outfit.Season) throws -> [Outfit] {
+		self.fetchRequest.predicate = NSPredicate(format: "season == %d", season.rawValue)
+		return try self.fetch() as! [Outfit]
 	}
 }

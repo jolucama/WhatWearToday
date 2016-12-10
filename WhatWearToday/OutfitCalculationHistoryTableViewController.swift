@@ -11,23 +11,17 @@ import UIKit
 class OutfitCalculationHistoryTableViewController: UITableViewController {
 
 	var outfitCalculationHistory: [OutfitCalculationHistory] = []
+	var selectedIndex = -1
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
 		self.tableView.tableFooterView = UIView();
-		
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-		
 		let outfitCalculationHistoryRepository = OutfitCalculationHistoryRepository()
 		outfitCalculationHistoryRepository.setLimit(limit: 100)
 		outfitCalculationHistoryRepository.orderBy(key: "date", ascending: false)
 		do {
-			self.outfitCalculationHistory = try outfitCalculationHistoryRepository.fetch()
+			self.outfitCalculationHistory = try outfitCalculationHistoryRepository.fetch() as! [OutfitCalculationHistory]
 		} catch let error as Error {
 			//TODO Complete with error handling
 		}
@@ -49,22 +43,63 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellOutfitCalculationHistory", for: indexPath)
+		let cell: OutfitCalculationHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellOutfitCalculationHistory", for: indexPath) as! OutfitCalculationHistoryTableViewCell
 		
 		let outfitCalculationHistory = self.outfitCalculationHistory[indexPath.row]
+		//cell.titleCalculation.text = outfitCalculationHistory.title
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = DateFormatter.Style.full
-		cell.detailTextLabel?.text = dateFormatter.string(from: outfitCalculationHistory.date as! Date)
+		cell.dateCalculation.text = dateFormatter.string(from: outfitCalculationHistory.date as! Date)
 		
+		cell.expandableResultView.headwear1.image = UIImage(named: "hoodie.jpg")
+		cell.expandableResultView.headwear2.image = UIImage(named: "hoodie.jpg")
+		cell.expandableResultView.legs.image = UIImage(named: "hoodie.jpg")
+		
+		/*
 		var title = "| "
 		for outfit in outfitCalculationHistory.outfits! {
 			title += (outfit as! Outfit).title! + " | "
 		}
-		cell.textLabel?.text = title
-
+		*/
+		
         return cell
     }
 
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		if (selectedIndex == indexPath.row) {
+			return 480
+		} else {
+			return 75
+		}
+	}
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let cell: OutfitCalculationHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellOutfitCalculationHistory", for: indexPath) as! OutfitCalculationHistoryTableViewCell
+		
+		UIView.animate(withDuration: 0.25, animations:{
+			cell.selector.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+		})
+		
+//		if cell.selector.layer.animation(forKey: "com.whatweartoday.app") == nil {
+//			let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//			rotationAnimation.fromValue = 0.0
+//			rotationAnimation.toValue = Float(M_PI * 2.0)
+//			rotationAnimation.duration = 1
+//			rotationAnimation.repeatCount = Float.infinity
+//			cell.selector.layer.add(rotationAnimation, forKey: "com.whatweartoday.app")
+//		}
+//		
+		if (selectedIndex == indexPath.row) {
+			selectedIndex = -1
+		} else {
+			selectedIndex = indexPath.row
+		}
+		tableView.beginUpdates()
+		tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+		tableView.endUpdates()
+	}
+	
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

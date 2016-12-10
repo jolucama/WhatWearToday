@@ -22,7 +22,7 @@ class OutfitListTableViewController: UITableViewController {
 		
 		self.outfitRepository = OutfitRepository()
 		do {
-			try self.outfitList = self.outfitRepository.fetchAll()
+			try self.outfitList = self.outfitRepository.fetchByDescendingDate()
 		} catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
@@ -63,14 +63,12 @@ class OutfitListTableViewController: UITableViewController {
 
         return cell!
     }
-    
-
+	
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    
+	
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         self.selectedRow = indexPath.row
         
@@ -87,7 +85,6 @@ class OutfitListTableViewController: UITableViewController {
         }
     }
 	
-	
 	override func didMove(toParentViewController parent: UIViewController?) {
 		super.didMove(toParentViewController: parent)
 		
@@ -95,19 +92,6 @@ class OutfitListTableViewController: UITableViewController {
 		parent?.setEditing(true, animated: true)
 	}
 
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editOutfitSegue",
-            self.isEditing == true,
-            self.selectedRow != nil,
-            let addTableViewController = segue.destination as? AddClothesTableViewController {
-                let selectedOutfit = outfitList[self.selectedRow!] as! Outfit
-                addTableViewController.updateOutfit = selectedOutfit
-        }
-    }
-	
 	private func showHideNoOutfitLabel() {
 		if self.outfitList.count != 0 {
 			self.tableView.backgroundView = nil
@@ -121,5 +105,18 @@ class OutfitListTableViewController: UITableViewController {
 			tableView.separatorStyle = .none
 		}
 	}
+	
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editOutfitSegue",
+            self.isEditing == true,
+            self.selectedRow != nil,
+            let addTableViewController = segue.destination as? AddClothesTableViewController {
+                let selectedOutfit = outfitList[self.selectedRow!] as! Outfit
+                addTableViewController.updateOutfit = selectedOutfit
+        }
+    }
 
 }
