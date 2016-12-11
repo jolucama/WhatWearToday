@@ -68,40 +68,47 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
     }
 	
 	private func setOutfitImagesWithLabelFallback(cell: OutfitCalculationHistoryTableViewCell,outfits: NSSet) {
-		var headwear1Filled = false
-		var upperBody1Filled = false
+		let viewDictionary = [
+			"headwear1" : cell.expandableResultView.headwear1,
+			"headwear2" : cell.expandableResultView.headwear2,
+			"upperBody1": cell.expandableResultView.upperBody1,
+			"upperBody2": cell.expandableResultView.upperBody2,
+			"legs"		: cell.expandableResultView.legs,
+			"footwear"	: cell.expandableResultView.footwear
+		]
+		var modelDictionary:[String:Outfit?] = ["headwear1" : nil, "headwear2" : nil, "upperBody1": nil, "upperBody2": nil, "legs": nil, "footwear": nil]
+		
 		for case let outfit as Outfit in outfits {
-			
-//			
-//			
-//			if (outfit?.typePart == Int16(type.rawValue)) {
-//				if (outfit?.photo != nil) {
-//					outfitView.image = UIImage(data: outfit?.photo as! Data)
-//				} else {
-//					cell.expandableResultView.createUILabelInTheCenter(frame: outfitView.frame, withText: (outfit?.title)!, ofSize: 10.0)
-//				}
-//			} else {
-//				cell.expandableResultView.createUILabelInTheCenter(frame: outfitView.frame, withText: "No Results", ofSize: 10.0)
-//			}
-//			
-//			
-//			
-//			
-//			
-//			
-//			if (outfit.typePart == Int16(Outfit.TypeParts.Headwear.rawValue) && headwear1Filled == false) {
-//				self.setImageWithLabelFallback(forCell: cell, outfitView: cell.expandableResultView.headwear1, outfit: outfit,type: Outfit.TypeParts.Headwear)
-//				headwear1Filled = true
-//			} else (outfit.typePart == Int16(Outfit.TypeParts.Headwear.rawValue) && headwear1Filled == true) {
-//				
-//			}
-//			self.setImageWithLabelFallback(forCell: cell, outfitView: cell.expandableResultView.legs, outfit: outfit,type: Outfit.TypeParts.Legs)
-			self.setImageWithLabelFallback(forCell: cell, outfitView: cell.expandableResultView.footwear, outfit: outfit,type: Outfit.TypeParts.Footwear)
+		
+			switch Int(outfit.typePart) {
+			case Outfit.TypeParts.Headwear.rawValue:
+				if modelDictionary["headwear1"]! == nil {
+					modelDictionary["headwear1"] = outfit
+				} else {
+					modelDictionary["headwear2"] = outfit
+				}
+			case Outfit.TypeParts.UpperBody.rawValue:
+				if modelDictionary["upperBody1"]! == nil {
+					modelDictionary["upperBody1"] = outfit
+				} else {
+					modelDictionary["upperBody2"] = outfit
+				}
+			case Outfit.TypeParts.Legs.rawValue:
+				modelDictionary["legs"] = outfit
+			case Outfit.TypeParts.Footwear.rawValue:
+				modelDictionary["footwear"] = outfit
+			default:
+				break
+			}
+		}
+		
+		for imageViewKeyValue in viewDictionary {
+			self.setImageWithLabelFallback(forCell: cell, outfitView: imageViewKeyValue.value!, outfit: modelDictionary[imageViewKeyValue.key]!)
 		}
 	}
 	
-	private func setImageWithLabelFallback(forCell cell: OutfitCalculationHistoryTableViewCell, outfitView: UIImageView, outfit: Outfit?, type: Outfit.TypeParts) {
-		if (outfit != nil && outfit?.typePart == Int16(type.rawValue)) {
+	private func setImageWithLabelFallback(forCell cell: OutfitCalculationHistoryTableViewCell, outfitView: UIImageView, outfit: Outfit?) {
+		if (outfit != nil) {
 			if (outfit?.photo != nil) {
 				outfitView.image = UIImage(data: outfit?.photo as! Data)
 			} else {
