@@ -127,6 +127,7 @@ class ResultViewController: UIViewController {
 		}
 	}
 	
+	//TODO - Move to ViewModifier or extension view
 	private func createLabel(frame: CGRect, text: String)
 	{
 		let titleLabel = UILabel(frame: frame)

@@ -14,6 +14,7 @@ class OutfitCalculationHistoryTableViewCell: UITableViewCell {
 	@IBOutlet weak var dateCalculation: UILabel!
 	@IBOutlet weak var selector: UIImageView!
 	@IBOutlet weak var expandableResultView: OutfitResultUIView!
+	
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +25,10 @@ class OutfitCalculationHistoryTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+	
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		
+		selector.transform = CGAffineTransform.identity
+	}
 }

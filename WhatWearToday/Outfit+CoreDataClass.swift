@@ -77,7 +77,7 @@ public class Outfit: NSManagedObject {
 		
 	}
 	
-	enum TypeParts : Int {
+	public enum TypeParts : Int {
 		
 		case Headwear = 1
 		case UpperBody

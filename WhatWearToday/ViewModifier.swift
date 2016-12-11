@@ -12,7 +12,7 @@ import UIKit
 class ViewModifier {
     
     public static func round(withUIImageView imageView : UIImageView, borderWidth : CGFloat = 0) {
-        imageView.layer.cornerRadius = imageView.frame.size.height/2
+        imageView.layer.cornerRadius = imageView.layer.bounds.size.width/2
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = borderWidth
     }

@@ -266,11 +266,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOutfitCalculationHistory" editingAccessoryType="disclosureIndicator" rowHeight="490" id="3lu-gv-mRv" customClass="OutfitCalculationHistoryTableViewCell" customModule="WhatWearToday" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="490"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOutfitCalculationHistory" editingAccessoryType="disclosureIndicator" rowHeight="480" id="3lu-gv-mRv" customClass="OutfitCalculationHistoryTableViewCell" customModule="WhatWearToday" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="480"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lu-gv-mRv" id="Vek-Mw-BQI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="489"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of the calculation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQT-4h-UCx">
@@ -311,7 +311,6 @@
                                         <constraint firstItem="Hy1-fF-SUO" firstAttribute="top" secondItem="xQT-4h-UCx" secondAttribute="bottom" constant="2" id="c5X-q1-z0k"/>
                                         <constraint firstItem="xQT-4h-UCx" firstAttribute="top" secondItem="Vek-Mw-BQI" secondAttribute="topMargin" constant="11" id="nWY-gS-dch"/>
                                         <constraint firstItem="kav-oA-pTQ" firstAttribute="top" secondItem="Vek-Mw-BQI" secondAttribute="topMargin" constant="15" id="nsQ-78-5EG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bHT-gp-Jbz" secondAttribute="trailing" constant="45" id="pHq-6Q-W3b"/>
                                         <constraint firstItem="bHT-gp-Jbz" firstAttribute="leading" secondItem="Vek-Mw-BQI" secondAttribute="leadingMargin" constant="44" id="x7E-hp-jDW"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -839,6 +838,6 @@
         <segue reference="1KW-nY-Djz"/>
         <segue reference="qDY-Tu-c32"/>
         <segue reference="yso-sa-3s6"/>
-        <segue reference="7DT-Uq-faR"/>
+        <segue reference="EVH-dF-hrk"/>
     </inferredMetricsTieBreakers>
 </document>

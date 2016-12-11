@@ -51,16 +51,26 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
 		dateFormatter.dateStyle = DateFormatter.Style.full
 		cell.dateCalculation.text = dateFormatter.string(from: outfitCalculationHistory.date as! Date)
 		
+		
+		for outfit in outfitCalculationHistory.outfits! {
+			if (outfit as! Outfit).typePart == Int16(Outfit.TypeParts.Legs.rawValue) {
+				cell.expandableResultView.legs.image = UIImage(data: (outfit as! Outfit).photo as! Data)
+			}
+		}
+		
 		cell.expandableResultView.headwear1.image = UIImage(named: "hoodie.jpg")
 		cell.expandableResultView.headwear2.image = UIImage(named: "hoodie.jpg")
 		cell.expandableResultView.legs.image = UIImage(named: "hoodie.jpg")
 		
-		/*
-		var title = "| "
-		for outfit in outfitCalculationHistory.outfits! {
-			title += (outfit as! Outfit).title! + " | "
+		cell.setNeedsLayout()
+		cell.layoutIfNeeded()
+		self.customizeImages(cell: cell)
+		
+		if (selectedIndex == indexPath.row) {
+			UIView.animate(withDuration: 0.5, animations: {
+				cell.selector.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+			})
 		}
-		*/
 		
         return cell
     }
@@ -74,22 +84,6 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		let cell: OutfitCalculationHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellOutfitCalculationHistory", for: indexPath) as! OutfitCalculationHistoryTableViewCell
-		
-		UIView.animate(withDuration: 0.25, animations:{
-			cell.selector.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
-		})
-		
-//		if cell.selector.layer.animation(forKey: "com.whatweartoday.app") == nil {
-//			let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-//			rotationAnimation.fromValue = 0.0
-//			rotationAnimation.toValue = Float(M_PI * 2.0)
-//			rotationAnimation.duration = 1
-//			rotationAnimation.repeatCount = Float.infinity
-//			cell.selector.layer.add(rotationAnimation, forKey: "com.whatweartoday.app")
-//		}
-//		
 		if (selectedIndex == indexPath.row) {
 			selectedIndex = -1
 		} else {
@@ -98,6 +92,15 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
 		tableView.beginUpdates()
 		tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 		tableView.endUpdates()
+	}
+	
+	private func customizeImages(cell: OutfitCalculationHistoryTableViewCell) {
+		ViewModifier.round(withUIImageView: cell.expandableResultView.headwear1)
+		ViewModifier.round(withUIImageView: cell.expandableResultView.headwear2)
+		ViewModifier.round(withUIImageView: cell.expandableResultView.upperBody1)
+		ViewModifier.round(withUIImageView: cell.expandableResultView.upperBody2)
+		ViewModifier.round(withUIImageView: cell.expandableResultView.legs)
+		ViewModifier.round(withUIImageView: cell.expandableResultView.footwear)
 	}
 	
     /*

@@ -25,17 +25,5 @@ class OutfitResultUIView: UIView {
 		UINib(nibName: String(describing: type(of: self)), bundle: nil).instantiate(withOwner: self, options: nil)
 		addSubview(view)
 		view.frame = self.bounds
-		
-		self.customizeImages()
-	}
-	
-	private func customizeImages() {
-		
-		ViewModifier.round(withUIImageView: self.headwear1)
-		ViewModifier.round(withUIImageView: self.headwear2)
-		ViewModifier.round(withUIImageView: self.upperBody1)
-		ViewModifier.round(withUIImageView: self.upperBody2)
-		ViewModifier.round(withUIImageView: self.legs)
-		ViewModifier.round(withUIImageView: self.footwear)
 	}
 }
