@@ -190,7 +190,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Result" id="LKe-C0-fB0">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Wgr-BJ-z02"/>
-                        <barButtonItem key="leftBarButtonItem" title="Calculate" id="jXM-DT-fET"/>
+                        <barButtonItem key="leftBarButtonItem" title="Calculate" id="jXM-DT-fET">
+                            <connections>
+                                <action selector="leftBarButton:" destination="4ix-QI-njs" id="LTi-UU-6Dd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Txi-Ix-XFr">
                             <connections>
                                 <action selector="outfitCalculationResult:" destination="4ix-QI-njs" id="Pqj-U4-nVS"/>
@@ -201,6 +205,7 @@
                         <outlet property="outfitsResult" destination="LYi-Y1-6EH" id="OCT-gC-JUs"/>
                         <outlet property="titleResult" destination="WIt-ZN-A1K" id="bRZ-kE-C7R"/>
                         <segue destination="luW-UB-o7P" kind="show" identifier="showOutfitHistory" id="7DT-Uq-faR"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="goToMainViewController" id="jyS-5a-MIG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEi-qY-uuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,7 +225,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="480"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lu-gv-mRv" id="Vek-Mw-BQI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of the calculation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQT-4h-UCx">
@@ -278,8 +283,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="kiY-lf-JZF">
-                        <barButtonItem key="leftBarButtonItem" title="Calculate" id="TXG-mL-9w5"/>
+                        <barButtonItem key="leftBarButtonItem" title="Calculate" id="TXG-mL-9w5">
+                            <connections>
+                                <action selector="leftBarButton:" destination="luW-UB-o7P" id="tpd-49-WEm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="goToMainViewController" id="9lx-wP-t6A"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Sq-ae-aXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -585,7 +597,7 @@
             <objects>
                 <tableViewController id="ERH-HU-Rys" customClass="OutfitListTableViewController" customModule="WhatWearToday" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" id="wZg-DX-TaY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="711"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="1" green="0.029831843470767838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -785,9 +797,10 @@
         <image name="nurse-uniform.png" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1KW-nY-Djz"/>
-        <segue reference="qDY-Tu-c32"/>
-        <segue reference="yso-sa-3s6"/>
+        <segue reference="0gD-6K-MkC"/>
+        <segue reference="XE1-WF-jKJ"/>
+        <segue reference="9lx-wP-t6A"/>
         <segue reference="7DT-Uq-faR"/>
+        <segue reference="yso-sa-3s6"/>
     </inferredMetricsTieBreakers>
 </document>

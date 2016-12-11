@@ -11,7 +11,6 @@ import UIKit
 public class OpenWeatherMapAPI {
     
     var parameters = [String:String]()
-    var formatType : Format = Format.Json
     var forecastDate : Date?
     weak var delegate : WeatherAPIDelegate?
     
@@ -27,8 +26,7 @@ public class OpenWeatherMapAPI {
     
     
     /// --- Methods for the current weather
-    
-    
+	
     public func currentWeather(byCityName cityName : String) {
         self.parameters[RequestParametersKey.cityName.rawValue] = cityName
         self.performCurrentWeatherRequest()
@@ -60,7 +58,7 @@ public class OpenWeatherMapAPI {
         request.request(onCompletion: { (data : Data?, response, error) in
             var responseOWM : ResponseOpenWeatherMapProtocol!
             if error == nil {
-                responseOWM = CurrentResponseOpenWeatherMap(data: data!, type: self.formatType)
+                responseOWM = CurrentResponseOpenWeatherMap(data: data!)
             } else {
                 responseOWM = CurrentResponseOpenWeatherMap(withError: error!);
             }
@@ -110,7 +108,7 @@ public class OpenWeatherMapAPI {
         request.request(onCompletion: { (data : Data?, response, error) in
             var responseOWM : ResponseOpenWeatherMapProtocol!
             if error == nil {
-                responseOWM = ForecastResponseOpenWeatherMap(data: data!, type: self.formatType, date: self.forecastDate!)
+                responseOWM = ForecastResponseOpenWeatherMap(data: data!, date: self.forecastDate!)
             }
             NSLog("Response to ForecastResponseOpenWeatherMap")
             DispatchQueue.main.async { [unowned self] in
@@ -127,11 +125,6 @@ public class OpenWeatherMapAPI {
     }
     
     // Several options
-    
-    public func setFormat(format : Format) {
-        self.formatType = format
-        self.parameters[RequestParametersKey.format.rawValue] = format.rawValue
-    }
     
     public func setSearchAccuracy(searchAccuracy : SearchAccuracyType) {
         self.parameters[RequestParametersKey.searchAccuracy.rawValue] = searchAccuracy.rawValue

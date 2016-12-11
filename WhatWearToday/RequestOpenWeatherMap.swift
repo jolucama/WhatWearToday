@@ -13,10 +13,10 @@ class RequestOpenWeatherMap {
     
     let baseURLString = "http://api.openweathermap.org/data/"
     let apiVersion = "2.5/"
-    var type : OpenWeatherMapType!
     let method = "GET"
+	
+	var type : OpenWeatherMapType!
     var parameters : [String: String]
-    
     
     init(withType type : OpenWeatherMapType, andParameters parameters:[String: String]) {
         self.type = type
@@ -35,10 +35,9 @@ class RequestOpenWeatherMap {
         let task = session.dataTask(with: request, completionHandler: onCompletion)
         task.resume()
         NSLog("Request to : %@", url.absoluteString)
-        
     }
     
-    private func stringFromHttpParameters() -> String {
+    func stringFromHttpParameters() -> String {
         var parameterArray = [String]()
         for (key, value) in self.parameters {
             parameterArray.append(key + "=" + value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)

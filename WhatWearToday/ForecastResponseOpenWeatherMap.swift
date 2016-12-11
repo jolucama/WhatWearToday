@@ -15,8 +15,8 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
     var currentListElement : Dictionary<String, AnyObject>?
     var pickedDate : Date!
     
-    init(data : Data, type : Format, date : Date) {
-        super.init(data: data, type: type)
+    init(data : Data, date : Date) {
+        super.init(data: data)
         self.pickedDate = date
         self.forecastList = (self.rawData["list"] as? Array<Dictionary<String, AnyObject>>)!
         self.getCurrentListElementDependingOnTheDate()

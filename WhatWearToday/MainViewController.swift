@@ -50,12 +50,10 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
         weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey)
         weatherAPI.delegate = self
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
-		print("viewDidLoad")
     }
 	
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-		print("locationManager")
         if self.locationObject == nil {
             self.locationObject = locations[locations.count - 1]
             let currentLatitude: CLLocationDistance = self.locationObject!.coordinate.latitude
@@ -94,7 +92,6 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
 	private func loadBackground(responseWeather: ResponseOpenWeatherMapProtocol) {
 		let backgroundIconList = responseWeather.getIconList()
 		let iconListString = String(reflecting: backgroundIconList).replacingOccurrences(of: "WhatWearToday.IconList.", with: "")
-		print(iconListString + ".jpg")
 		
 		UIView.animate(withDuration: 0.75, animations: {
 			self.backgroundImageView.alpha = 0.0

@@ -14,8 +14,6 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var titleResult: UITextField!
     @IBOutlet weak var outfitsResult: OutfitResultUIView!
 	
-	
-	
 	var headwear1Outfit: Outfit?
 	var headwear2Outfit: Outfit?
 	var upperBody1Outfit: Outfit?
@@ -77,24 +75,6 @@ class ResultViewController: UIViewController {
                 })
             })
         })
-//		
-//		for view in self.view.subviews {
-//			print(view.frame)
-//		}
-//		
-//		print("--------------------")
-//		
-//		for view in self.outfitsResult.subviews {
-//			print(view.frame)
-//		}
-//		
-//		print("--------------------")
-//		
-//		for view in self.outfitsResult.view.subviews {
-//			print(view.restorationIdentifier)
-//			print(view.frame)
-//		}
-		
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,6 +147,10 @@ class ResultViewController: UIViewController {
 		self.outfitsResult.footwear.alpha = alpha
 	}
 
+    @IBAction func leftBarButton(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "goToMainViewController", sender: sender)
+    }
+    
     /*
     // MARK: - Navigation
 
