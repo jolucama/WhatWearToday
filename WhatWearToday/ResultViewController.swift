@@ -10,13 +10,11 @@ import UIKit
 import CoreData
 
 class ResultViewController: UIViewController {
+    
+    @IBOutlet weak var titleResult: UITextField!
+    @IBOutlet weak var outfitsResult: OutfitResultUIView!
 	
-    @IBOutlet weak var headwear1: UIImageView!
-    @IBOutlet weak var headwear2: UIImageView!
-    @IBOutlet weak var upperBody1: UIImageView!
-    @IBOutlet weak var upperBody2: UIImageView!
-    @IBOutlet weak var legs: UIImageView!
-    @IBOutlet weak var footwear: UIImageView!
+	
 	
 	var headwear1Outfit: Outfit?
 	var headwear2Outfit: Outfit?
@@ -30,42 +28,46 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.initOutfitsViews(outfitView: self.headwear1, outfit: self.headwear1Outfit)
-		self.initOutfitsViews(outfitView: self.headwear2, outfit: self.headwear2Outfit)
-		self.initOutfitsViews(outfitView: self.upperBody1, outfit: self.upperBody1Outfit)
-		self.initOutfitsViews(outfitView: self.upperBody2, outfit: self.upperBody2Outfit)
-		self.initOutfitsViews(outfitView: self.legs, outfit: self.legsOutfit)
-		self.initOutfitsViews(outfitView: self.footwear, outfit: self.footwearOutfit)
+		self.outfitsResult.setNeedsLayout()
+		self.outfitsResult.layoutIfNeeded()
 
 		self.setUIImagesViewAlpha(alpha: 0.0)
-        self.customizeImages()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 		
+		self.initOutfitsViews(outfitView: self.outfitsResult.headwear1, outfit: self.headwear1Outfit)
+		self.initOutfitsViews(outfitView: self.outfitsResult.headwear2, outfit: self.headwear2Outfit)
+		self.initOutfitsViews(outfitView: self.outfitsResult.upperBody1, outfit: self.upperBody1Outfit)
+		self.initOutfitsViews(outfitView: self.outfitsResult.upperBody2, outfit: self.upperBody2Outfit)
+		self.initOutfitsViews(outfitView: self.outfitsResult.legs, outfit: self.legsOutfit)
+		self.initOutfitsViews(outfitView: self.outfitsResult.footwear, outfit: self.footwearOutfit)
+		
+		self.customizeImages()
+		
         UIView.animate(withDuration: 0.6, animations: {
-            self.headwear1.alpha = 1.0
+            self.outfitsResult.headwear1.alpha = 1.0
         }, completion: {
             (finished: Bool) -> Void in
             UIView.animate(withDuration: 0.6, animations: {
-                self.headwear2.alpha = 1.0
+                self.outfitsResult.headwear2.alpha = 1.0
             }, completion: {
                 (finished: Bool) -> Void in
                 UIView.animate(withDuration: 0.6, animations: {
-                    self.upperBody1.alpha = 1.0
+                    self.outfitsResult.upperBody1.alpha = 1.0
                 }, completion: {
                     (finished: Bool) -> Void in
 					UIView.animate(withDuration: 0.6, animations: {
-						self.upperBody2.alpha = 1.0
+						self.outfitsResult.upperBody2.alpha = 1.0
 					}, completion: {
 						(finished: Bool) -> Void in
 						UIView.animate(withDuration: 0.6, animations: {
-							self.legs.alpha = 1.0
+							self.outfitsResult.legs.alpha = 1.0
 						}, completion: {
 							(finished: Bool) -> Void in
 							UIView.animate(withDuration: 0.6, animations: {
-								self.footwear.alpha = 1.0
+								self.outfitsResult.footwear.alpha = 1.0
 							}, completion: {
 								(finished: Bool) -> Void in
 								// End
@@ -75,6 +77,24 @@ class ResultViewController: UIViewController {
                 })
             })
         })
+//		
+//		for view in self.view.subviews {
+//			print(view.frame)
+//		}
+//		
+//		print("--------------------")
+//		
+//		for view in self.outfitsResult.subviews {
+//			print(view.frame)
+//		}
+//		
+//		print("--------------------")
+//		
+//		for view in self.outfitsResult.view.subviews {
+//			print(view.restorationIdentifier)
+//			print(view.frame)
+//		}
+		
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +106,8 @@ class ResultViewController: UIViewController {
 		let managedObjectContext = CoreDataManager.getManagedObjectContext()
 		let entity = NSEntityDescription.entity(forEntityName: OutfitCalculationHistory.entityName, in: managedObjectContext)
 		self.record = OutfitCalculationHistory(entity: entity!, insertInto: managedObjectContext)
-		
+
+		self.record.title = self.titleResult.text
 		self.record.date = NSDate()
 		self.checkAndAddOutfit(outfit: self.headwear1Outfit)
 		self.checkAndAddOutfit(outfit: self.headwear2Outfit)
@@ -120,41 +141,30 @@ class ResultViewController: UIViewController {
 			if (outfit?.photo != nil) {
 				outfitView.image = UIImage(data: outfit?.photo as! Data)
 			} else {
-				self.createLabel(frame: outfitView.frame, text: (outfit?.title)!)
+				self.outfitsResult.createUILabelInTheCenter(frame: outfitView.frame, withText: (outfit?.title)!, ofSize: 14.0)
 			}
 		} else {
-			self.createLabel(frame: outfitView.frame, text: "No Results")
+			self.outfitsResult.createUILabelInTheCenter(frame: outfitView.frame, withText: "No Results", ofSize: 14.0)
 		}
-	}
-	
-	//TODO - Move to ViewModifier or extension view
-	private func createLabel(frame: CGRect, text: String)
-	{
-		let titleLabel = UILabel(frame: frame)
-		titleLabel.textAlignment = NSTextAlignment.center
-		titleLabel.font = UIFont(name: "Helvetica Bold", size: 15.0)
-		titleLabel.text = text
-		titleLabel.textColor = UIColor.white
-		self.view.addSubview(titleLabel)
 	}
 	
     private func customizeImages() {
         
-        ViewModifier.round(withUIImageView: self.headwear1)
-        ViewModifier.round(withUIImageView: self.headwear2)
-        ViewModifier.round(withUIImageView: self.upperBody1)
-        ViewModifier.round(withUIImageView: self.upperBody2)
-        ViewModifier.round(withUIImageView: self.legs)
-        ViewModifier.round(withUIImageView: self.footwear)
+        ViewModifier.round(withUIImageView: self.outfitsResult.headwear1)
+        ViewModifier.round(withUIImageView: self.outfitsResult.headwear2)
+        ViewModifier.round(withUIImageView: self.outfitsResult.upperBody1)
+        ViewModifier.round(withUIImageView: self.outfitsResult.upperBody2)
+        ViewModifier.round(withUIImageView: self.outfitsResult.legs)
+        ViewModifier.round(withUIImageView: self.outfitsResult.footwear)
     }
 	
 	private func setUIImagesViewAlpha(alpha: CGFloat) {
-		self.headwear1.alpha = alpha
-		self.headwear2.alpha = alpha
-		self.upperBody1.alpha = alpha
-		self.upperBody2.alpha = alpha
-		self.legs.alpha = alpha
-		self.footwear.alpha = alpha
+		self.outfitsResult.headwear1.alpha = alpha
+		self.outfitsResult.headwear2.alpha = alpha
+		self.outfitsResult.upperBody1.alpha = alpha
+		self.outfitsResult.upperBody2.alpha = alpha
+		self.outfitsResult.legs.alpha = alpha
+		self.outfitsResult.footwear.alpha = alpha
 	}
 
     /*

@@ -28,43 +28,43 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bKr-DM-cgU">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="headwear1" translatesAutoresizingMaskIntoConstraints="NO" id="bKr-DM-cgU">
                     <rect key="frame" x="65.5" y="0.0" width="118" height="118"/>
                     <color key="backgroundColor" red="0.75690642259999996" green="0.75317671429999999" blue="0.60036761400000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="bKr-DM-cgU" secondAttribute="height" multiplier="1:1" id="JgW-dM-Gp4"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Nc-O4-jTp">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="headwear2" translatesAutoresizingMaskIntoConstraints="NO" id="6Nc-O4-jTp">
                     <rect key="frame" x="200.5" y="0.0" width="118" height="118"/>
                     <color key="backgroundColor" red="0.75690642259999996" green="0.75317671429999999" blue="0.60036761400000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="6Nc-O4-jTp" secondAttribute="height" multiplier="1:1" id="WjF-4r-wsq"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZvW-ql-poW">
-                    <rect key="frame" x="128.5" y="460.5" width="118" height="118"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="footwear" translatesAutoresizingMaskIntoConstraints="NO" id="ZvW-ql-poW">
+                    <rect key="frame" x="128.5" y="461" width="118" height="118"/>
                     <color key="backgroundColor" red="0.75690642259999996" green="0.75317671429999999" blue="0.60036761400000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ZvW-ql-poW" secondAttribute="height" multiplier="1:1" id="eA5-Wr-Wor"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ggC-Hs-hP7">
-                    <rect key="frame" x="200.5" y="133" width="148" height="148.5"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="upperBody2" translatesAutoresizingMaskIntoConstraints="NO" id="ggC-Hs-hP7">
+                    <rect key="frame" x="200.5" y="133" width="148" height="149"/>
                     <color key="backgroundColor" red="0.75690642259999996" green="0.75317671429999999" blue="0.60036761400000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ggC-Hs-hP7" secondAttribute="height" multiplier="1:1" id="p8E-0L-e2H"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SMB-mb-XUX">
-                    <rect key="frame" x="113.5" y="298.5" width="148" height="148"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="legs" translatesAutoresizingMaskIntoConstraints="NO" id="SMB-mb-XUX">
+                    <rect key="frame" x="113.5" y="299" width="148" height="148"/>
                     <color key="backgroundColor" red="0.75690642259999996" green="0.75317671429999999" blue="0.60036761400000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="SMB-mb-XUX" secondAttribute="height" multiplier="1:1" id="H7U-XQ-fj0"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wLe-2m-HaS">
-                    <rect key="frame" x="35.5" y="133" width="148" height="148.5"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="upperBody1" translatesAutoresizingMaskIntoConstraints="NO" id="wLe-2m-HaS">
+                    <rect key="frame" x="35.5" y="133" width="148" height="149"/>
                     <color key="backgroundColor" red="0.75690642259999996" green="0.75317671429999999" blue="0.60036761400000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="wLe-2m-HaS" secondAttribute="height" multiplier="1:1" id="ka2-Bl-2Po"/>

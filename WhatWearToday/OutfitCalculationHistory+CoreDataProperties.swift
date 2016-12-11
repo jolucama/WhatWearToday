@@ -2,7 +2,7 @@
 //  OutfitCalculationHistory+CoreDataProperties.swift
 //  WhatWearToday
 //
-//  Created by jlcardosa on 09/12/2016.
+//  Created by jlcardosa on 11/12/2016.
 //  Copyright © 2016 Cardosa. All rights reserved.
 //
 
@@ -17,6 +17,7 @@ extension OutfitCalculationHistory {
     }
 
     @NSManaged public var date: NSDate?
+    @NSManaged public var title: String?
     @NSManaged public var outfits: NSSet?
 
 }

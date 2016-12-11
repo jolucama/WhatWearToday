@@ -50,10 +50,12 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
         weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey)
         weatherAPI.delegate = self
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
+		print("viewDidLoad")
     }
 	
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+		print("locationManager")
         if self.locationObject == nil {
             self.locationObject = locations[locations.count - 1]
             let currentLatitude: CLLocationDistance = self.locationObject!.coordinate.latitude
@@ -75,15 +77,7 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
             self.weatherLabel.text = response?.getDescription()
             self.location.text = response?.getCityName()
         } else {
-            let alert = UIAlertController(title: "Error", message: (response?.getError()?.localizedDescription)! + ". Add outfits in the meantime ;)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
-                print(response?.getError()! as Any)
-            }))
-            // To Test
-            alert.addAction(UIAlertAction(title: "Add outfit", style: .default, handler: { (action) in
-                self.performSegue(withIdentifier: "fromMainViewToOutfitList", sender: self)
-            }))
-            self.present(alert, animated: true, completion: nil)
+			self.showAddOutfitAlert(message: (response?.getError()?.localizedDescription)!, error: (response?.getError()!)!)
         }
     }
 	
@@ -129,14 +123,29 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
     @IBAction func calculate(_ sender: UIButton) {
         let outfitCalculator = RamdomOutfitCalculator()
 		do {
-			//Fail if click the button so fast
-			try self.calculationResults = outfitCalculator.calculate(response: self.responseWeatherApi)
-			//self.performSegue(withIdentifier: "goToResultCalculation", sender: self)
+			if self.responseWeatherApi != nil {
+				try self.calculationResults = outfitCalculator.calculate(response: self.responseWeatherApi)
+				self.performSegue(withIdentifier: "goToResultCalculation", sender: sender)
+			} else {
+				self.showAddOutfitAlert(message: "We don't have info about the weather yet.", error: nil)
+			}
 		} catch let error as Error {
+			self.showAddOutfitAlert(message: error.localizedDescription, error: error)
 			NSLog("Problem witht the calculation")
 			print(error)
 		}
     }
+	
+	private func showAddOutfitAlert(message: String, error: Error?) {
+		let alert = UIAlertController(title: "Error", message: message + ". Add outfits in the meantime ;)", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
+			print(error ?? "No error object")
+		}))
+		alert.addAction(UIAlertAction(title: "Add outfit", style: .default, handler: { (action) in
+			self.performSegue(withIdentifier: "fromMainViewToOutfitList", sender: self)
+		}))
+		self.present(alert, animated: true, completion: nil)
+	}
 	
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

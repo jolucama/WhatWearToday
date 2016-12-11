@@ -45,25 +45,17 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell: OutfitCalculationHistoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellOutfitCalculationHistory", for: indexPath) as! OutfitCalculationHistoryTableViewCell
 		
+		cell.setNeedsLayout()
+		cell.layoutIfNeeded()
+		
 		let outfitCalculationHistory = self.outfitCalculationHistory[indexPath.row]
-		//cell.titleCalculation.text = outfitCalculationHistory.title
+		
+		cell.titleCalculation.text = outfitCalculationHistory.title
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = DateFormatter.Style.full
 		cell.dateCalculation.text = dateFormatter.string(from: outfitCalculationHistory.date as! Date)
 		
-		
-		for outfit in outfitCalculationHistory.outfits! {
-			if (outfit as! Outfit).typePart == Int16(Outfit.TypeParts.Legs.rawValue) {
-				cell.expandableResultView.legs.image = UIImage(data: (outfit as! Outfit).photo as! Data)
-			}
-		}
-		
-		cell.expandableResultView.headwear1.image = UIImage(named: "hoodie.jpg")
-		cell.expandableResultView.headwear2.image = UIImage(named: "hoodie.jpg")
-		cell.expandableResultView.legs.image = UIImage(named: "hoodie.jpg")
-		
-		cell.setNeedsLayout()
-		cell.layoutIfNeeded()
+		self.setOutfitImagesWithLabelFallback(cell: cell, outfits: outfitCalculationHistory.outfits!)
 		self.customizeImages(cell: cell)
 		
 		if (selectedIndex == indexPath.row) {
@@ -74,6 +66,51 @@ class OutfitCalculationHistoryTableViewController: UITableViewController {
 		
         return cell
     }
+	
+	private func setOutfitImagesWithLabelFallback(cell: OutfitCalculationHistoryTableViewCell,outfits: NSSet) {
+		var headwear1Filled = false
+		var upperBody1Filled = false
+		for case let outfit as Outfit in outfits {
+			
+//			
+//			
+//			if (outfit?.typePart == Int16(type.rawValue)) {
+//				if (outfit?.photo != nil) {
+//					outfitView.image = UIImage(data: outfit?.photo as! Data)
+//				} else {
+//					cell.expandableResultView.createUILabelInTheCenter(frame: outfitView.frame, withText: (outfit?.title)!, ofSize: 10.0)
+//				}
+//			} else {
+//				cell.expandableResultView.createUILabelInTheCenter(frame: outfitView.frame, withText: "No Results", ofSize: 10.0)
+//			}
+//			
+//			
+//			
+//			
+//			
+//			
+//			if (outfit.typePart == Int16(Outfit.TypeParts.Headwear.rawValue) && headwear1Filled == false) {
+//				self.setImageWithLabelFallback(forCell: cell, outfitView: cell.expandableResultView.headwear1, outfit: outfit,type: Outfit.TypeParts.Headwear)
+//				headwear1Filled = true
+//			} else (outfit.typePart == Int16(Outfit.TypeParts.Headwear.rawValue) && headwear1Filled == true) {
+//				
+//			}
+//			self.setImageWithLabelFallback(forCell: cell, outfitView: cell.expandableResultView.legs, outfit: outfit,type: Outfit.TypeParts.Legs)
+			self.setImageWithLabelFallback(forCell: cell, outfitView: cell.expandableResultView.footwear, outfit: outfit,type: Outfit.TypeParts.Footwear)
+		}
+	}
+	
+	private func setImageWithLabelFallback(forCell cell: OutfitCalculationHistoryTableViewCell, outfitView: UIImageView, outfit: Outfit?, type: Outfit.TypeParts) {
+		if (outfit != nil && outfit?.typePart == Int16(type.rawValue)) {
+			if (outfit?.photo != nil) {
+				outfitView.image = UIImage(data: outfit?.photo as! Data)
+			} else {
+				cell.expandableResultView.createUILabelInTheCenter(frame: outfitView.frame, withText: (outfit?.title)!, ofSize: 10.0)
+			}
+		} else {
+			cell.expandableResultView.createUILabelInTheCenter(frame: outfitView.frame, withText: "No Results", ofSize: 10.0)
+		}
+	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		if (selectedIndex == indexPath.row) {

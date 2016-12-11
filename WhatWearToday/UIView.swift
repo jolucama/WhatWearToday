@@ -11,9 +11,9 @@ import UIKit
 
 extension UIView {
 	
-	private func createUILabelInTheCenter(withText: String, ofSize: CGFloat)
+	func createUILabelInTheCenter(frame: CGRect, withText: String, ofSize: CGFloat)
 	{
-		let titleLabel = UILabel(frame: self.frame)
+		let titleLabel = UILabel(frame: frame)
 		titleLabel.textAlignment = NSTextAlignment.center
 		titleLabel.font = UIFont(name: "Helvetica Bold", size: ofSize)
 		titleLabel.text = withText
