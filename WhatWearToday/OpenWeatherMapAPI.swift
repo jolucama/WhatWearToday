@@ -10,21 +10,62 @@ import UIKit
 
 public class OpenWeatherMapAPI {
     
-    var parameters = [String:String]()
-    var forecastDate : Date?
-    weak var delegate : WeatherAPIDelegate?
-    
-    
+	var parameters = [String:String]()
+	var type: OpenWeatherMapType
+    var forecastDate: Date?
+    weak var delegate: WeatherAPIDelegate?
+	var usingPersistence: Bool
+	var timeInterval: Int
+	
     /// Creates a new instance with the API key and the type
     ///
     /// - Parameter apiKey: The API key that is given here: https://home.openweathermap.org/api_keys
     /// - Parameter type  : The type of the call, by default will be the Current weather, see OpenWeatherMapType
     ///                     for more information about the possibles options
-    init (apiKey : String!) {
+	init (apiKey : String!, forType type: OpenWeatherMapType = OpenWeatherMapType.Current) {
         self.parameters[RequestParametersKey.apiKey.rawValue] = apiKey
+		self.type = type
+		self.usingPersistence = false
+		self.timeInterval = 0
     }
-    
-    
+	
+	public func weather(byCityName cityName : String) {
+		self.parameters[RequestParametersKey.cityName.rawValue] = cityName
+		self.performCurrentWeatherRequest()
+	}
+	
+	public func weather(byCityName cityName : String, andCountryCode countryCode: String) {
+		self.parameters[RequestParametersKey.cityName.rawValue] = cityName + "," + countryCode
+		self.performCurrentWeatherRequest()
+	}
+	
+	public func weather(byCityId cityId : Int) {
+		self.parameters[RequestParametersKey.cityID.rawValue] = String(cityId)
+		self.performCurrentWeatherRequest()
+	}
+	
+	public func weather(byLatitude latitude : Double, andLongitude longitude : Double) {
+		self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
+		self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
+		self.performCurrentWeatherRequest()
+	}
+	
+	public func weather(byZipCode zipcode : String, andCountryCode countryCode : String) {
+		self.parameters[RequestParametersKey.zipCode.rawValue] = zipcode + "," + countryCode
+		self.performCurrentWeatherRequest()
+	}
+	
+	public func performWeatherRequest(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
+		let lastRequest = OpenWeatherMap.getLastRequestStored()
+		if lastRequest == nil || lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == true {
+			let request = RequestOpenWeatherMap(withType: self.type, andParameters: self.parameters)
+			request.request(onCompletion: completionHandler)
+		} else {
+			completionHandler(lastRequest?.content as? Data, nil, nil)
+		}
+	}
+	
+	
     /// --- Methods for the current weather
 	
     public func currentWeather(byCityName cityName : String) {
@@ -125,7 +166,16 @@ public class OpenWeatherMapAPI {
     }
     
     // Several options
-    
+	
+	public func setUsingPersistence(_ option: Bool, withTimeInterval time: Int) {
+		self.usingPersistence = option
+		self.timeInterval = time
+	}
+	
+	public func setDateForForecast(date: Date) {
+		self.forecastDate = date
+	}
+	
     public func setSearchAccuracy(searchAccuracy : SearchAccuracyType) {
         self.parameters[RequestParametersKey.searchAccuracy.rawValue] = searchAccuracy.rawValue
     }

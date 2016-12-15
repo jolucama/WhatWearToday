@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 public protocol ResponseOpenWeatherMapProtocol {
-    
+	
+	func getCoord() -> CLLocationCoordinate2D
+	
     func getTemperature() -> Float?
     
     func getPressure() -> Float?

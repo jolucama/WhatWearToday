@@ -2,7 +2,7 @@
 //  OpenWeatherMap+CoreDataProperties.swift
 //  WhatWearToday
 //
-//  Created by jlcardosa on 10/12/2016.
+//  Created by jlcardosa on 15/12/2016.
 //  Copyright © 2016 Cardosa. All rights reserved.
 //
 
@@ -16,7 +16,8 @@ extension OpenWeatherMap {
         return NSFetchRequest<OpenWeatherMap>(entityName: "OpenWeatherMap");
     }
 
-    @NSManaged public var content: Dictionary<String, Any>?
+    @NSManaged public var content: NSData?
     @NSManaged public var requestAt: NSDate?
+    @NSManaged public var type: String?
 
 }

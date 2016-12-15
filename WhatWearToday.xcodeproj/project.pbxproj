@@ -75,6 +75,7 @@
 		64EC87B01DE0CFFD0051FA76 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EC87AF1DE0CFFD0051FA76 /* ViewModifier.swift */; };
 		64EC87B31DE0D4B50051FA76 /* hoodie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64EC87B11DE0D4B40051FA76 /* hoodie.jpg */; };
 		64EC87B41DE0D4B50051FA76 /* womenHat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64EC87B21DE0D4B40051FA76 /* womenHat.jpg */; };
+		64F3B3C21E022009006162BB /* CurrentResponseOpenWeatherMapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F3B3C11E022009006162BB /* CurrentResponseOpenWeatherMapTest.swift */; };
 		64FA805D1DFC7801009AED46 /* OpenWeatherMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA805B1DFC7801009AED46 /* OpenWeatherMap+CoreDataClass.swift */; };
 		64FA805E1DFC7801009AED46 /* OpenWeatherMap+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA805C1DFC7801009AED46 /* OpenWeatherMap+CoreDataProperties.swift */; };
 		64FA80611DFC7A95009AED46 /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA80601DFC7A95009AED46 /* BaseRepository.swift */; };
@@ -179,6 +180,7 @@
 		64EC87AF1DE0CFFD0051FA76 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		64EC87B11DE0D4B40051FA76 /* hoodie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hoodie.jpg; sourceTree = "<group>"; };
 		64EC87B21DE0D4B40051FA76 /* womenHat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = womenHat.jpg; sourceTree = "<group>"; };
+		64F3B3C11E022009006162BB /* CurrentResponseOpenWeatherMapTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentResponseOpenWeatherMapTest.swift; sourceTree = "<group>"; };
 		64FA805B1DFC7801009AED46 /* OpenWeatherMap+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OpenWeatherMap+CoreDataClass.swift"; sourceTree = "<group>"; };
 		64FA805C1DFC7801009AED46 /* OpenWeatherMap+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OpenWeatherMap+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		64FA80601DFC7A95009AED46 /* BaseRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				6421E3331DFDF1AF000B4B61 /* Request */,
+				64F3B3C31E022012006162BB /* Response */,
 			);
 			name = OpenWeatherMapAPI;
 			sourceTree = "<group>";
@@ -470,6 +473,14 @@
 				64E9161A1DD742C400EA4812 /* trousers.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		64F3B3C31E022012006162BB /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				64F3B3C11E022009006162BB /* CurrentResponseOpenWeatherMapTest.swift */,
+			);
+			name = Response;
 			sourceTree = "<group>";
 		};
 		64FA805F1DFC7827009AED46 /* Model */ = {
@@ -716,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6487D46C1D74C19100C22EA1 /* WhatWearTodayTests.swift in Sources */,
+				64F3B3C21E022009006162BB /* CurrentResponseOpenWeatherMapTest.swift in Sources */,
 				6421E3351DFDF207000B4B61 /* RequestOpenWeatherMapTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

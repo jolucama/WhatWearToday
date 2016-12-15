@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2657" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="OpenWeatherMap" representedClassName="OpenWeatherMap" syncable="YES">
-        <attribute name="content" optional="YES" attributeType="Transformable" customClassName="Dictionary&lt;String, Any&gt;" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="Binary" customClassName="Dictionary&lt;String, Any&gt;" syncable="YES"/>
         <attribute name="requestAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Outfit" representedClassName="Outfit" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,7 +22,7 @@
         <relationship name="outfits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Outfit" inverseName="calculationHistories" inverseEntity="Outfit" syncable="YES"/>
     </entity>
     <elements>
-        <element name="OpenWeatherMap" positionX="-5571" positionY="-2025" width="128" height="75"/>
+        <element name="OpenWeatherMap" positionX="-5571" positionY="-2025" width="128" height="90"/>
         <element name="Outfit" positionX="-5679" positionY="-2097" width="128" height="180"/>
         <element name="OutfitCalculationHistory" positionX="-5472" positionY="-2091" width="128" height="90"/>
     </elements>

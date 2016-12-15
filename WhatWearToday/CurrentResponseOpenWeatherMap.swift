@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 public class CurrentResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOpenWeatherMapProtocol {
-    
+	
+	
+	public func getCoord() -> CLLocationCoordinate2D {
+		let coord = self.rawData["coord"] as! Dictionary<String,Float>
+		return CLLocationCoordinate2D(latitude: CLLocationDegrees(coord["lat"]! as Float), longitude: CLLocationDegrees(coord["lon"]! as Float))
+	}
+	
     public func getTemperature() -> Float? {
         let main = self.rawData["main"] as? Dictionary<String, Float>
         return main?["temp"]
