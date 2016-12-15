@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManagerDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var weatherPhoto: UIImageView!
@@ -47,8 +47,7 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
-        weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey)
-        weatherAPI.delegate = self
+        weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey, forType: OpenWeatherMapType.Current)
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
     }
 	
@@ -58,52 +57,30 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
             self.locationObject = locations[locations.count - 1]
             let currentLatitude: CLLocationDistance = self.locationObject!.coordinate.latitude
             let currentLongitude: CLLocationDistance = self.locationObject!.coordinate.longitude
-            weatherAPI.currentWeather(byLatitude: currentLatitude, andLongitude: currentLongitude)
+            weatherAPI.weather(byLatitude: currentLatitude, andLongitude: currentLongitude)
+			weatherAPI.performWeatherRequest(completionHandler:{(data: Data?, urlResponse: URLResponse?, error: Error?) in
+				
+				if (error != nil) {
+					self.showAddOutfitAlert(message: "Error fetching the current weather", error: error)
+				} else {
+					do {
+						self.responseWeatherApi = try CurrentResponseOpenWeatherMap(data: data!)
+						DispatchQueue.main.async { [unowned self] in
+							self.updateViewWithResponseWeatherAPI()
+						}
+					} catch let error as Error {
+						self.showAddOutfitAlert(message: "Error fetching the current weather", error: error)
+					}
+				}
+			})
         }
     }
-    
+	
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         NSLog("Impossible to get the location of the device")
     }
-    
-    func didFinishRequest(withType type : OpenWeatherMapType, response : ResponseOpenWeatherMapProtocol?) {
-        if ((response?.getError()) == nil) {
-			self.responseWeatherApi = response!
-			self.loadBackground(responseWeather: response!)
-            self.degrees.text = String(Int((response?.getTemperature()!)!))
-            self.weatherLabel.text = response?.getDescription()
-            self.location.text = response?.getCityName()
-        } else {
-			self.showAddOutfitAlert(message: (response?.getError()?.localizedDescription)!, error: (response?.getError()!)!)
-        }
-    }
 	
-	private func createBackgroundWithFilter() {
-		self.backgroundImageView = UIImageView(frame: self.view.frame)
-		self.backgroundImageView.contentMode = UIViewContentMode.scaleAspectFill
-		
-		let filter = ViewModifier.createBlackFilter(frame: self.view.frame, opacity: 0.25)
-		self.backgroundImageView.addSubview(filter)
-		
-		self.view.insertSubview(self.backgroundImageView, at: 0)
-	}
-	
-	private func loadBackground(responseWeather: ResponseOpenWeatherMapProtocol) {
-		let backgroundIconList = responseWeather.getIconList()
-		let iconListString = String(reflecting: backgroundIconList).replacingOccurrences(of: "WhatWearToday.IconList.", with: "")
-		
-		UIView.animate(withDuration: 0.75, animations: {
-			self.backgroundImageView.alpha = 0.0
-		}, completion: {
-			(finished: Bool) -> Void in
-			self.backgroundImageView.image = UIImage(named: iconListString + ".jpg")
-			UIView.animate(withDuration: 0.75, animations: {
-				self.backgroundImageView.alpha = 1.0
-			})
-		})
-	}
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -111,9 +88,22 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
     
     @IBAction func datePickerAction(_ sender: Any) {
         if self.locationObject != nil {
-            weatherAPI.forecastWeather(byLatitude:   self.locationObject!.coordinate.latitude,
-                                       andLongitude: self.locationObject!.coordinate.longitude,
-                                       andDate:      self.datePicker.date)
+			weatherAPI.type = OpenWeatherMapType.Forecast
+			weatherAPI.performWeatherRequest(completionHandler:{(data: Data?, urlResponse: URLResponse?, error: Error?) in
+				
+				if (error != nil) {
+					self.showAddOutfitAlert(message: "Error fetching the forecast weather", error: error)
+				} else {
+					do {
+						self.responseWeatherApi = try ForecastResponseOpenWeatherMap(data: data!, date: self.datePicker.date)
+						DispatchQueue.main.async { [unowned self] in
+							self.updateViewWithResponseWeatherAPI()
+						}
+					} catch let error as Error {
+						self.showAddOutfitAlert(message: "Error fetching the forecast weather", error: error)
+					}
+				}
+			})
         }
     }
     
@@ -133,8 +123,40 @@ class MainViewController: UIViewController, WeatherAPIDelegate, CLLocationManage
 		}
     }
 	
+	private func createBackgroundWithFilter() {
+		self.backgroundImageView = UIImageView(frame: self.view.frame)
+		self.backgroundImageView.contentMode = UIViewContentMode.scaleAspectFill
+		
+		let filter = ViewModifier.createBlackFilter(frame: self.view.frame, opacity: 0.25)
+		self.backgroundImageView.addSubview(filter)
+		
+		self.view.insertSubview(self.backgroundImageView, at: 0)
+	}
+	
+	private func updateViewWithResponseWeatherAPI(){
+		self.loadBackground(responseWeather: self.responseWeatherApi)
+		self.degrees.text = String(Int(self.responseWeatherApi.getTemperature()))
+		self.weatherLabel.text = self.responseWeatherApi.getDescription()
+		self.location.text = self.responseWeatherApi.getCityName()
+	}
+	
+	private func loadBackground(responseWeather: ResponseOpenWeatherMapProtocol) {
+		let backgroundIconList = responseWeather.getIconList()
+		let iconListString = String(reflecting: backgroundIconList).replacingOccurrences(of: "WhatWearToday.IconList.", with: "")
+		
+		UIView.animate(withDuration: 0.75, animations: {
+			self.backgroundImageView.alpha = 0.0
+		}, completion: {
+			(finished: Bool) -> Void in
+			self.backgroundImageView.image = UIImage(named: iconListString + ".jpg")
+			UIView.animate(withDuration: 0.75, animations: {
+				self.backgroundImageView.alpha = 1.0
+			})
+		})
+	}
+
 	private func showAddOutfitAlert(message: String, error: Error?) {
-		let alert = UIAlertController(title: "Error", message: message + ". Add outfits in the meantime ;)", preferredStyle: .alert)
+		let alert = UIAlertController(title: "Oups!", message: message + ". Add outfits in the meantime ;)", preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (action) in
 			print(error ?? "No error object")
 		}))

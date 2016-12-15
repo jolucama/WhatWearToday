@@ -23,7 +23,11 @@ public class OpenWeatherMap: NSManagedObject {
 		let managedObjectContext = appDelegate.managedObjectContext
 		do {
 			let results = try managedObjectContext.fetch(fetchRequest)
-			return results[0] as OpenWeatherMap?
+			if results.count > 0 {
+				return results[0] as OpenWeatherMap?
+			} else {
+				return nil
+			}
 		} catch let error as NSError {
 			NSLog("Error in OpenWeatherMap:getLastRequestStored. %@", error)
 			return nil

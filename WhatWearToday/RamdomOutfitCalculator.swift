@@ -19,7 +19,7 @@ class RamdomOutfitCalculator : OutfitCalculatorProtocol {
 	
     func calculate(response: ResponseOpenWeatherMapProtocol) throws -> ResultCalculator
 	{
-		self.currentSeason = self.calculateSeasonRelyingOn(Date: response.getDateTime()!)
+		self.currentSeason = self.calculateSeasonRelyingOn(Date: response.getDate())
 		try self.sliptOutfitIntoTypes()
 		return self.calculateRamdonly()
     }

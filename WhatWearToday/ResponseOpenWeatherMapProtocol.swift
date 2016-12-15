@@ -14,25 +14,23 @@ public protocol ResponseOpenWeatherMapProtocol {
 	
 	func getCoord() -> CLLocationCoordinate2D
 	
-    func getTemperature() -> Float?
+    func getTemperature() -> Float
     
-    func getPressure() -> Float?
+    func getPressure() -> Float
     
-    func getHumidity() -> Float?
+    func getHumidity() -> Float
     
-    func getTempMax() -> Float?
+    func getTempMax() -> Float
     
-    func getTempMin() -> Float?
+    func getTempMin() -> Float
     
-    func getCityName() -> String?
+    func getCityName() -> String
 	
 	func getIconList() -> IconList
 	
-    func getDescription() -> String?
+    func getDescription() -> String
     
-    func getWindSpeed() -> String?
+    func getWindSpeed() -> Float
     
-    func getDateTime() -> Date?
-    
-    func getError() -> Error?
+    func getDate() -> Date
 }

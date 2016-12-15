@@ -12,8 +12,6 @@ public class OpenWeatherMapAPI {
     
 	var parameters = [String:String]()
 	var type: OpenWeatherMapType
-    var forecastDate: Date?
-    weak var delegate: WeatherAPIDelegate?
 	var usingPersistence: Bool
 	var timeInterval: Int
 	
@@ -31,28 +29,23 @@ public class OpenWeatherMapAPI {
 	
 	public func weather(byCityName cityName : String) {
 		self.parameters[RequestParametersKey.cityName.rawValue] = cityName
-		self.performCurrentWeatherRequest()
 	}
 	
 	public func weather(byCityName cityName : String, andCountryCode countryCode: String) {
 		self.parameters[RequestParametersKey.cityName.rawValue] = cityName + "," + countryCode
-		self.performCurrentWeatherRequest()
 	}
 	
 	public func weather(byCityId cityId : Int) {
 		self.parameters[RequestParametersKey.cityID.rawValue] = String(cityId)
-		self.performCurrentWeatherRequest()
 	}
 	
 	public func weather(byLatitude latitude : Double, andLongitude longitude : Double) {
 		self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
 		self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
-		self.performCurrentWeatherRequest()
 	}
 	
 	public func weather(byZipCode zipcode : String, andCountryCode countryCode : String) {
 		self.parameters[RequestParametersKey.zipCode.rawValue] = zipcode + "," + countryCode
-		self.performCurrentWeatherRequest()
 	}
 	
 	public func performWeatherRequest(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
@@ -60,120 +53,28 @@ public class OpenWeatherMapAPI {
 		if lastRequest == nil || lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == true {
 			let request = RequestOpenWeatherMap(withType: self.type, andParameters: self.parameters)
 			request.request(onCompletion: completionHandler)
+			
+			NSLog("Response done")
 		} else {
 			completionHandler(lastRequest?.content as? Data, nil, nil)
 		}
 	}
 	
+    public func resetLocationParameters() {
+        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
+        self.parameters.removeValue(forKey: RequestParametersKey.cityID.rawValue)
+        self.parameters.removeValue(forKey: RequestParametersKey.latitude.rawValue)
+		self.parameters.removeValue(forKey: RequestParametersKey.longitude.rawValue)
+		self.parameters.removeValue(forKey: RequestParametersKey.zipCode.rawValue)
+    }
 	
-    /// --- Methods for the current weather
 	
-    public func currentWeather(byCityName cityName : String) {
-        self.parameters[RequestParametersKey.cityName.rawValue] = cityName
-        self.performCurrentWeatherRequest()
-    }
-    
-    public func currentWeather(byCityName cityName : String, andCountryCode countryCode: String) {
-        self.parameters[RequestParametersKey.cityName.rawValue] = cityName + "," + countryCode
-        self.performCurrentWeatherRequest()
-    }
-    
-    public func currentWeather(byCityId cityId : Int) {
-        self.parameters[RequestParametersKey.cityID.rawValue] = String(cityId)
-        self.performCurrentWeatherRequest()
-    }
-    
-    public func currentWeather(byLatitude latitude : Double, andLongitude longitude : Double) {
-        self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
-        self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
-        self.performCurrentWeatherRequest()
-    }
-    
-    public func currentWeather(byZipCode zipcode : String, andCountryCode countryCode : String) {
-        self.parameters[RequestParametersKey.zipCode.rawValue] = zipcode + "," + countryCode
-        self.performCurrentWeatherRequest()
-    }
-    
-    private func performCurrentWeatherRequest() {
-        let request = RequestOpenWeatherMap(withType: OpenWeatherMapType.Current, andParameters: self.parameters)
-        request.request(onCompletion: { (data : Data?, response, error) in
-            var responseOWM : ResponseOpenWeatherMapProtocol!
-            if error == nil {
-                responseOWM = CurrentResponseOpenWeatherMap(data: data!)
-            } else {
-                responseOWM = CurrentResponseOpenWeatherMap(withError: error!);
-            }
-            NSLog("Response to CurrentResponseOpenWeatherMap")
-            
-            DispatchQueue.main.async { [unowned self] in
-                self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Current, response: responseOWM)
-            }
-        })
-    }
-    
-    /// --- Methods for the forecast weather
-    
-    public func forecastWeather(byCityName cityName : String, andDate date : Date) {
-        self.parameters[RequestParametersKey.cityName.rawValue] = cityName
-        self.forecastDate = date
-        self.performForecastWeatherRequest()
-    }
-    
-    public func forecastWeather(byCityName cityName : String, andCountryCode countryCode: String, andDate date : Date) {
-        self.parameters[RequestParametersKey.cityName.rawValue] = cityName + "," + countryCode
-        self.forecastDate = date
-        self.performForecastWeatherRequest()
-    }
-    
-    public func forecastWeather(byCityId cityId : Int, andDate date : Date) {
-        self.parameters[RequestParametersKey.cityID.rawValue] = String(cityId)
-        self.forecastDate = date
-        self.performForecastWeatherRequest()
-    }
-    
-    public func forecastWeather(byLatitude latitude : Double, andLongitude longitude : Double, andDate date : Date) {
-        self.parameters[RequestParametersKey.latitude.rawValue] = String(latitude)
-        self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
-        self.forecastDate = date
-        self.performForecastWeatherRequest()
-    }
-    
-    public func forecastWeather(byZipCode zipcode : String, andCountryCode countryCode : String, andDate date : Date) {
-        self.parameters[RequestParametersKey.zipCode.rawValue] = zipcode + "," + countryCode
-        self.forecastDate = date
-        self.performForecastWeatherRequest()
-    }
-    
-    private func performForecastWeatherRequest() {
-        let request = RequestOpenWeatherMap(withType: OpenWeatherMapType.Forecast, andParameters: self.parameters)
-        request.request(onCompletion: { (data : Data?, response, error) in
-            var responseOWM : ResponseOpenWeatherMapProtocol!
-            if error == nil {
-                responseOWM = ForecastResponseOpenWeatherMap(data: data!, date: self.forecastDate!)
-            }
-            NSLog("Response to ForecastResponseOpenWeatherMap")
-            DispatchQueue.main.async { [unowned self] in
-                self.delegate?.didFinishRequest(withType: OpenWeatherMapType.Forecast, response: responseOWM)
-            }
-        })
-    }
-    
-    private func cleanInputParameters() {
-        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
-        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
-        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
-        self.parameters.removeValue(forKey: RequestParametersKey.cityName.rawValue)
-    }
-    
+	
     // Several options
 	
 	public func setUsingPersistence(_ option: Bool, withTimeInterval time: Int) {
 		self.usingPersistence = option
 		self.timeInterval = time
-	}
-	
-	public func setDateForForecast(date: Date) {
-		self.forecastDate = date
 	}
 	
     public func setSearchAccuracy(searchAccuracy : SearchAccuracyType) {
