@@ -13,11 +13,14 @@ import UIKit
 @objc(OpenWeatherMap)
 public class OpenWeatherMap: NSManagedObject {
 	
+	static let entityName = "OpenWeatherMap"
 	
-	static func getLastRequestStored() -> OpenWeatherMap? {
+	static func getLastRequestStored(byType type: OpenWeatherMapType) -> OpenWeatherMap? {
 		
 		let fetchRequest = NSFetchRequest<OpenWeatherMap>(entityName: "OpenWeatherMap");
+		
 		fetchRequest.sortDescriptors?.append(NSSortDescriptor(key: "date", ascending: false))
+		fetchRequest.predicate = NSPredicate(format: "type == %@", type.rawValue)
 		fetchRequest.fetchLimit = 1
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		let managedObjectContext = appDelegate.managedObjectContext

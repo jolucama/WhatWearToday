@@ -49,6 +49,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         
         weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey, forType: OpenWeatherMapType.Current)
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
+		
+		weatherAPI.usingPersistence = true
+		weatherAPI.timeInterval = 3600 //1h
     }
 	
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -59,11 +62,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             let currentLongitude: CLLocationDistance = self.locationObject!.coordinate.longitude
             weatherAPI.weather(byLatitude: currentLatitude, andLongitude: currentLongitude)
 			weatherAPI.performWeatherRequest(completionHandler:{(data: Data?, urlResponse: URLResponse?, error: Error?) in
-				
+				NSLog("Response Current Weather Done")
 				if (error != nil) {
 					self.showAddOutfitAlert(message: "Error fetching the current weather", error: error)
 				} else {
 					do {
+						try self.weatherAPI.saveResponse(withJson: data!)
 						self.responseWeatherApi = try CurrentResponseOpenWeatherMap(data: data!)
 						DispatchQueue.main.async { [unowned self] in
 							self.updateViewWithResponseWeatherAPI()
@@ -90,11 +94,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         if self.locationObject != nil {
 			weatherAPI.type = OpenWeatherMapType.Forecast
 			weatherAPI.performWeatherRequest(completionHandler:{(data: Data?, urlResponse: URLResponse?, error: Error?) in
-				
+				NSLog("Response Current Forecast Done")
 				if (error != nil) {
 					self.showAddOutfitAlert(message: "Error fetching the forecast weather", error: error)
 				} else {
 					do {
+						try self.weatherAPI.saveResponse(withJson: data!)
 						self.responseWeatherApi = try ForecastResponseOpenWeatherMap(data: data!, date: self.datePicker.date)
 						DispatchQueue.main.async { [unowned self] in
 							self.updateViewWithResponseWeatherAPI()

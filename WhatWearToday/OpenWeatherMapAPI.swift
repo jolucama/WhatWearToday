@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 public class OpenWeatherMapAPI {
     
 	var parameters = [String:String]()
 	var type: OpenWeatherMapType
 	var usingPersistence: Bool
+	var lastRequest: OpenWeatherMap?
+	
+	// Seconds to request again to the API
 	var timeInterval: Int
 	
     /// Creates a new instance with the API key and the type
@@ -49,12 +53,10 @@ public class OpenWeatherMapAPI {
 	}
 	
 	public func performWeatherRequest(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
-		let lastRequest = OpenWeatherMap.getLastRequestStored()
-		if lastRequest == nil || lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == true {
+		self.lastRequest = OpenWeatherMap.getLastRequestStored(byType: self.type)
+		if self.lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == true {
 			let request = RequestOpenWeatherMap(withType: self.type, andParameters: self.parameters)
 			request.request(onCompletion: completionHandler)
-			
-			NSLog("Response done")
 		} else {
 			completionHandler(lastRequest?.content as? Data, nil, nil)
 		}
@@ -68,7 +70,22 @@ public class OpenWeatherMapAPI {
 		self.parameters.removeValue(forKey: RequestParametersKey.zipCode.rawValue)
     }
 	
-	
+	public func saveResponse(withJson json: Data) throws {
+		if self.lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == false {
+			return //Not time enough to save
+		}
+		
+		let managedObjectContext = CoreDataManager.getManagedObjectContext()
+		var record : OpenWeatherMap
+		let entity = NSEntityDescription.entity(forEntityName: OpenWeatherMap.entityName, in: managedObjectContext)
+		record = OpenWeatherMap(entity: entity!, insertInto: managedObjectContext)
+		
+		record.requestAt = Date() as NSDate?
+		record.type = self.type.rawValue
+		record.content = json as NSData?
+		
+		try managedObjectContext.save()
+	}
 	
     // Several options
 	

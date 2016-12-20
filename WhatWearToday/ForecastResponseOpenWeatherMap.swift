@@ -28,7 +28,7 @@ public class ForecastResponseOpenWeatherMap : ResponseOpenWeatherMap, ResponseOp
 	public func getCoord() -> CLLocationCoordinate2D {
 		let city = self.getDictionary(byKey: "city")
 		let coord = city["coord"] as! Dictionary<String,Float>
-		return CLLocationCoordinate2D(latitude: CLLocationDegrees(coord["lat"]!), longitude: CLLocationDegrees(coord["lon"]!))
+		return CLLocationCoordinate2D(latitude: CLLocationDegrees(coord["lat"]!), longitude: CLLocationDegrees(coord["long"]!))
 	}
     
     public func getTemperature() -> Float {

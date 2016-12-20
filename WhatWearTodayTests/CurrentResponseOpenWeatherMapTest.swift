@@ -19,7 +19,7 @@ class CurrentResponseOpenWeatherMapTest: XCTestCase {
 		let rawDataJSON = self.mockJSONOpenWeatherMapAPI()
 		do {
 			try self.currentResponse = CurrentResponseOpenWeatherMap(data: rawDataJSON!)
-		} catch let error as Error{
+		} catch _ as Error{
 			XCTFail("Wrong error")
 		}
     }
