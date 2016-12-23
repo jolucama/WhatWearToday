@@ -22,6 +22,9 @@
 		640950941DE65FA5006E94C2 /* OutfitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640950931DE65FA5006E94C2 /* OutfitRepository.swift */; };
 		6421E3351DFDF207000B4B61 /* RequestOpenWeatherMapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421E3341DFDF207000B4B61 /* RequestOpenWeatherMapTest.swift */; };
 		643488BE1E0D79FB004B902C /* OpenWeatherMapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643488BD1E0D79FB004B902C /* OpenWeatherMapTest.swift */; };
+		643488C31E0DA5CE004B902C /* HomePage.png in Resources */ = {isa = PBXBuildFile; fileRef = 643488C01E0DA5CE004B902C /* HomePage.png */; };
+		643488C51E0DA5CE004B902C /* ListOutfit.png in Resources */ = {isa = PBXBuildFile; fileRef = 643488C21E0DA5CE004B902C /* ListOutfit.png */; };
+		643488C71E0DA6AC004B902C /* AdditionPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 643488C61E0DA6AC004B902C /* AdditionPage.png */; };
 		64467ED51D75272400EDF83A /* AddClothesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64467ED41D75272400EDF83A /* AddClothesTableViewController.swift */; };
 		6453A5931DD54B81003CD73F /* OutfitListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453A5921DD54B81003CD73F /* OutfitListTableViewController.swift */; };
 		646AA17B1DFCAE440044A6B3 /* OutfitCalculationHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646AA17A1DFCAE440044A6B3 /* OutfitCalculationHistoryTableViewCell.swift */; };
@@ -120,6 +123,9 @@
 		640950931DE65FA5006E94C2 /* OutfitRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitRepository.swift; sourceTree = "<group>"; };
 		6421E3341DFDF207000B4B61 /* RequestOpenWeatherMapTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOpenWeatherMapTest.swift; sourceTree = "<group>"; };
 		643488BD1E0D79FB004B902C /* OpenWeatherMapTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenWeatherMapTest.swift; path = ../WhatWearToday/OpenWeatherMapTest.swift; sourceTree = "<group>"; };
+		643488C01E0DA5CE004B902C /* HomePage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomePage.png; sourceTree = "<group>"; };
+		643488C21E0DA5CE004B902C /* ListOutfit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListOutfit.png; sourceTree = "<group>"; };
+		643488C61E0DA6AC004B902C /* AdditionPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AdditionPage.png; sourceTree = "<group>"; };
 		64467ED41D75272400EDF83A /* AddClothesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClothesTableViewController.swift; sourceTree = "<group>"; };
 		6453A5921DD54B81003CD73F /* OutfitListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitListTableViewController.swift; sourceTree = "<group>"; };
 		646AA17A1DFCAE440044A6B3 /* OutfitCalculationHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitCalculationHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -301,6 +307,16 @@
 			name = Request;
 			sourceTree = "<group>";
 		};
+		643488BF1E0DA5B5004B902C /* ScreenShots */ = {
+			isa = PBXGroup;
+			children = (
+				643488C01E0DA5CE004B902C /* HomePage.png */,
+				643488C61E0DA6AC004B902C /* AdditionPage.png */,
+				643488C21E0DA5CE004B902C /* ListOutfit.png */,
+			);
+			name = ScreenShots;
+			sourceTree = "<group>";
+		};
 		64467ED81D75314A00EDF83A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +452,7 @@
 		64E916131DD73E0100EA4812 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				643488BF1E0DA5B5004B902C /* ScreenShots */,
 				64FA80641DFC9620009AED46 /* CustomView */,
 				64E916191DD742A700EA4812 /* Images */,
 				64E916141DD73E1B00EA4812 /* TableViewCell */,
@@ -619,14 +636,17 @@
 				64EC87B31DE0D4B50051FA76 /* hoodie.jpg in Resources */,
 				64D221D51DF74FF400EE8606 /* ShowerRainDay.jpg in Resources */,
 				64D221D61DF74FF400EE8606 /* ShowerRainNight.jpg in Resources */,
+				643488C31E0DA5CE004B902C /* HomePage.png in Resources */,
 				6487D4611D74C19100C22EA1 /* LaunchScreen.storyboard in Resources */,
 				64D221D41DF74FF400EE8606 /* ScatteredCloudsNight.jpg in Resources */,
 				64D221D11DF74FF400EE8606 /* RainDay.jpg in Resources */,
+				643488C71E0DA6AC004B902C /* AdditionPage.png in Resources */,
 				6487D45E1D74C19100C22EA1 /* Assets.xcassets in Resources */,
 				64D221CD1DF74FF400EE8606 /* FewCloudsDay.jpg in Resources */,
 				64D221CE1DF74FF400EE8606 /* FewCloudsNight.jpg in Resources */,
 				64BE7FAC1DF483F80000A26F /* ClearSkyDay.jpg in Resources */,
 				64CA06481DFA29CB00E165A0 /* OutfitHistory.png in Resources */,
+				643488C51E0DA5CE004B902C /* ListOutfit.png in Resources */,
 				64D221D31DF74FF400EE8606 /* ScatteredCloudsDay.jpg in Resources */,
 				64D221DA1DF74FF400EE8606 /* ThunderstormNight.jpg in Resources */,
 				6487D4591D74C19100C22EA1 /* Main.storyboard in Resources */,
