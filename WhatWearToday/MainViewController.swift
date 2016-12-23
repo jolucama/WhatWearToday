@@ -49,9 +49,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         
         weatherAPI = OpenWeatherMapAPI(apiKey: self.apiKey, forType: OpenWeatherMapType.Current)
         weatherAPI.setTemperatureUnit(unit: TemperatureFormat.Celsius)
-		
-		weatherAPI.usingPersistence = true
-		weatherAPI.timeInterval = 3600 //1h
     }
 	
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -67,7 +64,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
 					self.showAddOutfitAlert(message: "Error fetching the current weather", error: error)
 				} else {
 					do {
-						try self.weatherAPI.saveResponse(withJson: data!)
 						self.responseWeatherApi = try CurrentResponseOpenWeatherMap(data: data!)
 						DispatchQueue.main.async { [unowned self] in
 							self.updateViewWithResponseWeatherAPI()
@@ -99,7 +95,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
 					self.showAddOutfitAlert(message: "Error fetching the forecast weather", error: error)
 				} else {
 					do {
-						try self.weatherAPI.saveResponse(withJson: data!)
 						self.responseWeatherApi = try ForecastResponseOpenWeatherMap(data: data!, date: self.datePicker.date)
 						DispatchQueue.main.async { [unowned self] in
 							self.updateViewWithResponseWeatherAPI()
@@ -149,12 +144,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
 		let backgroundIconList = responseWeather.getIconList()
 		let iconListString = String(reflecting: backgroundIconList).replacingOccurrences(of: "WhatWearToday.IconList.", with: "")
 		
-		UIView.animate(withDuration: 0.75, animations: {
+		UIView.animate(withDuration: 0.35, animations: {
 			self.backgroundImageView.alpha = 0.0
 		}, completion: {
 			(finished: Bool) -> Void in
 			self.backgroundImageView.image = UIImage(named: iconListString + ".jpg")
-			UIView.animate(withDuration: 0.75, animations: {
+			UIView.animate(withDuration: 0.35, animations: {
 				self.backgroundImageView.alpha = 1.0
 			})
 		})

@@ -13,11 +13,6 @@ public class OpenWeatherMapAPI {
     
 	var parameters = [String:String]()
 	var type: OpenWeatherMapType
-	var usingPersistence: Bool
-	var lastRequest: OpenWeatherMap?
-	
-	// Seconds to request again to the API
-	var timeInterval: Int
 	
     /// Creates a new instance with the API key and the type
     ///
@@ -27,8 +22,6 @@ public class OpenWeatherMapAPI {
 	init (apiKey : String!, forType type: OpenWeatherMapType = OpenWeatherMapType.Current) {
         self.parameters[RequestParametersKey.apiKey.rawValue] = apiKey
 		self.type = type
-		self.usingPersistence = false
-		self.timeInterval = 0
     }
 	
 	public func weather(byCityName cityName : String) {
@@ -39,6 +32,7 @@ public class OpenWeatherMapAPI {
 		self.parameters[RequestParametersKey.cityName.rawValue] = cityName + "," + countryCode
 	}
 	
+	/// List of city ids may be found here: http://bulk.openweathermap.org/sample/
 	public func weather(byCityId cityId : Int) {
 		self.parameters[RequestParametersKey.cityID.rawValue] = String(cityId)
 	}
@@ -48,18 +42,9 @@ public class OpenWeatherMapAPI {
 		self.parameters[RequestParametersKey.longitude.rawValue] = String(longitude)
 	}
 	
-	public func weather(byZipCode zipcode : String, andCountryCode countryCode : String) {
-		self.parameters[RequestParametersKey.zipCode.rawValue] = zipcode + "," + countryCode
-	}
-	
 	public func performWeatherRequest(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
-		self.lastRequest = OpenWeatherMap.getLastRequestStored(byType: self.type)
-		if self.lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == true {
-			let request = RequestOpenWeatherMap(withType: self.type, andParameters: self.parameters)
-			request.request(onCompletion: completionHandler)
-		} else {
-			completionHandler(lastRequest?.content as? Data, nil, nil)
-		}
+		let request = RequestOpenWeatherMap(withType: self.type, andParameters: self.parameters)
+		request.request(onCompletion: completionHandler)
 	}
 	
     public func resetLocationParameters() {
@@ -70,29 +55,7 @@ public class OpenWeatherMapAPI {
 		self.parameters.removeValue(forKey: RequestParametersKey.zipCode.rawValue)
     }
 	
-	public func saveResponse(withJson json: Data) throws {
-		if self.lastRequest?.needToRequestAgain(forTimeInterval: self.timeInterval) == false {
-			return //Not time enough to save
-		}
-		
-		let managedObjectContext = CoreDataManager.getManagedObjectContext()
-		var record : OpenWeatherMap
-		let entity = NSEntityDescription.entity(forEntityName: OpenWeatherMap.entityName, in: managedObjectContext)
-		record = OpenWeatherMap(entity: entity!, insertInto: managedObjectContext)
-		
-		record.requestAt = Date() as NSDate?
-		record.type = self.type.rawValue
-		record.content = json as NSData?
-		
-		try managedObjectContext.save()
-	}
-	
-    // Several options
-	
-	public func setUsingPersistence(_ option: Bool, withTimeInterval time: Int) {
-		self.usingPersistence = option
-		self.timeInterval = time
-	}
+	// -- Options
 	
     public func setSearchAccuracy(searchAccuracy : SearchAccuracyType) {
         self.parameters[RequestParametersKey.searchAccuracy.rawValue] = searchAccuracy.rawValue
