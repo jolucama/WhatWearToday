@@ -50,17 +50,25 @@ class RamdomOutfitCalculator : OutfitCalculatorProtocol {
 	
     private func calculateSeasonRelyingOn(Date date : Date!) -> Outfit.Season
 	{
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day, .month], from: date)
-        let month = components.month!
-        let day = components.day!
-        
-        if day > 21 && month > 6 && day < 22 && month < 9 {
-            return Outfit.Season.Summer
-        } else if day > 21 && month > 12 && day < 22 && month < 3 {
-            return Outfit.Season.Winter
-        } else {
-            return Outfit.Season.SpringAutumn
-        }
-    }
+		let calendar = Calendar.current
+		let components = calendar.dateComponents([.day, .month], from: date)
+		let month = components.month!
+		let day = components.day!
+
+		if month >= 6 && month <= 9 {
+			if (month == 6 && day < 21) || (month == 9 && day > 21){
+				//Nothing
+			}
+			return Outfit.Season.Summer
+		}
+		
+		if month == 12 || month <= 3 {
+			if (month == 12 && day < 21) || (month <= 3 && day > 21){
+				//Nothing
+			}
+			return Outfit.Season.Winter
+		}
+		
+		return Outfit.Season.SpringAutumn
+	}
 }
